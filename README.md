@@ -2,9 +2,3 @@
 
 Unser Unity Schulprojekt im Fach C#.
 Projektplanung:
-*
-*
-*
-*
-*
-*
