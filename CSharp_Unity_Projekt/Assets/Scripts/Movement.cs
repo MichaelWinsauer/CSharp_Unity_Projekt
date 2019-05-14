@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     private int jumpCount;
     private Rigidbody2D rb;
     private float moveX;
-    private float airForce = 5;
+    private float airForce = 2;
     
     // Start is called before the first frame update
     void Start()
@@ -44,15 +44,15 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
         else
         {
-            rb.velocity = new Vector2(moveX * moveSpeed / 2, rb.velocity.y);
-            //rb.AddForce(new Vector2(moveX * airForce * rb.velocity.x, 0));
+            rb.velocity = new Vector2(moveX * moveSpeed / airForce, rb.velocity.y);
+            //rb.AddForce(new Vector2(moveX * moveSpeed, 0));
         }
             
     }
 
     private void jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.W)) && jumpCount > 0)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.W)) && jumpCount > 1) //Keine Ahnung, warum ich hier grade 1 machen muss, damit ich 2 Sprünge habe...
         {
             rb.velocity = Vector2.up * jumpForce;
             jumpCount--;

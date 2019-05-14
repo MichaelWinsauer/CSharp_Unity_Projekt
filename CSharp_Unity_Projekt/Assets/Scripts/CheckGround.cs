@@ -7,7 +7,7 @@ public class CheckGround : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider)
+        if (collision.collider.tag.Equals("Ground"))
         {
             this.GetComponent<Movement>().isGrounded = true;
         }
