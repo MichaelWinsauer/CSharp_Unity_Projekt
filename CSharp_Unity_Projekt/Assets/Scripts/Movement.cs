@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
 
     public float moveSpeed;
-    public int jumpCountInput;
+    public int jumpCountInput = 2;
     public float jumpForce;
     public bool isGrounded = false;
     public float moveSmooth = 0.05f;
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
         }
-        else if (isGrounded)
+        if (isGrounded)
             jumpCount = jumpCountInput;
     }
 }
