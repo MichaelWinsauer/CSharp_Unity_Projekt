@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     public bool isGrounded = false;
     public float moveSmooth = 0.05f;
     public float airMoveSmooth = 0.2f;
+    public AudioSource footstep; 
 
     private int jumpCount;
     private Rigidbody2D rb;
@@ -45,6 +46,14 @@ public class Movement : MonoBehaviour
         
         if (isGrounded)
         {
+            if (footstep.isPlaying != true && moveX != 0)
+            {
+                footstep.Play();
+            }
+            else if(moveX == 0)
+            {
+                footstep.Stop();
+            }
             Vector3 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
             rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, moveSmooth);
         }
