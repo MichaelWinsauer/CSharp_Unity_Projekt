@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class CheckGround : MonoBehaviour
 {
+    private GameObject player;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Start()
     {
-        if (collision.collider.tag.Equals("Ground"))
+        player = transform.parent.gameObject;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ground"))
         {
-            this.GetComponent<Movement>().isGrounded = true;
+            player.GetComponent<Movement>().isGrounded = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        this.GetComponent<Movement>().isGrounded = false;
+        player.GetComponent<Movement>().isGrounded = false;
     }
 }

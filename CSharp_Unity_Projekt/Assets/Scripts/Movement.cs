@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
 
     private void jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && jumpCount > 1) //Keine Ahnung, warum ich hier grade 1 machen muss, damit ich 2 Sprünge habe...
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
