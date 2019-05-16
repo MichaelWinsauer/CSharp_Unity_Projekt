@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     public float airMoveSmooth = 0.2f;
     public AudioSource footstep; 
 
-    private int jumpCount;
+    public int jumpCount;
     private Rigidbody2D rb;
     private float moveX;
     private float airForce = 1.5f;
@@ -31,13 +31,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
-
     }
 
     private void FixedUpdate()
     {
         move();
-
         jump();
     }
 
@@ -62,17 +60,16 @@ public class Movement : MonoBehaviour
             Vector3 targetVelocity = new Vector2(moveX * moveSpeed / airForce, rb.velocity.y);
             rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, airMoveSmooth);
         }
-
     }
 
     private void jump()
-    {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && jumpCount > 0)
+    {       
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
         }
-        if (isGrounded)
+        else if (isGrounded)
             jumpCount = jumpCountInput;
     }
 }

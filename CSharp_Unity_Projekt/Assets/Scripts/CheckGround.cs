@@ -10,17 +10,11 @@ public class CheckGround : MonoBehaviour
     {
         player = transform.parent.gameObject;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.tag.Equals("Ground"))
-        {
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15f, LayerMask.NameToLayer("Ground")).distance == 0)
             player.GetComponent<Movement>().isGrounded = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        player.GetComponent<Movement>().isGrounded = false;
+        else
+            player.GetComponent<Movement>().isGrounded = false;
     }
 }
