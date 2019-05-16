@@ -10,11 +10,12 @@ public class CheckGround : MonoBehaviour
     {
         player = transform.parent.gameObject;
     }
-    private void FixedUpdate()
+    
+    public bool checkRaycastDistance()
     {
         if (Physics2D.Raycast(transform.position, Vector2.down, 15f, LayerMask.NameToLayer("Ground")).distance == 0)
-            player.GetComponent<Movement>().isGrounded = true;
+            return true;
         else
-            player.GetComponent<Movement>().isGrounded = false;
+            return false;
     }
 }

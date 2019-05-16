@@ -19,11 +19,12 @@ public class Movement : MonoBehaviour
     private float moveX;
     private float airForce = 1.5f;
     private Vector3 velocity = Vector3.zero;
+    private bool isJumping;
 
     // Start is called before the first frame update
     void Start()
     {
-        jumpCount = jumpCountInput;
+        jumpCount = jumpCountInput - 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -31,12 +32,17 @@ public class Movement : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.W))
+            isJumping = true;
+        else
+            isJumping = false;
+        jump();
     }
 
     private void FixedUpdate()
     {
         move();
-        jump();
     }
 
     private void move()
@@ -64,12 +70,12 @@ public class Movement : MonoBehaviour
 
     private void jump()
     {       
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount > 0)
+        if (isJumping && jumpCount > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
         }
         else if (isGrounded)
-            jumpCount = jumpCountInput;
+            jumpCount = jumpCountInput - 1;
     }
 }
