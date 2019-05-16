@@ -952,5 +952,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4744062826565793251, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: footstep
+      value: 
+      objectReference: {fileID: 4744062826801475520}
+    - target: {fileID: 4744062825002068539, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744062825002068539, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 619c8251be5dadb4b9670effb9ce1dbd, type: 3}
+--- !u!82 &4744062826801475520 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4744062825002068539, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 4744062826801475519}
+  m_PrefabAsset: {fileID: 0}
