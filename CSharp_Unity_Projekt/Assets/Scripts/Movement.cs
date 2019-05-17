@@ -74,6 +74,7 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount--;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ScreenShake>().duaration = 1f;
         }
         else if (isGrounded)
             jumpCount = jumpCountInput - 1;
