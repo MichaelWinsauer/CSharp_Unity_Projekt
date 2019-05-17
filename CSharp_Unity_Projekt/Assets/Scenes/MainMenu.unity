@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.1, y: 112.2}
-  m_SizeDelta: {x: 177.4, y: 92.1}
+  m_AnchoredPosition: {x: 0.0000061989, y: 112.2}
+  m_SizeDelta: {x: 161.1, y: 92.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &89369647
 MonoBehaviour:
@@ -305,8 +305,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -103.3}
-  m_SizeDelta: {x: 109.8, y: 46.8}
+  m_AnchoredPosition: {x: 0.000005722, y: -103.3}
+  m_SizeDelta: {x: 87.7, y: 46.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162630892
 MonoBehaviour:
@@ -615,7 +615,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: OPTIONS
+  m_text: Options
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 001ace34aa9548b4d89837284b934526, type: 2}
   m_sharedMaterial: {fileID: -738521427422349793, guid: 001ace34aa9548b4d89837284b934526,
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -753,8 +753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 291.7, y: 92.1}
+  m_AnchoredPosition: {x: -0.0000061989, y: 0}
+  m_SizeDelta: {x: 252.1, y: 92.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961651048
 MonoBehaviour:
@@ -921,7 +921,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: OPTIONS
+  m_text: Options
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 001ace34aa9548b4d89837284b934526, type: 2}
   m_sharedMaterial: {fileID: -738521427422349793, guid: 001ace34aa9548b4d89837284b934526,
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1079,7 +1079,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: BACK
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 001ace34aa9548b4d89837284b934526, type: 2}
   m_sharedMaterial: {fileID: -738521427422349793, guid: 001ace34aa9548b4d89837284b934526,
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1385,7 +1385,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PLAY
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 001ace34aa9548b4d89837284b934526, type: 2}
   m_sharedMaterial: {fileID: -738521427422349793, guid: 001ace34aa9548b4d89837284b934526,
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1523,8 +1523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: -109}
-  m_SizeDelta: {x: 176.4, y: 86.5}
+  m_AnchoredPosition: {x: 0.50001, y: -109}
+  m_SizeDelta: {x: 160.1, y: 86.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932968131
 MonoBehaviour:
@@ -1774,7 +1774,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: QUIT
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 001ace34aa9548b4d89837284b934526, type: 2}
   m_sharedMaterial: {fileID: -738521427422349793, guid: 001ace34aa9548b4d89837284b934526,
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 5
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
