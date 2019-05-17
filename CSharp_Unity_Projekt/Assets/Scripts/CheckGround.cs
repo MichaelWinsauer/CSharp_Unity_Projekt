@@ -13,7 +13,7 @@ public class CheckGround : MonoBehaviour
     
     public bool checkRaycastDistance()
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, 15f, LayerMask.NameToLayer("Ground")).distance == 0)
+        if (Physics2D.Raycast(transform.position, Vector2.down, 15f, LayerMask.NameToLayer("Ground")).distance == 0 && Physics2D.Raycast(transform.position, Vector2.down, 15f, LayerMask.NameToLayer("Ground")).collider.tag.Equals("Ground"))
             return true;
         else
             return false;
