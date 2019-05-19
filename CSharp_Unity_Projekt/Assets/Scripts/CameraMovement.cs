@@ -9,6 +9,11 @@ public class CameraMovement : MonoBehaviour
     public Transform player;
     public float speed = 0.15f;
 
+    public void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
+
     // Update is called once per frame
     private void LateUpdate()
     {
