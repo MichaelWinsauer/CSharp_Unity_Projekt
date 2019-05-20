@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class InputSequence : MonoBehaviour
 {
-    
-    private void Start()
-    {
-        new Sequence("Basic", new KeyCode[] { KeyCode.J });
-        new Sequence("Sequence 2", new KeyCode[] { KeyCode.U, KeyCode.I, KeyCode.O });
-    }
 
     // Update is called once per frame
     void Update()
