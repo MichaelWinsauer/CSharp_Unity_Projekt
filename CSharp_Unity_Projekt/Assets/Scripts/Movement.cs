@@ -33,16 +33,16 @@ public class Movement : MonoBehaviour
     {
         moveX = Input.GetAxis("Horizontal");
 
-        if (moveX < 0)
-            GetComponent<SpriteRenderer>().flipX = true;
-        else 
-            GetComponent<SpriteRenderer>().flipX = false;
-
         if (Input.GetKeyDown(KeyCode.W))
             isJumping = true;
         else
             isJumping = false;
         jump();
+
+        if (moveX < 0)
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        else if(moveX > 0)
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void FixedUpdate()
@@ -52,7 +52,6 @@ public class Movement : MonoBehaviour
 
     private void move()
     {
-        
         if (isGrounded)
         {
             if (footstep.isPlaying != true && moveX != 0)
