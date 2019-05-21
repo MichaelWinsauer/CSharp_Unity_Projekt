@@ -7,18 +7,11 @@ public class BasicProjectile : MonoBehaviour
     public float timeToLive;
     public float moveSpeed;
     private Transform player;
-    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        rb = GetComponent<Rigidbody2D>();
-
-        if (player.rotation.y == 0)
-            rb.velocity = Vector2.right * moveSpeed;
-        else
-            rb.velocity = Vector2.left * moveSpeed;
     }
 
     private void Update()
@@ -30,11 +23,12 @@ public class BasicProjectile : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy")) ;
 //            collision.gameObject.GetComponent<Enemy>().TakeDamage(2);
 
-        Destroy(this.gameObject);
+        if(!collision.gameObject.tag.Equals("Player"))
+            Destroy(this.gameObject);
     }
 }
