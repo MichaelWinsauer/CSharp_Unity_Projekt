@@ -27,8 +27,11 @@ public class BasicProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Enemy")) ;
-//            collision.gameObject.GetComponent<Enemy>().TakeDamage(2);
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(2);
+            Debug.Log(collision.gameObject.GetComponent<Enemy>().Health);
+        }
 
         if(!collision.gameObject.tag.Equals("Player"))
             Destroy(this.gameObject);

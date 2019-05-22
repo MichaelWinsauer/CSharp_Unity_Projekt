@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class CastAbility : MonoBehaviour
 {
-    public GameObject basicProjectile;
+    [SerializeField]
+    private GameObject basicProjectile;
+    [SerializeField]
+    private float shootTimerInput = 0.2f;
 
+    private float shootTimer;
     private GameObject projectileSpawnPoint;
     private Vector3 mousePosition;
     private Vector3 difference;
@@ -15,7 +19,8 @@ public class CastAbility : MonoBehaviour
     private void Start()
     {
         projectileSpawnPoint = GameObject.FindGameObjectWithTag("ProjectileSpawnPoint");
-        new Sequence("Basic", new KeyCode[] { KeyCode.Mouse0 });
+        new Sequence("Basic", new KeyCode[] { KeyCode.Mouse1 }); //TEMPORÄR AUF 1 STATT 0 GELEGT
+        shootTimer = shootTimerInput;
     }
 
     private void Update()
@@ -26,6 +31,18 @@ public class CastAbility : MonoBehaviour
         difference = mousePosition - projectileSpawnPoint.transform.position;
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+
+
+        //Timer, fürs schießen beim Gedrückthalten der Maustaste
+        shootTimer -= Time.deltaTime;
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            if (shootTimer <= 0)
+            {
+                shootTimer = shootTimerInput;
+                basicShot();
+            }
+        }
     }
 
     public void checkAbility(string name)

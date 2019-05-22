@@ -389,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicProjectile: {fileID: 6384519458064434034, guid: 177b886393e253a4f9025a407e74cae7,
     type: 3}
+  shootTimerInput: 0.4
 --- !u!70 &1392289052594294247
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
