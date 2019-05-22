@@ -18,8 +18,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float airMoveSmooth;
     [SerializeField]
-    private AudioSource footstep;
-    [SerializeField]
     [Range(0, 1)]
     private float jumpForceReduced;
     [SerializeField]
@@ -41,7 +39,6 @@ public class Movement : MonoBehaviour
     {
         jumpCount = jumpCountInput;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        footstep = FindObjectOfType<AudioManager>().GetSource("TwoFootsteps");
     }
 
     // Update is called once per frame
@@ -62,13 +59,13 @@ public class Movement : MonoBehaviour
 
         if (isGrounded)
         {
-            if (footstep.isPlaying != true && moveX != 0)
+            if (FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").isPlaying != true && moveX != 0)
             {
-                footstep.Play();
+                FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Play();
             }
             else if (moveX == 0)
             {
-                footstep.Stop();
+                FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
             }
         }
         Vector3 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
