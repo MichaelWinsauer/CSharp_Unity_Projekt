@@ -10,7 +10,10 @@ public class CastAbility : MonoBehaviour
     private GameObject basicProjectile;
     [SerializeField]
     private float shootTimerInput = 0.2f;
+    [SerializeField]
+    private GameObject crosshairPrefab;
 
+    private GameObject crosshair;
     private float shootTimer;
     private GameObject projectileSpawnPoint;
     private Vector3 mousePosition;
@@ -21,7 +24,9 @@ public class CastAbility : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         projectileSpawnPoint = GameObject.FindGameObjectWithTag("ProjectileSpawnPoint");
+        
         new Sequence("Basic", new KeyCode[] { KeyCode.Mouse1 }); //TEMPORÄR AUF 1 STATT 0 GELEGT
         shootTimer = shootTimerInput;
     }
@@ -30,7 +35,9 @@ public class CastAbility : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //TODO: Crosshair position auf die Mausposition setzten
-
+        if(crosshair == null)
+            crosshair = Instantiate(crosshairPrefab);
+        crosshair.transform.position = mousePosition;
         difference = mousePosition - projectileSpawnPoint.transform.position;
         differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
