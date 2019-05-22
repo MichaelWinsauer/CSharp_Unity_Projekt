@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CheckAllRaycasts : MonoBehaviour
 {
-
+    [SerializeField]
     public GameObject rayLeft;
+    [SerializeField]
     public GameObject rayRight;
+    [SerializeField]
     public GameObject rayCenter;
     private Movement player;
 

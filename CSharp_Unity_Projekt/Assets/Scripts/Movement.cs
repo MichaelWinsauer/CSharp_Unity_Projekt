@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
-    public float moveSpeed;
-    public int jumpCountInput;
-    public float jumpForce;
+    [SerializeField]
+    private float moveSpeed;
+    [SerializeField]
+    private int jumpCountInput;
+    [SerializeField]
+    private float jumpForce;
+    [SerializeField]
     public bool isGrounded = false;
-    public float moveSmooth;
-    public float airMoveSmooth;
-    public AudioSource footstep;
+    [SerializeField]
+    private float moveSmooth;
+    [SerializeField]
+    private float airMoveSmooth;
+    [SerializeField]
+    private AudioSource footstep;
     [SerializeField]
     [Range(0, 1)]
-    public float jumpForceReduced;
-    public float groundedTimerInput;
-    public float keyPressedTimerInput;
+    private float jumpForceReduced;
+    [SerializeField]
+    private float groundedTimerInput;
+    [SerializeField]
+    private float keyPressedTimerInput;
 
     private float groundedTimer;
     private float keyPressedTimer;

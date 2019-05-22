@@ -5,9 +5,10 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
-    public Vector3 position = new Vector3(2f, 2.5f, -1f);
-    public Transform player;
-    public float speed = 0.15f;
+    private Vector3 position = new Vector3(2f, 2.5f, -1f);
+    [SerializeField]
+    private Transform player;
+    private float speed = 0.15f;
 
     public void Start()
     {

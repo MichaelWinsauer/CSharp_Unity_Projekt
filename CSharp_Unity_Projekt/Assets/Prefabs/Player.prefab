@@ -285,8 +285,8 @@ MonoBehaviour:
   airMoveSmooth: 0.15
   footstep: {fileID: 1563484317830362567}
   jumpForceReduced: 0.5
-  groundedTimerInput: 0.2
-  keyPressedTimerInput: 0.2
+  groundedTimerInput: 0.1
+  keyPressedTimerInput: 0.1
 --- !u!114 &1563484318269074399
 MonoBehaviour:
   m_ObjectHideFlags: 0
