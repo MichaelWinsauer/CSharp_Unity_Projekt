@@ -9,19 +9,10 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject optionsMenu;
-    public GameObject pauseMenu;
 
     private void Start()
     {
         FindObjectOfType<AudioManager>().Play("MainMenu");
-    }
-
-    public void Update()
-    {
-        if(Input.GetButtonDown("Cancel") == true)
-        {
-            PauseGame();
-        }
     }
 
     public void PlayGame()
@@ -45,17 +36,5 @@ public class MainMenu : MonoBehaviour
     {
         optionsMenu.SetActive(false);
         mainMenu.SetActive(true);
-    }
-
-    public void PauseGame()
-    {
-        if (pauseMenu.activeSelf == true)
-        {
-            pauseMenu.SetActive(false);
-        }
-        else
-        {
-            pauseMenu.SetActive(true);
-        }  
     }
 }
