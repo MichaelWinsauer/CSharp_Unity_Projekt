@@ -33,12 +33,16 @@ public class Movement : MonoBehaviour
     private float airForce = 1.5f;
     private Vector3 velocity = Vector3.zero;
     private bool isJumping;
+    private bool isDonePlaying;
 
     // Start is called before the first frame update
     void Start()
     {
         jumpCount = jumpCountInput;
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        isDonePlaying = false;
+        //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
 
     // Update is called once per frame
@@ -52,6 +56,20 @@ public class Movement : MonoBehaviour
         move();
         jump();
         flip();
+    }
+
+    private void FixedUpdate()
+    {
+        if (FindObjectOfType<AudioManager>().GetSource("MainMenu").volume > 0 && isDonePlaying == false)
+        {
+            FindObjectOfType<AudioManager>().GetSource("MainMenu").volume -= 0.003f;
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().GetSource("MainMenu").Stop();
+            FindObjectOfType<AudioManager>().GetSource("MainMenu").volume = 0.5f;
+            isDonePlaying = true;
+        }
     }
 
     private void move()
