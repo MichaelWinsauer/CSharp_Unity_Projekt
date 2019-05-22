@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CastAbility : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class CastAbility : MonoBehaviour
     private GameObject projectileSpawnPoint;
     private Vector3 mousePosition;
     private Vector3 difference;
+    private Vector3 differenceVariant;
     private float rotationZ;
+    private float randomizer = .5f;
 
     private void Start()
     {
@@ -29,6 +32,7 @@ public class CastAbility : MonoBehaviour
         //TODO: Crosshair position auf die Mausposition setzten
 
         difference = mousePosition - projectileSpawnPoint.transform.position;
+        differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
@@ -58,8 +62,8 @@ public class CastAbility : MonoBehaviour
 
     private void basicShot()
     {
-        float distance = difference.magnitude;
-        Vector2 direction = difference / distance;
+        float distance = differenceVariant.magnitude;
+        Vector2 direction = differenceVariant / distance;
         direction.Normalize();
 
         GameObject projectile = Instantiate(basicProjectile);

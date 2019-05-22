@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     private Movement movement;
     private bool isDead = false;
 
+    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
     // Start is called before the first frame update
     void Awake()
     {

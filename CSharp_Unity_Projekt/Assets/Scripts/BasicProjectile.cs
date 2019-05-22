@@ -29,7 +29,7 @@ public class BasicProjectile : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(2);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(5);
             Debug.Log(collision.gameObject.GetComponent<Enemy>().Health);
         }
 

@@ -10,11 +10,13 @@ public class Enemy : MonoBehaviour
 
     private int health;
     private float damageTimer = 1;
+    private Rigidbody2D rb;
     public int Health { get => health; set => health = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         health = healthInput;
     }
 
@@ -24,15 +26,14 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         damageTimer -= Time.deltaTime;
-        if(damageTimer <= 0)
+        if (damageTimer <= 0)
         {
             damageTimer = 1;
             if (collision.gameObject.tag.Equals("Player"))
                 collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
-
         }
     }
 
