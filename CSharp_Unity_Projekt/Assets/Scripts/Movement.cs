@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour
     {
         jumpCount = jumpCountInput;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        footstep = FindObjectOfType<AudioManager>().GetSource("TwoFootsteps");
     }
 
     // Update is called once per frame
