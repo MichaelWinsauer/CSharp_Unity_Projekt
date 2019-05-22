@@ -11,6 +11,11 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject pauseMenu;
 
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("MenuTheme");
+    }
+
     public void Update()
     {
         if(Input.GetButtonDown("Cancel") == true)
