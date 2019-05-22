@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isDamaged = true;
         currentHealth -= damageAmount;
-
+        Debug.Log(currentHealth);
         if(currentHealth <= 0 && !isDead)
         {
             die();
@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
     private void die()
     {
         isDead = true;
+        Destroy(this.gameObject);
         //Animation & Sound spielen. Movement und Fähigkeiten disablen
         
     }
