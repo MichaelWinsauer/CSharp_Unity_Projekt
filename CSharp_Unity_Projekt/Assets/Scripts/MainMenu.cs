@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("MenuTheme");
+        FindObjectOfType<AudioManager>().Play("MainMenu");
     }
 
     public void Update()
