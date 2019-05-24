@@ -26,7 +26,7 @@ public class InputSequence : MonoBehaviour
                     {
                         s.Index = 0;
 
-                        GetComponent<CastAbility>().checkAbility(s.Name);
+                        //GetComponent<CastAbility>().checkAbility(s.Name);
                     }
                 }
                 else if (!Input.GetKeyDown(s.Keys[s.Index]))

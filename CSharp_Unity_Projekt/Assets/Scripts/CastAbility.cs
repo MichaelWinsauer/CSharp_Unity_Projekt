@@ -12,6 +12,8 @@ public class CastAbility : MonoBehaviour
     private float shootTimerInput = 0.2f;
     [SerializeField]
     private GameObject crosshairPrefab;
+    [SerializeField]
+    private float dashTimerInput = .3f;
 
     private GameObject crosshair;
     private float shootTimer;
@@ -21,12 +23,14 @@ public class CastAbility : MonoBehaviour
     private Vector3 differenceVariant;
     private float rotationZ;
     private float randomizer = .5f;
+    private GameObject player;
+    private float dashTimer;
 
     private void Start()
     {
         Cursor.visible = false;
         projectileSpawnPoint = GameObject.FindGameObjectWithTag("ProjectileSpawnPoint");
-        
+        player = GameObject.FindGameObjectWithTag("Player");
         new Sequence("Basic", new KeyCode[] { KeyCode.Mouse1 }); //TEMPORÄR AUF 1 STATT 0 GELEGT
         shootTimer = shootTimerInput;
     }
@@ -46,25 +50,52 @@ public class CastAbility : MonoBehaviour
 
         //Timer, fürs schießen beim Gedrückthalten der Maustaste
         shootTimer -= Time.deltaTime;
-        if(Input.GetKey(KeyCode.Mouse0))
+        foreach(KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (shootTimer <= 0)
-            {
-                shootTimer = shootTimerInput;
-                basicShot();
-            }
+            if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(key))
+                checkAbility(key);
+            else if (Input.GetKeyDown(key))
+                checkAbility(key);
         }
     }
 
-    public void checkAbility(string name)
+    public void checkAbility(KeyCode key)
     {
-        switch(name)
+        switch(key)
         {
             //Alle Einzelnen Fähigkeiten
-            case "Basic":
-                basicShot();
+            case KeyCode.Mouse0:
+                if (shootTimer <= 0)
+                {
+                    shootTimer = shootTimerInput;
+                    basicShot();
+                }
+                break;
+
+            case KeyCode.Space:
+                dash();
                 break;
         }
+    }
+
+    private void dash()
+    {
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        float gravTemp = playerRb.gravityScale;
+        int playerDirection = player.GetComponent<Movement>().Direction;
+
+        dashTimer -= Time.deltaTime;
+        if (dashTimer >= 0)
+        {
+            playerRb.gravityScale = 0;
+            playerRb.velocity = new Vector2(playerDirection * 20, 0);
+        }
+        else
+        {
+            dashTimer = dashTimerInput;
+            playerRb.gravityScale = gravTemp;
+        }
+
     }
 
     private void basicShot()

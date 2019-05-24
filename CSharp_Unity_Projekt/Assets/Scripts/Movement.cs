@@ -34,6 +34,9 @@ public class Movement : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private bool isJumping;
     private bool isDonePlaying;
+    private int direction;
+
+    public int Direction { get => direction; set => direction = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -117,13 +120,25 @@ public class Movement : MonoBehaviour
     private void flip()
     {
         if (moveX < 0)
+        {
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            direction = -1;
+        }
         else if (moveX > 0)
+        {
             this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        else if(moveX == 0)
-            if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+            direction = 1;
+        }
+        else if (moveX == 0)
+            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+            {
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                direction = -1;
+            }
             else
+            {
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                direction = 1;
+            }
     }
 }
