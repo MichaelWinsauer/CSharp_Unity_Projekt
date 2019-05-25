@@ -20,9 +20,9 @@ public class CheckAllRaycasts : MonoBehaviour
     void FixedUpdate()
     {
         if (rayLeft.GetComponent<CheckGround>().checkRaycastDistance() || rayCenter.GetComponent<CheckGround>().checkRaycastDistance() || rayRight.GetComponent<CheckGround>().checkRaycastDistance())
-            player.isGrounded = true;
+            player.IsGrounded = true;
         else
-            player.isGrounded = false;
+            player.IsGrounded = false;
 
     }
 }

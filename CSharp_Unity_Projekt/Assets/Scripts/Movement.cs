@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float jumpForce;
     [SerializeField]
-    public bool isGrounded = false;
+    private bool isGrounded;
     [SerializeField]
     private float moveSmooth;
     [SerializeField]
@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
     private int direction;
 
     public int Direction { get => direction; set => direction = value; }
+    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
 
     // Start is called before the first frame update
     void Start()

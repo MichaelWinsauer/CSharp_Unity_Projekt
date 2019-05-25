@@ -598,6 +598,7 @@ MonoBehaviour:
   cooldownInput: 2
   durationInput: 0.1
   dashSpeed: 300
+  riggedPlayer: {fileID: 4989073593896107164}
 --- !u!1 &2341444391513694314
 GameObject:
   m_ObjectHideFlags: 0

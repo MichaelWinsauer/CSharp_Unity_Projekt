@@ -15,7 +15,13 @@ public class EnemyMovement : MonoBehaviour
     private int patrolDurationMinInput = 2;
     [SerializeField]
     private int patrolDurationMaxInput = 4;
+    [SerializeField]
+    private float jumpForce = 20;
+    [SerializeField]
+    private float jumpFrequencyInput;
 
+    private bool isGrounded;
+    private float jumpFrequency;
     private float patrolDuration;
     private bool isInView;
     private Rigidbody2D rb;
@@ -49,13 +55,26 @@ public class EnemyMovement : MonoBehaviour
                 position = 1;
                 transform.rotation = Quaternion.Euler(0f, 0f, 0);
             }
-
-            rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+            if(Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+            {
+                rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+                    jump();
+            }
         }
         else
         {
             patrol();
         }
+    }
+
+    private void jump()
+    {
+        jumpFrequency -= Time.deltaTime;
+        if (jumpFrequency <= 0)
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        else
+            jumpFrequency = jumpFrequencyInput;
     }
 
     private void patrol()
@@ -75,6 +94,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        patrolDuration = 0;
+        if (!isInView)
+            patrolDuration = 0;
+        else
+            if (collision.collider.gameObject.tag.Equals("Ground"))
+                isGrounded = true;
+            else
+                isGrounded = false;
     }
 }

@@ -73,6 +73,7 @@ MonoBehaviour:
   viewArea: 10
   patrolDurationMinInput: 3
   patrolDurationMaxInput: 7
+  jumpForce: 20
 --- !u!114 &-3684988087929995821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3633370441598737987}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5e47669a45bd3824abde3c87c8f6d236, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
