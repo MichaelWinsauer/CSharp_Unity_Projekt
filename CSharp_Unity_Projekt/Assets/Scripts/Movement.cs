@@ -26,7 +26,10 @@ public class Movement : MonoBehaviour
     private float keyPressedTimerInput;
     [SerializeField]
     private GameObject riggedPlayer;
+    [SerializeField]
+    private GameObject crosshairPrefab;
 
+    private GameObject crosshair;
     private float groundedTimer;
     private float keyPressedTimer;
     private int jumpCount;
@@ -43,9 +46,10 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        crosshair = Instantiate(crosshairPrefab);
         jumpCount = jumpCountInput;
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+        Cursor.visible = false;
         isDonePlaying = false;
         //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
@@ -54,7 +58,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
-
+        crosshair.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.z);
         if (Mathf.Abs(moveX) >= 0.3)
         {
             riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);

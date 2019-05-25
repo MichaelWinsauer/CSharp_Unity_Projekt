@@ -9,6 +9,7 @@ TagManager:
   - BasicProjectile
   - Enemy
   - PauseMenu
+  - Crosshair
   layers:
   - Default
   - TransparentFX
