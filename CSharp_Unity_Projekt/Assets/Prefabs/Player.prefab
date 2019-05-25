@@ -457,10 +457,10 @@ MonoBehaviour:
   isGrounded: 0
   moveSmooth: 0.01
   airMoveSmooth: 0.15
-  footstep: {fileID: 0}
   jumpForceReduced: 0.5
   groundedTimerInput: 0.1
   keyPressedTimerInput: 0.1
+  riggedPlayer: {fileID: 4989073593896107164}
 --- !u!114 &1563484318269074399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +566,7 @@ MonoBehaviour:
   shootTimerInput: 0.4
   crosshairPrefab: {fileID: 5965578622353408967, guid: ce387385c0415e149a2c30745b4de370,
     type: 3}
+  dashTimerInput: 0.3
 --- !u!70 &1392289052594294247
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -594,6 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301b05a5832b55148be0e328036b73da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!1 &2341444391513694314
 GameObject:
   m_ObjectHideFlags: 0

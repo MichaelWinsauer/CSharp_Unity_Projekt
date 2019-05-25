@@ -24,6 +24,8 @@ public class Movement : MonoBehaviour
     private float groundedTimerInput;
     [SerializeField]
     private float keyPressedTimerInput;
+    [SerializeField]
+    private GameObject riggedPlayer;
 
     private float groundedTimer;
     private float keyPressedTimer;
@@ -52,6 +54,20 @@ public class Movement : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
+
+        if (Mathf.Abs(moveX) >= 0.3)
+        {
+            riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);
+        }
+        else
+        {
+            riggedPlayer.GetComponent<Animator>().SetBool("isRunning", false);
+        }
+
+        if(isGrounded)
+            riggedPlayer.GetComponent<Animator>().SetBool("isJumping", false);
+        else
+            riggedPlayer.GetComponent<Animator>().SetBool("isJumping", true);
 
         groundedTimer -= Time.deltaTime;
         keyPressedTimer -= Time.deltaTime;

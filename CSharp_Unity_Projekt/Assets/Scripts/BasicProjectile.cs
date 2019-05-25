@@ -8,7 +8,12 @@ public class BasicProjectile : MonoBehaviour
     private float timeToLive;
     [SerializeField]
     public float moveSpeed;
+    [SerializeField]
+    private ParticleSystem emit;
+
+
     private Transform player;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,6 @@ public class BasicProjectile : MonoBehaviour
             timeToLive -= Time.deltaTime;
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
@@ -34,6 +38,11 @@ public class BasicProjectile : MonoBehaviour
         }
 
         if(!collision.gameObject.tag.Equals("Player"))
+        {
+            //emit.transform.parent = null;
+
             Destroy(this.gameObject);
+        }
+            
     }
 }
