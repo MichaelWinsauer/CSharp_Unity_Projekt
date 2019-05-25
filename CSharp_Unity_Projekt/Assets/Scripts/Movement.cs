@@ -32,10 +32,8 @@ public class Movement : MonoBehaviour
     private GameObject crosshair;
     private float groundedTimer;
     private float keyPressedTimer;
-    private int jumpCount;
     private Rigidbody2D rb;
     private float moveX;
-    private float airForce = 1.5f;
     private Vector3 velocity = Vector3.zero;
     private bool isJumping;
     private bool isDonePlaying;
@@ -47,7 +45,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         crosshair = Instantiate(crosshairPrefab);
-        jumpCount = jumpCountInput;
         rb = gameObject.GetComponent<Rigidbody2D>();
         Cursor.visible = false;
         isDonePlaying = false;
@@ -58,7 +55,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
-        crosshair.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.z);
+        crosshair.transform.position = new Vector3(
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 
+            transform.position.z);
+
         if (Mathf.Abs(moveX) >= 0.3)
         {
             riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);
@@ -150,6 +151,8 @@ public class Movement : MonoBehaviour
             direction = 1;
         }
         else if (moveX == 0)
+        {
+
             if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
             {
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
@@ -160,5 +163,6 @@ public class Movement : MonoBehaviour
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 direction = 1;
             }
+        }
     }
 }
