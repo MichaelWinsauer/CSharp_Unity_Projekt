@@ -459,7 +459,7 @@ MonoBehaviour:
   airMoveSmooth: 0.15
   jumpForceReduced: 0.5
   groundedTimerInput: 0.1
-  keyPressedTimerInput: 0.1
+  keyPressedTimerInput: 0.2
   riggedPlayer: {fileID: 4989073593896107164}
   crosshairPrefab: {fileID: 6768411497221706970, guid: ce387385c0415e149a2c30745b4de370,
     type: 3}
