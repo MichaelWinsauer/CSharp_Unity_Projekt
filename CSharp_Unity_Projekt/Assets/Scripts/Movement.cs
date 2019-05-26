@@ -41,8 +41,8 @@ public class Movement : MonoBehaviour
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
-
-    // Start is called before the first frame update
+    
+    //Festlegen von Variablen und Objekten
     void Start()
     {
         crosshair = Instantiate(crosshairPrefab);
@@ -52,7 +52,7 @@ public class Movement : MonoBehaviour
         //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
 
-    // Update is called once per frame
+    //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
@@ -97,6 +97,7 @@ public class Movement : MonoBehaviour
         }
     }
 
+    //Abhängig von der Richtung, in die der Spieler drückt, bewegt sich der Charakter auch.
     private void move()
     {
 
@@ -115,6 +116,7 @@ public class Movement : MonoBehaviour
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, moveSmooth);
     }
 
+    //Hier wird erst getestet, ob der Spieler den Boden berührt oder nicht. Einfach gesagt kann dieser nur Springen, wenn er den Boden berührt.
     private void jump()
     {       
         if(isGrounded)
@@ -139,6 +141,8 @@ public class Movement : MonoBehaviour
         }
     }
 
+    //Hier wird geschaut, ob der Spieler sich in eine Richtung bewegt und dementsprechend wird er in Laufrichtung rotiert.
+    //Wenn er aber nicht läuft wird die Mausposition überprüft. Abhängig davon wird der Spieler in die Richtung der Maus rotiert.
     private void flip()
     {
         if (moveX < 0)

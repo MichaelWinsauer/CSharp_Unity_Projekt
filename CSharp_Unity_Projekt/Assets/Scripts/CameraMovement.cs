@@ -10,12 +10,13 @@ public class CameraMovement : MonoBehaviour
     private Transform player;
     private float speed = 0.15f;
 
+    //Das Spielerobjekt wird im Projekt gesucht und es wird eine Referenz dazu gebildet.
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
+    // Die Kameraposition wird auf die des Spielers gesetzt. .Lerp ist eine Funktion, die langsahm von einer Position auf die nächste beschleunigt.
     private void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, position + player.position, speed);

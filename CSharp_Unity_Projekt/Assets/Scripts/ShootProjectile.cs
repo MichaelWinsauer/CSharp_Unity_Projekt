@@ -17,12 +17,17 @@ public class ShootProjectile : MonoBehaviour
     private float rotationZ;
     private float randomizer = .5f;
 
+    //Projektielreferenzen aufgebaut und Timer gesetzt.
     private void Start()
     {
         projectileSpawnPoint = GameObject.FindGameObjectWithTag("ProjectileSpawnPoint");
         shootTimer = shootTimerInput;
     }
 
+    //Erst wird die Mausposition abgefragt.
+    //Danach wird der Vektor aus Erzeugungspunkt und Mausposition errechnet. Hier wird eine Varianz draufgerechnet, damit man nicht punktgenau schießen kann.
+    //Anschließend wird die Rotation des Projektiels auf den Winkel zwischen der X-Achse und dem Mauspunkt berechnet. 
+    //Dann wird lediglich ein Timer verwendet, damit nicht 60 Projektile pro Sekunde erzeugt werden.
     private void Update()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -42,6 +47,9 @@ public class ShootProjectile : MonoBehaviour
         }
     }
 
+    //Hier wird das Projektiel erstellt.
+    //Da man die Bewegungsgeschwindigkeit festlegen muss, da man dafür 2 Vektoren angeben muss, muss der Vektor aus Erzeugungspunkt und Mausposition erst normalisiert werden.
+    //Wenn man das nicht macht, bewegt sich das Projektiel schneller wenn man weiter vom Spieler entfernt drückt. So hat das Projektiel immer die gleiche Geschwindigkeit.
     private void basicShot()
     {
         float distance = differenceVariant.magnitude;

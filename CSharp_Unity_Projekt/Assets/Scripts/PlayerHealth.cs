@@ -15,13 +15,14 @@ public class PlayerHealth : MonoBehaviour
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
 
-    // Start is called before the first frame update
+    //Wird noch befor den ganzen Start Methoden aufgerufen. Hier legt man fixe Werte fest.
     void Awake()
     {
         movement = GetComponent<Movement>();
         currentHealth = maxHealth;
     }
 
+    //Funktion wird von außen aufgerufen, damit der Spieler schaden nehmen kann.
     public void TakeDamage(int damageAmount)
     {
         isDamaged = true;
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    //Zerstörung des Objekts
     private void die()
     {
         isDead = true;

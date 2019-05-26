@@ -11,16 +11,14 @@ public class BasicProjectile : MonoBehaviour
     [SerializeField]
     private ParticleSystem emit;
 
-
     private Transform player;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+    //Lebenszeit des Projektils wird definiert
     private void Update()
     {
         if (timeToLive <= 0)
@@ -29,6 +27,8 @@ public class BasicProjectile : MonoBehaviour
             timeToLive -= Time.deltaTime;
     }
 
+
+    //Wird ausgeführt, sobald das Projektil etwas berührt. Abhängig vom berührten Objekt soll sich das Projektil dementsprechend verhalten.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))

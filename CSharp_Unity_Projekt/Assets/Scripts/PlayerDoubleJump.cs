@@ -18,7 +18,7 @@ public class PlayerDoubleJump : MonoBehaviour
     private float cooldown;
     private float duration;
 
-    // Start is called before the first frame update
+    //Spielerreferenzen erzeugt
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,7 +26,8 @@ public class PlayerDoubleJump : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    //Wenn die Abklingzeit der Fähigkeit abgelaufen ist wird die Spielereingabe getestet. Stimmt diese überein, wird die Dauer des Sprungs gesetzt.
+    //Außerdem kann das nur in der Luft passieren. Also wenn der Spieler nicht den Boden berührt.
     void Update()
     {
         cooldown -= Time.deltaTime;
@@ -41,6 +42,7 @@ public class PlayerDoubleJump : MonoBehaviour
         doubleJump();
     }
 
+    //Wenn die Dauer des Sprungs größer als 0 ist bewegt sich der Spieler erneut nach oben in Form eines zweiten Sprungs.
     private void doubleJump()
     {
         

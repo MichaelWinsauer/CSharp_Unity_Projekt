@@ -20,7 +20,8 @@ public class PlayerDash : MonoBehaviour
     private GameObject player;
     private Rigidbody2D playerRb;
     private Movement playerMovement;
-    // Start is called before the first frame update
+
+    //Referenzen der SpielerObjekten
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -28,7 +29,7 @@ public class PlayerDash : MonoBehaviour
         playerMovement = player.GetComponent<Movement>();
     }
 
-    // Update is called once per frame
+    //Prüfen des Cooldowns, des Inputs. Wenn das übereinstimmt wird die Dauer des Dashes gesetzt.
     void Update()
     {
         if (cooldown <= 0)
@@ -48,6 +49,7 @@ public class PlayerDash : MonoBehaviour
         dash();
     }
 
+    //Wenn die Dauer > 0 ist wird der Dash ausgeführt. Die Funktion wird jeden Frame aufgerufen.
     private void dash()
     {
         

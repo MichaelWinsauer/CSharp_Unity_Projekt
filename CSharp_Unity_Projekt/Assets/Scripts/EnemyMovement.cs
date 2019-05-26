@@ -28,14 +28,17 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     private int position;
     private int patrolDirection = 1;
-    // Start is called before the first frame update
+    
+    //Referenz auf den Spieler und auf den Rigidbody2D des Gegners
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    //Hier wird lediglich getestet, ob sich der Spieler in der Reichweite des Gegners befindet oder nicht. Wenn das der Fall ist greift der Gegner den Spieler an.
+    //Wenn sich der Spieler außerdem über dem Gegner befindet springt dieser auch.
+    //Andernfalls patroulliert der Gegner.
     void Update()
     {
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
@@ -68,6 +71,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    //Der Sprung des Gegners hat eine kurze Abklingzeit. Wenn diese abgelaufen ist kann er wieder Springen.
     private void jump()
     {
         jumpFrequency -= Time.deltaTime;
@@ -77,6 +81,7 @@ public class EnemyMovement : MonoBehaviour
             jumpFrequency = jumpFrequencyInput;
     }
 
+    //Der Gegner läuft für eine zufällige Zeit in eine Richtung. Wenn die Zeit abgelaufen ist, dreht er um und wiederholt den Schritt.
     private void patrol()
     {
         patrolDuration -= Time.deltaTime;
@@ -92,6 +97,9 @@ public class EnemyMovement : MonoBehaviour
         rb.velocity = new Vector2(patrolDirection * moveSpeedPassive, rb.velocity.y);
     }
 
+
+    //Wenn der Gegner beim patroullieren eine Wand berührt dreht dieser sofort wieder um.
+    //Außerdem wird hier getestet, ob der Gegner den Boden berührt.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isInView)

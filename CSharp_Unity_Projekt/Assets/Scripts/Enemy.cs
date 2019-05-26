@@ -13,19 +13,14 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     public int Health { get => health; set => health = value; }
 
-    // Start is called before the first frame update
+    //Komponentenreferenzen erstellt.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         health = healthInput;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Wenn der Gegner den Spieler berührt soll dieser jede Sekunde dem Spieler schaden Machen.
     private void OnCollisionStay2D(Collision2D collision)
     {
         damageTimer -= Time.deltaTime;
@@ -37,6 +32,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+    //Funktion, die von außen aufgerufen wird, wenn der Gegner schaden nehmen soll.
     public void TakeDamage(int damage)
     {
         if ((health -= damage) <= 0)
