@@ -112,6 +112,10 @@ public class Movement : MonoBehaviour
                 FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
             }
         }
+        else
+        {
+            FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
+        }
         Vector3 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, moveSmooth);
     }
