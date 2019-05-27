@@ -11,13 +11,6 @@ public class BasicProjectile : MonoBehaviour
     [SerializeField]
     private ParticleSystem emit;
 
-    private Transform player;
-    
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-    }
-
     //Lebenszeit des Projektils wird definiert
     private void Update()
     {

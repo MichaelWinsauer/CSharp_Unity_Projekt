@@ -392,6 +392,8 @@ GameObject:
   - component: {fileID: 3913888522585821152}
   - component: {fileID: 1087871192964555656}
   - component: {fileID: 4900216116422897812}
+  - component: {fileID: 5442318053805986602}
+  - component: {fileID: 6314298079828710716}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -599,6 +601,37 @@ MonoBehaviour:
   durationInput: 0.1
   dashSpeed: 300
   riggedPlayer: {fileID: 4989073593896107164}
+--- !u!114 &5442318053805986602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563484318269074396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba4e88f08415db47959e5b8eb33c305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownInput: 3
+  durationInput: 0.2
+  jumpForce: 15
+--- !u!114 &6314298079828710716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563484318269074396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ab2e6ebf5add949a0da6a51d4e3d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownInput: 5
+  projectilePrefab: {fileID: 8469103317155070563, guid: e0f5dcb29da58dc43b357b7b82a48570,
+    type: 3}
+  hoverDurationInput: 0.5
 --- !u!1 &2341444391513694314
 GameObject:
   m_ObjectHideFlags: 0

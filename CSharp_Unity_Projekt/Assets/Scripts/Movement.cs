@@ -38,10 +38,12 @@ public class Movement : MonoBehaviour
     private bool isJumping;
     private bool isDonePlaying;
     private int direction;
+    private bool canMove;
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
-    
+    public bool CanMove { get => canMove; set => canMove = value; }
+
     //Festlegen von Variablen und Objekten
     void Start()
     {
@@ -55,32 +57,35 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        moveX = Input.GetAxis("Horizontal");
-        crosshair.transform.position = new Vector3(
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 
-            transform.position.z);
-
-        if (Mathf.Abs(moveX) >= 0.3)
+        if(CanMove)
         {
-            riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);
+            moveX = Input.GetAxis("Horizontal");
+            crosshair.transform.position = new Vector3(
+                Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+                transform.position.z);
+
+            if (Mathf.Abs(moveX) >= 0.3)
+            {
+                riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);
+            }
+            else
+            {
+                riggedPlayer.GetComponent<Animator>().SetBool("isRunning", false);
+            }
+
+            if (isGrounded)
+                riggedPlayer.GetComponent<Animator>().SetBool("isJumping", false);
+            else
+                riggedPlayer.GetComponent<Animator>().SetBool("isJumping", true);
+
+            groundedTimer -= Time.deltaTime;
+            keyPressedTimer -= Time.deltaTime;
+
+            move();
+            jump();
+            flip();
         }
-        else
-        {
-            riggedPlayer.GetComponent<Animator>().SetBool("isRunning", false);
-        }
-
-        if(isGrounded)
-            riggedPlayer.GetComponent<Animator>().SetBool("isJumping", false);
-        else
-            riggedPlayer.GetComponent<Animator>().SetBool("isJumping", true);
-
-        groundedTimer -= Time.deltaTime;
-        keyPressedTimer -= Time.deltaTime;
-
-        move();
-        jump();
-        flip();
     }
 
     private void FixedUpdate()
@@ -100,7 +105,6 @@ public class Movement : MonoBehaviour
     //Abhängig von der Richtung, in die der Spieler drückt, bewegt sich der Charakter auch.
     private void move()
     {
-
         if (isGrounded)
         {
             if (FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").isPlaying != true && moveX != 0)
@@ -111,6 +115,10 @@ public class Movement : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
             }
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
         }
         Vector3 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, moveSmooth);

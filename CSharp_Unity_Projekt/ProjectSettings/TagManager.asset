@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - PauseMenu
   - Crosshair
+  - Projectile
   layers:
   - Default
   - TransparentFX
