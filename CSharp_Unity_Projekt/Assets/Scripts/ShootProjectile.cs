@@ -52,6 +52,8 @@ public class ShootProjectile : MonoBehaviour
     //Wenn man das nicht macht, bewegt sich das Projektiel schneller wenn man weiter vom Spieler entfernt drückt. So hat das Projektiel immer die gleiche Geschwindigkeit.
     private void basicShot()
     {
+        FindObjectOfType<AudioManager>().Play("SpellCast");
+
         float distance = differenceVariant.magnitude;
         Vector2 direction = differenceVariant / distance;
         direction.Normalize();
