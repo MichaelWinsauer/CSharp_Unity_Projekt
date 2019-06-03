@@ -39,10 +39,12 @@ public class Movement : MonoBehaviour
     private bool isDonePlaying;
     private int direction;
     private bool canMove;
+    private bool touchingWall;
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
+    public bool TouchingWall { get => touchingWall; set => touchingWall = value; }
 
     //Festlegen von Variablen und Objekten
     void Start()
@@ -51,6 +53,7 @@ public class Movement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         Cursor.visible = false;
         isDonePlaying = false;
+        touchingWall = false;
         //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
 
@@ -85,7 +88,18 @@ public class Movement : MonoBehaviour
             move();
             jump();
             flip();
+            wallJump();
         }
+    }
+
+    private void wallJump()
+    {
+        if(touchingWall)
+        {
+            //Walljumplogik
+            Debug.Log("Walljump");
+        }
+
     }
 
     private void FixedUpdate()

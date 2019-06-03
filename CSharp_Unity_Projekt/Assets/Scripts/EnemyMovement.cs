@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
     private float jumpForce = 20;
     [SerializeField]
     private float jumpFrequencyInput;
+    [SerializeField]
+    private bool isRanged;
 
     private bool isGrounded;
     private float jumpFrequency;
@@ -28,12 +30,17 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     private int position;
     private int patrolDirection = 1;
-    
+
+    public bool IsRanged { get => isRanged; set => isRanged = value; }
+
+
     //Referenz auf den Spieler und auf den Rigidbody2D des Gegners
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+
+
     }
 
     //Hier wird lediglich getestet, ob sich der Spieler in der Reichweite des Gegners befindet oder nicht. Wenn das der Fall ist greift der Gegner den Spieler an.
@@ -44,9 +51,9 @@ public class EnemyMovement : MonoBehaviour
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
             isInView = true;
         else
-            isInView = false;    
+            isInView = false;
 
-        if (isInView)
+        if(isInView)
         {
             if (player.transform.position.x < transform.position.x)
             {
@@ -58,12 +65,24 @@ public class EnemyMovement : MonoBehaviour
                 position = 1;
                 transform.rotation = Quaternion.Euler(0f, 0f, 0);
             }
-            if(Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+
+            if(!isRanged)
             {
-                rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
-                    jump();
+                if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+                {
+                    rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                    if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+                        jump();
+                }
             }
+            else
+            {
+                if (Mathf.Abs(player.transform.position.x - transform.position.x) <= 5)
+                {
+                    rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
+                }
+            }
+
         }
         else
         {

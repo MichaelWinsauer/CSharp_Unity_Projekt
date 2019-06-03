@@ -45,7 +45,6 @@ public class ShootDroppingProjectile : MonoBehaviour
                 }
 
         hover();
-        Debug.Log(hoverDuration);
     }
 
     private void hover()
