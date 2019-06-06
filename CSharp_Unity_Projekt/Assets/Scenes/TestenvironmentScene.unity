@@ -147,8 +147,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15530079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.42, y: -4.9, z: 0}
-  m_LocalScale: {x: 46.88, y: 0.5, z: 1}
+  m_LocalPosition: {x: 16.83, y: -4.69, z: 0}
+  m_LocalScale: {x: 66.218, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 261787713}
   m_RootOrder: 0
@@ -621,6 +621,36 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &512217223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 512217224}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &512217224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512217223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.73, y: -1.6798711, z: -3.0210657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +705,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -782,7 +812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702661524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.61, y: 3.53, z: 0}
+  m_LocalPosition: {x: 48.64, y: 3.53, z: 0}
   m_LocalScale: {x: 0.5, y: 16.49, z: 1}
   m_Children: []
   m_Father: {fileID: 261787713}
@@ -2865,22 +2895,22 @@ PrefabInstance:
     - target: {fileID: 1461882610691830245, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1105738
+      value: 1.4013928
       objectReference: {fileID: 0}
     - target: {fileID: 1461882610691830245, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.093377605
+      value: 0.3913245
       objectReference: {fileID: 0}
     - target: {fileID: 7726608454560190171, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.9977588
+      value: -0.9938003
       objectReference: {fileID: 0}
     - target: {fileID: 7726608454560190171, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0669138
+      value: 0.11118049
       objectReference: {fileID: 0}
     - target: {fileID: 7726608454560190171, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
@@ -2985,7 +3015,7 @@ PrefabInstance:
     - target: {fileID: 8748414746980361468, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000048415895
+      value: -0.00000009261975
       objectReference: {fileID: 0}
     - target: {fileID: 8748414746980361468, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
@@ -3105,17 +3135,17 @@ PrefabInstance:
     - target: {fileID: 6558171112415012921, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.02383285
+      value: -0.068228915
       objectReference: {fileID: 0}
     - target: {fileID: 6558171112415012921, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99971604
+      value: 0.99766976
       objectReference: {fileID: 0}
     - target: {fileID: 6558171112415012921, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -2.7310002
+      value: -7.8250003
       objectReference: {fileID: 0}
     - target: {fileID: 7579834031775417622, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
