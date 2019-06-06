@@ -30,8 +30,10 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     private int position;
     private int patrolDirection = 1;
+    private bool canMove = true;
 
     public bool IsRanged { get => isRanged; set => isRanged = value; }
+    public bool CanMove { get => canMove; set => canMove = value; }
 
 
     //Referenz auf den Spieler und auf den Rigidbody2D des Gegners
@@ -48,45 +50,47 @@ public class EnemyMovement : MonoBehaviour
     //Andernfalls patroulliert der Gegner.
     void Update()
     {
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
-            isInView = true;
-        else
-            isInView = false;
-
-        if(isInView)
+        if(canMove)
         {
-            if (player.transform.position.x < transform.position.x)
-            {
-                position = -1;
-                transform.rotation = Quaternion.Euler(0f, 180, 0f);
-            }
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
+                isInView = true;
             else
-            {
-                position = 1;
-                transform.rotation = Quaternion.Euler(0f, 0f, 0);
-            }
+                isInView = false;
 
-            if(!isRanged)
+            if (isInView)
             {
-                if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+                if (player.transform.position.x < transform.position.x)
                 {
-                    rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                    if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
-                        jump();
+                    position = -1;
+                    transform.rotation = Quaternion.Euler(0f, 180, 0f);
+                }
+                else
+                {
+                    position = 1;
+                    transform.rotation = Quaternion.Euler(0f, 0f, 0);
+                }
+
+                if (!isRanged)
+                {
+                    if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+                    {
+                        rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                        if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+                            jump();
+                    }
+                }
+                else
+                {
+                    if (Mathf.Abs(player.transform.position.x - transform.position.x) <= 5)
+                    {
+                        rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
+                    }
                 }
             }
             else
             {
-                if (Mathf.Abs(player.transform.position.x - transform.position.x) <= 5)
-                {
-                    rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
-                }
+                patrol();
             }
-
-        }
-        else
-        {
-            patrol();
         }
     }
 

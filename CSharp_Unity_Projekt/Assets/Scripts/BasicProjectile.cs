@@ -11,6 +11,14 @@ public class BasicProjectile : MonoBehaviour
     [SerializeField]
     private ParticleSystem emit;
 
+    private GameObject player;
+    private int direction;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     //Lebenszeit des Projektils wird definiert
     private void Update()
     {
@@ -27,6 +35,14 @@ public class BasicProjectile : MonoBehaviour
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(5);
+
+            if (collision.gameObject.transform.position.x > transform.position.x)
+                direction = 1;
+            else
+                direction = -1;
+
+            collision.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
+            collision.gameObject.GetComponent<Enemy>().KnockbackDuration = collision.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
             Debug.Log(collision.gameObject.GetComponent<Enemy>().Health);
         }
 

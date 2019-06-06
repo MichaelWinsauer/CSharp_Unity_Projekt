@@ -7,17 +7,33 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private int healthInput;
+    [SerializeField]
+    private float knockbackDurationInput;
+    [SerializeField]
+    private int knockbackForce;
 
     private int health;
     private float damageTimer = 1;
     private Rigidbody2D rb;
+    private int knockbackDirection;
+    private float knockbackDuration;
+
+
     public int Health { get => health; set => health = value; }
+    public int KnockbackDirection { get => knockbackDirection; set => knockbackDirection = value; }
+    public float KnockbackDurationInput { get => knockbackDurationInput; set => knockbackDurationInput = value; }
+    public float KnockbackDuration { get => knockbackDuration; set => knockbackDuration = value; }
 
     //Komponentenreferenzen erstellt.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         health = healthInput;
+    }
+
+    private void Update()
+    {
+        KnockBack();
     }
 
     //Wenn der Gegner den Spieler berührt soll dieser jede Sekunde dem Spieler schaden Machen.
@@ -43,5 +59,19 @@ public class Enemy : MonoBehaviour
     private void die()
     {
         Destroy(this.gameObject);
+    }
+
+    private void KnockBack()
+    {
+        knockbackDuration -= Time.deltaTime;
+        if(knockbackDuration >= 0)
+        {
+            GetComponent<EnemyMovement>().CanMove = false;
+            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 5, knockbackForce);
+        }
+        else
+        {
+            GetComponent<EnemyMovement>().CanMove = true;
+        }
     }
 }

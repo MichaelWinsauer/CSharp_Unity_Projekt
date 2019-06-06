@@ -60,13 +60,15 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        if(CanMove)
+
+        crosshair.transform.position = new Vector3(
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+            transform.position.z);
+
+        if (CanMove)
         {
             moveX = Input.GetAxis("Horizontal");
-            crosshair.transform.position = new Vector3(
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-                transform.position.z);
 
             if (Mathf.Abs(moveX) >= 0.3)
             {
@@ -99,7 +101,6 @@ public class Movement : MonoBehaviour
             //Walljumplogik
             Debug.Log("Walljump");
         }
-
     }
 
     private void FixedUpdate()
