@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour
 
     private void die()
     {
+        //TODO: Instanciate Geld/Health/Punkte
+
         Destroy(this.gameObject);
     }
 
