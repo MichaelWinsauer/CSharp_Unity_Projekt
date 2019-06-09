@@ -60,6 +60,7 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
+        Debug.Log(Input.GetJoystickNames()[0]);
 
         crosshair.transform.position = new Vector3(
             Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
@@ -145,10 +146,10 @@ public class Movement : MonoBehaviour
         if(isGrounded)
             groundedTimer = groundedTimerInput;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetButtonDown("Jump"))
             keyPressedTimer = keyPressedTimerInput;
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetButtonUp("Jump"))
         {
             if (rb.velocity.y > 0)
             {

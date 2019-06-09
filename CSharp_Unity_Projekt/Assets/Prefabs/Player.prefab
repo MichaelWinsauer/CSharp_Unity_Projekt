@@ -604,8 +604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownInput: 2
-  durationInput: 0.1
-  dashSpeed: 300
+  durationInput: 0.15
+  dashSpeed: 200
   riggedPlayer: {fileID: 4989073593896107164}
 --- !u!114 &5442318053805986602
 MonoBehaviour:
