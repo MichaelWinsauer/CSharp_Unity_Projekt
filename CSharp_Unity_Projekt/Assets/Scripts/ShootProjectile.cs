@@ -30,16 +30,32 @@ public class ShootProjectile : MonoBehaviour
     //Dann wird lediglich ein Timer verwendet, damit nicht 60 Projektile pro Sekunde erzeugt werden.
     private void Update()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        difference = mousePosition - projectileSpawnPoint.transform.position;
-        differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
+        //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //difference = mousePosition - projectileSpawnPoint.transform.position;
+        //differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
+        //rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        //projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+
+        //shootTimer -= Time.deltaTime;
+        //if (Input.GetButton("Fire1"))
+        //{
+        //    if (shootTimer <= 0)
+        //    {
+        //        shootTimer = shootTimerInput;
+        //        basicShot();
+        //    }
+        //}
+
+        Vector3 controllerPoint = new Vector3(projectileSpawnPoint.transform.position.x + Input.GetAxis("HorizontalAim"), projectileSpawnPoint.transform.position.y + Input.GetAxis("VerticalAim"));
+
+        difference = controllerPoint - projectileSpawnPoint.transform.position;
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
         shootTimer -= Time.deltaTime;
-        if (Input.GetButton("Fire1"))
+        if(Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0)
         {
-            if (shootTimer <= 0)
+            if(shootTimer <= 0)
             {
                 shootTimer = shootTimerInput;
                 basicShot();
@@ -54,8 +70,10 @@ public class ShootProjectile : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("SpellCast");
 
-        float distance = differenceVariant.magnitude;
-        Vector2 direction = differenceVariant / distance;
+        //float distance = differenceVariant.magnitude;
+        //Vector2 direction = differenceVariant / distance;
+        //direction.Normalize();
+        Vector2 direction = new Vector2(Input.GetAxis("HorizontalAim"), Input.GetAxis("VerticalAim"));
         direction.Normalize();
 
         GameObject projectile = Instantiate(basicProjectile);

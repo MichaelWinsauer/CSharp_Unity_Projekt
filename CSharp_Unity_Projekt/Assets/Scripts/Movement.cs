@@ -28,6 +28,9 @@ public class Movement : MonoBehaviour
     private GameObject riggedPlayer;
     [SerializeField]
     private GameObject crosshairPrefab;
+    [SerializeField]
+    [Range(1.5f, 5f)]
+    private float crosshairDistanceToPlayer;
 
     private GameObject crosshair;
     private float groundedTimer;
@@ -60,12 +63,20 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        Debug.Log(Input.GetJoystickNames()[0]);
+        //check for input device
+        //if mouse + keyboard
+        //crosshair.transform.position = new Vector3(
+        //    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+        //    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+        //    transform.position.z);
 
+        //if controller
+        Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
         crosshair.transform.position = new Vector3(
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+            stickPosition.x,
+            stickPosition.y,
             transform.position.z);
+
 
         if (CanMove)
         {
