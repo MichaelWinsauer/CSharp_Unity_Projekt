@@ -22,6 +22,8 @@ public class PlayerDash : MonoBehaviour
     private Movement playerMovement;
     private float defaultGravity;
 
+    private States dashState;
+
     //Referenzen der SpielerObjekten
     void Start()
     {
@@ -29,41 +31,57 @@ public class PlayerDash : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
         playerMovement = player.GetComponent<Movement>();
         defaultGravity = playerRb.gravityScale;
+        dashState = States.Ready;
     }
 
-    //Prüfen des Cooldowns, des Inputs. Wenn das übereinstimmt wird die Dauer des Dashes gesetzt.
     void Update()
     {
-        if (cooldown <= 0)
+        switch(dashState)
         {
-            if (Input.GetButtonDown("Dash"))
-            {
-                fixedDirection = playerMovement.Direction;
-                duration = durationInput;
-                cooldown = cooldownInput;
-            }
+            case States.Ready:
+                if (Input.GetButtonDown("Dash"))
+                {
+                    fixedDirection = playerMovement.Direction;
+                    duration = durationInput;
+                    dashState = States.Dashing;
+                }
+                break;
+
+            case States.Dashing:
+                if (duration >= 0)
+                {
+                    playerRb.gravityScale = 0;
+                    riggedPlayer.GetComponent<Animator>().SetBool("isDashing", true);
+                    duration -= Time.deltaTime;
+                    playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
+                }
+                else
+                {
+                    playerRb.gravityScale = defaultGravity;
+                    riggedPlayer.GetComponent<Animator>().SetBool("isDashing", false);
+                    cooldown = cooldownInput;
+                    dashState = States.Cooldown;
+                }
+                break;
+
+            case States.Cooldown:
+                if (cooldown >= 0)
+                {
+                    cooldown -= Time.deltaTime;
+                }
+                else
+                {
+                    dashState = States.Ready;
+                }
+                break;
         }
-        else
-        {
-            cooldown -= Time.deltaTime;
-        }
-        dash();
     }
 
-    //Wenn die Dauer > 0 ist wird der Dash ausgeführt. Die Funktion wird jeden Frame aufgerufen.
-    private void dash()
+    private enum States
     {
-        if(duration >= 0)
-        {
-            playerRb.gravityScale = 0;
-            riggedPlayer.GetComponent<Animator>().SetBool("isDashing", true);
-            duration -= Time.deltaTime;
-            playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
-        }
-        else
-        {
-            playerRb.gravityScale = defaultGravity;
-            riggedPlayer.GetComponent<Animator>().SetBool("isDashing", false);
-        }
+        Ready,
+        Dashing,
+        Cooldown,
     }
+
 }

@@ -46,7 +46,9 @@ public class ShootProjectile : MonoBehaviour
         //    }
         //}
 
-        Vector3 controllerPoint = new Vector3(projectileSpawnPoint.transform.position.x + Input.GetAxis("HorizontalAim"), projectileSpawnPoint.transform.position.y + Input.GetAxis("VerticalAim"));
+        Vector3 controllerPoint = new Vector3(
+            projectileSpawnPoint.transform.position.x + Input.GetAxis("HorizontalAim"), 
+            projectileSpawnPoint.transform.position.y + Input.GetAxis("VerticalAim"));
 
         difference = controllerPoint - projectileSpawnPoint.transform.position;
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -73,6 +75,8 @@ public class ShootProjectile : MonoBehaviour
         //float distance = differenceVariant.magnitude;
         //Vector2 direction = differenceVariant / distance;
         //direction.Normalize();
+
+
         Vector2 direction = new Vector2(Input.GetAxis("HorizontalAim"), Input.GetAxis("VerticalAim"));
         direction.Normalize();
 
