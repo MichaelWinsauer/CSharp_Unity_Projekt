@@ -45,7 +45,7 @@ public class BasicProjectile : MonoBehaviour
             collision.gameObject.GetComponent<Enemy>().KnockbackDuration = collision.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
         }
 
-        if(!collision.gameObject.tag.Equals("Player"))
+        if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("MeleeTrigger"))
         {
             //emit.transform.parent = null;
 
