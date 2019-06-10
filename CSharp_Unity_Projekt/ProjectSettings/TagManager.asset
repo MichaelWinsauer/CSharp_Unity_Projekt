@@ -11,6 +11,7 @@ TagManager:
   - PauseMenu
   - Crosshair
   - Projectile
+  - MeleeTrigger
   layers:
   - Default
   - TransparentFX

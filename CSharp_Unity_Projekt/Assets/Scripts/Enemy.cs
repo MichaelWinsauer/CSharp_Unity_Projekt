@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
     {
         if ((health -= damage) <= 0)
             die();
+        Debug.Log(health);
     }
 
     private void die()
