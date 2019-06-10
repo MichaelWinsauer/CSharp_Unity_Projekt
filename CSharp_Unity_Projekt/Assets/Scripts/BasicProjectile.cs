@@ -43,7 +43,6 @@ public class BasicProjectile : MonoBehaviour
 
             collision.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
             collision.gameObject.GetComponent<Enemy>().KnockbackDuration = collision.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
-            Debug.Log(collision.gameObject.GetComponent<Enemy>().Health);
         }
 
         if(!collision.gameObject.tag.Equals("Player"))
