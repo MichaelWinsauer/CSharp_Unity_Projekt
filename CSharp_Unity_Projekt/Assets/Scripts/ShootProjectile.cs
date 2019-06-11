@@ -55,7 +55,7 @@ public class ShootProjectile : MonoBehaviour
         projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
         shootTimer -= Time.deltaTime;
-        if(Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0)
+        if((Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0) && Input.GetButton("Fire1"))
         {
             if(shootTimer <= 0)
             {
