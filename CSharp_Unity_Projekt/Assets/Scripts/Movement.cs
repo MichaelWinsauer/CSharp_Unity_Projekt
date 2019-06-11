@@ -43,11 +43,15 @@ public class Movement : MonoBehaviour
     private int direction;
     private bool canMove;
     private bool touchingWall;
+    private bool canFlip;
+    private bool canJump;
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
     public bool TouchingWall { get => touchingWall; set => touchingWall = value; }
+    public bool CanFlip { get => canFlip; set => canFlip = value; }
+    public bool CanJump { get => canJump; set => canJump = value; }
 
     //Festlegen von Variablen und Objekten
     void Start()
@@ -57,6 +61,9 @@ public class Movement : MonoBehaviour
         Cursor.visible = false;
         isDonePlaying = false;
         touchingWall = false;
+        canMove = true;
+        canFlip = true;
+        canJump = true;
         //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
 
@@ -154,25 +161,28 @@ public class Movement : MonoBehaviour
     //Hier wird erst getestet, ob der Spieler den Boden berührt oder nicht. Einfach gesagt kann dieser nur Springen, wenn er den Boden berührt.
     private void jump()
     {       
-        if(isGrounded)
-            groundedTimer = groundedTimerInput;
-
-        if (Input.GetButtonDown("Jump"))
-            keyPressedTimer = keyPressedTimerInput;
-
-        if (Input.GetButtonUp("Jump"))
+        if(canJump)
         {
-            if (rb.velocity.y > 0)
+            if (isGrounded)
+                groundedTimer = groundedTimerInput;
+
+            if (Input.GetButtonDown("Jump"))
+                keyPressedTimer = keyPressedTimerInput;
+
+            if (Input.GetButtonUp("Jump"))
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpForceReduced);
+                if (rb.velocity.y > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpForceReduced);
+                }
             }
-        }
 
-        if ((groundedTimer > 0) && (keyPressedTimer > 0))
-        {
-            groundedTimer = 0;
-            keyPressedTimer = 0;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if ((groundedTimer > 0) && (keyPressedTimer > 0))
+            {
+                groundedTimer = 0;
+                keyPressedTimer = 0;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
     }
 
@@ -180,28 +190,33 @@ public class Movement : MonoBehaviour
     //Wenn er aber nicht läuft wird die Mausposition überprüft. Abhängig davon wird der Spieler in die Richtung der Maus rotiert.
     private void flip()
     {
-        if (moveX < 0)
+        if(canFlip)
         {
-            this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            direction = -1;
-        }
-        else if (moveX > 0)
-        {
-            this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            direction = 1;
-        }
-        else if (moveX == 0)
-        {
-
-            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+            if (moveX < 0)
             {
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 direction = -1;
             }
-            else
+            else if (moveX > 0)
             {
                 this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 direction = 1;
+            }
+            else if (moveX == 0)
+            {
+
+                //if mouse and keyboard
+
+                //if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+                //{
+                //    this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                //    direction = -1;
+                //}
+                //else
+                //{
+                //    this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                //    direction = 1;
+                //}
             }
         }
     }

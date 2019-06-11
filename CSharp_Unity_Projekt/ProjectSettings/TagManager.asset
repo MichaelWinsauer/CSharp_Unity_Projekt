@@ -12,6 +12,8 @@ TagManager:
   - Crosshair
   - Projectile
   - MeleeTrigger
+  - PullSpawnpoint
+  - PullObject
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player
+  - PullObject
   - 
   - 
   - 
