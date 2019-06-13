@@ -96,10 +96,10 @@ public class Movement : MonoBehaviour
                 GetComponent<Animator>().SetBool("isMoving", false);
             }
 
-            //if (isGrounded)
-            //    GetComponent<Animator>().SetBool("isJumping", false);
-            //else
-            //    GetComponent<Animator>().SetBool("isJumping", true);
+            if (isGrounded)
+                GetComponent<Animator>().SetBool("isJumping", false);
+            else
+                GetComponent<Animator>().SetBool("isJumping", true);
 
             groundedTimer -= Time.deltaTime;
             keyPressedTimer -= Time.deltaTime;
