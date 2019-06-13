@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3153093114527904576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4244439459042135277}
+  m_Layer: 0
+  m_Name: EnemyProjectileSpawnpoint
+  m_TagString: EnemyProjectileSpawnpoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4244439459042135277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153093114527904576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3633370441598737991}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3633370441598737987
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +61,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4244439459042135277}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,7 +79,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.2
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 4
   m_Material: {fileID: 0}
@@ -70,12 +101,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedActive: 6
   moveSpeedPassive: 2
-  viewArea: 10
+  viewArea: 15
   patrolDurationMinInput: 3
   patrolDurationMaxInput: 7
   jumpForce: 20
   jumpFrequencyInput: 1
   isRanged: 1
+  stopDistance: 9
+  backDistance: 7
+  enemyProjectile: {fileID: 4999579183048078411, guid: f73174eaca687b6449998a9fbbc5a2b0,
+    type: 3}
+  shootTimerInput: 1
 --- !u!114 &-3684988087929995821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthInput: 100
+  knockbackDurationInput: 0.1
+  knockbackForce: 2
 --- !u!212 &52200640410195725
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.2
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 4
   m_Material: {fileID: 0}
@@ -70,10 +70,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedActive: 6
   moveSpeedPassive: 2
-  viewArea: 10
+  viewArea: 15
   patrolDurationMinInput: 3
   patrolDurationMaxInput: 7
   jumpForce: 20
+  jumpFrequencyInput: 0
+  isRanged: 0
+  stopDistance: 0
+  backDistance: 0
+  enemyProjectile: {fileID: 0}
+  shootTimerInput: 0
 --- !u!114 &-3684988087929995821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthInput: 100
+  knockbackDurationInput: 0.1
+  knockbackForce: 2
 --- !u!212 &52200640410195725
 SpriteRenderer:
   m_ObjectHideFlags: 0

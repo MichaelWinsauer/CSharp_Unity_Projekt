@@ -19,8 +19,19 @@ public class EnemyMovement : MonoBehaviour
     private float jumpForce = 20;
     [SerializeField]
     private float jumpFrequencyInput;
+
+    //Ranged properties
     [SerializeField]
     private bool isRanged;
+    [SerializeField]
+    private float stopDistance;
+    [SerializeField]
+    private float backDistance;
+    [SerializeField]
+    private GameObject enemyProjectile;
+    [SerializeField]
+    private float shootTimerInput;
+    
 
     private bool isGrounded;
     private float jumpFrequency;
@@ -31,6 +42,8 @@ public class EnemyMovement : MonoBehaviour
     private int position;
     private int patrolDirection = 1;
     private bool canMove = true;
+    private float shootTimer;
+    private float projectileSpeed;
 
     public bool IsRanged { get => isRanged; set => isRanged = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -41,8 +54,6 @@ public class EnemyMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-
-
     }
 
     //Hier wird lediglich getestet, ob sich der Spieler in der Reichweite des Gegners befindet oder nicht. Wenn das der Fall ist greift der Gegner den Spieler an.
@@ -75,15 +86,30 @@ public class EnemyMovement : MonoBehaviour
                     if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
                     {
                         rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                        if (player.transform.position.y > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+                        if (player.transform.position.y + 5 > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
                             jump();
                     }
                 }
                 else
                 {
-                    if (Mathf.Abs(player.transform.position.x - transform.position.x) <= 5)
+                    if (Math.Abs(player.transform.position.x - transform.position.x) > stopDistance)
+                    {
+                        rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                    }
+
+                    if (Mathf.Abs(player.transform.position.x - transform.position.x) < backDistance)
                     {
                         rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
+                    }
+
+                    if(Math.Abs(player.transform.position.x - transform.position.x) == stopDistance)
+                    {
+                        transform.position = this.transform.position;
+                    }
+
+                    if(Mathf.Abs(player.transform.position.x - transform.position.x) <= stopDistance)
+                    {
+                        shoot();
                     }
                 }
             }
@@ -92,6 +118,30 @@ public class EnemyMovement : MonoBehaviour
                 patrol();
             }
         }
+    }
+
+    private void shoot()
+    {
+        Vector3 spawnPoint = GameObject.FindGameObjectWithTag("EnemyProjectileSpawnpoint").transform.position;
+        Vector2 difference = player.transform.position - spawnPoint;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+        if(shootTimer <= 0)
+        {
+            float distance = difference.magnitude;
+            Vector2 direction = difference / distance;
+            direction.Normalize();
+
+            GameObject projectile = Instantiate(enemyProjectile, spawnPoint, Quaternion.Euler(0f, 0f, rotationZ));
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed;
+            shootTimer = shootTimerInput;
+
+        }
+        else
+        {
+            shootTimer -= Time.deltaTime;
+        }
+
     }
 
     //Der Sprung des Gegners hat eine kurze Abklingzeit. Wenn diese abgelaufen ist kann er wieder Springen.

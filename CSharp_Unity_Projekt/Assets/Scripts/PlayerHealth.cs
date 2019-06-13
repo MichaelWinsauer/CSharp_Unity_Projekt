@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isDead = false;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     //Wird noch befor den ganzen Start Methoden aufgerufen. Hier legt man fixe Werte fest.
     void Awake()
@@ -38,8 +39,8 @@ public class PlayerHealth : MonoBehaviour
     private void die()
     {
         isDead = true;
-        Destroy(this.gameObject);
+
         //Animation & Sound spielen. Movement und Fähigkeiten disablen
-        
+
     }
 }

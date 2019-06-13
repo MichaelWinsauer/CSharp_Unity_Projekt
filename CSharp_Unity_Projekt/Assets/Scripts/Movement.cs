@@ -68,46 +68,49 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        //check for input device
-        //if mouse + keyboard
-        //crosshair.transform.position = new Vector3(
-        //    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-        //    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-        //    transform.position.z);
-
-        //if controller
-        Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
-        crosshair.transform.position = new Vector3(
-            stickPosition.x,
-            stickPosition.y,
-            transform.position.z);
-
-
-        if (CanMove)
+        if(!GetComponent<PlayerHealth>().IsDead)
         {
-            moveX = Input.GetAxis("Horizontal");
+            //check for input device
+            //if mouse + keyboard
+            //crosshair.transform.position = new Vector3(
+            //    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+            //    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+            //    transform.position.z);
 
-            if (Mathf.Abs(moveX) >= .3)
+            //if controller
+            Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
+            crosshair.transform.position = new Vector3(
+                stickPosition.x,
+                stickPosition.y,
+                transform.position.z);
+
+
+            if (CanMove)
             {
-                GetComponent<Animator>().SetBool("isMoving", true);
+                moveX = Input.GetAxis("Horizontal");
+
+                if (Mathf.Abs(moveX) >= .3)
+                {
+                    GetComponent<Animator>().SetBool("isMoving", true);
+                }
+                else
+                {
+                    GetComponent<Animator>().SetBool("isMoving", false);
+                }
+
+                if (isGrounded)
+                    GetComponent<Animator>().SetBool("isJumping", false);
+                else
+                    GetComponent<Animator>().SetBool("isJumping", true);
+
+                groundedTimer -= Time.deltaTime;
+                keyPressedTimer -= Time.deltaTime;
+
+                move();
+                jump();
+                flip();
+                wallJump();
             }
-            else
-            {
-                GetComponent<Animator>().SetBool("isMoving", false);
-            }
-
-            if (isGrounded)
-                GetComponent<Animator>().SetBool("isJumping", false);
-            else
-                GetComponent<Animator>().SetBool("isJumping", true);
-
-            groundedTimer -= Time.deltaTime;
-            keyPressedTimer -= Time.deltaTime;
-
-            move();
-            jump();
-            flip();
-            wallJump();
         }
     }
 

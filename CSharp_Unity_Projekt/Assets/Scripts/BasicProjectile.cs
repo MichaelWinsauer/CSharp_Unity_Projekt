@@ -32,7 +32,7 @@ public class BasicProjectile : MonoBehaviour
     //Wird ausgeführt, sobald das Projektil etwas berührt. Abhängig vom berührten Objekt soll sich das Projektil dementsprechend verhalten.
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(5);
 
@@ -45,7 +45,7 @@ public class BasicProjectile : MonoBehaviour
             collision.gameObject.GetComponent<Enemy>().KnockbackDuration = collision.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
         }
 
-        if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.tag.Equals("MeleeTrigger"))
+        if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile"))
         {
             //emit.transform.parent = null;
 

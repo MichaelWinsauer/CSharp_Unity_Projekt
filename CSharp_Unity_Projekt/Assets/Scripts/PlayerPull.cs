@@ -17,28 +17,31 @@ public class PlayerPull : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = GetComponent<Movement>().Direction;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(direction, 0), distance, boxMask);
-
-        if (hit.collider != null && Input.GetButton("PullPush"))
+        if(!GetComponent<PlayerHealth>().IsDead)
         {
-            box = hit.collider.gameObject;
-            box.GetComponent<FixedJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
-            box.GetComponent<FixedJoint2D>().enabled = true;
-            GetComponent<Movement>().CanFlip = false;
-            GetComponent<Movement>().CanJump = false;
-            box.GetComponent<Rigidbody2D>().mass = 10;
-        }
-        else
-        {
-            boxes = GameObject.FindGameObjectsWithTag("PullObject");
+            direction = GetComponent<Movement>().Direction;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(direction, 0), distance, boxMask);
 
-            foreach(GameObject b in boxes)
+            if (hit.collider != null && Input.GetButton("PullPush"))
             {
-                b.GetComponent<FixedJoint2D>().enabled = false;
-                GetComponent<Movement>().CanFlip = true;
-                GetComponent<Movement>().CanJump = true;
-                b.GetComponent<Rigidbody2D>().mass = 30;
+                box = hit.collider.gameObject;
+                box.GetComponent<FixedJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
+                box.GetComponent<FixedJoint2D>().enabled = true;
+                GetComponent<Movement>().CanFlip = false;
+                GetComponent<Movement>().CanJump = false;
+                box.GetComponent<Rigidbody2D>().mass = 10;
+            }
+            else
+            {
+                boxes = GameObject.FindGameObjectsWithTag("PullObject");
+
+                foreach (GameObject b in boxes)
+                {
+                    b.GetComponent<FixedJoint2D>().enabled = false;
+                    GetComponent<Movement>().CanFlip = true;
+                    GetComponent<Movement>().CanJump = true;
+                    b.GetComponent<Rigidbody2D>().mass = 30;
+                }
             }
         }
     }

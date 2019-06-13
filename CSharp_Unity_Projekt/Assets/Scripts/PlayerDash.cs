@@ -46,7 +46,7 @@ public class PlayerDash : MonoBehaviour
                 break;
 
             case States.Dashing:
-                if (duration >= 0)
+                if (duration >= 0 && !GetComponent<PlayerHealth>().IsDead)
                 {
                     playerRb.gravityScale = 0;
                     GetComponent<Animator>().SetBool("isDashing", true);
