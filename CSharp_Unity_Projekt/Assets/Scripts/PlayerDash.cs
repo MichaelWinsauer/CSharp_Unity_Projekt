@@ -11,8 +11,6 @@ public class PlayerDash : MonoBehaviour
     private float durationInput;
     [SerializeField]
     private float dashSpeed;
-    [SerializeField]
-    private GameObject riggedPlayer;
 
     private float cooldown;
     private float duration;
@@ -51,14 +49,14 @@ public class PlayerDash : MonoBehaviour
                 if (duration >= 0)
                 {
                     playerRb.gravityScale = 0;
-                    riggedPlayer.GetComponent<Animator>().SetBool("isDashing", true);
+                    GetComponent<Animator>().SetBool("isDashing", true);
                     duration -= Time.deltaTime;
                     playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
                 }
                 else
                 {
                     playerRb.gravityScale = defaultGravity;
-                    riggedPlayer.GetComponent<Animator>().SetBool("isDashing", false);
+                    GetComponent<Animator>().SetBool("isDashing", false);
                     cooldown = cooldownInput;
                     dashState = States.Cooldown;
                 }

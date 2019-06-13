@@ -25,8 +25,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float keyPressedTimerInput;
     [SerializeField]
-    private GameObject riggedPlayer;
-    [SerializeField]
     private GameObject crosshairPrefab;
     [SerializeField]
     [Range(1.5f, 5f)]
@@ -89,19 +87,19 @@ public class Movement : MonoBehaviour
         {
             moveX = Input.GetAxis("Horizontal");
 
-            if (Mathf.Abs(moveX) >= 0.3)
+            if (Mathf.Abs(moveX) >= .3)
             {
-                riggedPlayer.GetComponent<Animator>().SetBool("isRunning", true);
+                GetComponent<Animator>().SetBool("isMoving", true);
             }
             else
             {
-                riggedPlayer.GetComponent<Animator>().SetBool("isRunning", false);
+                GetComponent<Animator>().SetBool("isMoving", false);
             }
 
-            if (isGrounded)
-                riggedPlayer.GetComponent<Animator>().SetBool("isJumping", false);
-            else
-                riggedPlayer.GetComponent<Animator>().SetBool("isJumping", true);
+            //if (isGrounded)
+            //    GetComponent<Animator>().SetBool("isJumping", false);
+            //else
+            //    GetComponent<Animator>().SetBool("isJumping", true);
 
             groundedTimer -= Time.deltaTime;
             keyPressedTimer -= Time.deltaTime;
