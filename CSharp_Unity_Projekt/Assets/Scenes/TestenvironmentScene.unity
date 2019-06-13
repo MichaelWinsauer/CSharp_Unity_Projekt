@@ -2782,16 +2782,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 7.425
       objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074394, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5050593
-      objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074394, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09894975
-      objectReference: {fileID: 0}
     - target: {fileID: 3913888522585821152, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: pauseMenu
@@ -3291,21 +3281,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392289052594294247, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.37947682
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392289052594294247, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 18.96703
-      objectReference: {fileID: 0}
-    - target: {fileID: 8068660464732497984, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 619c8251be5dadb4b9670effb9ce1dbd, type: 3}
