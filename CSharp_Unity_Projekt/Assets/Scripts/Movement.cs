@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     private float crosshairDistanceToPlayer;
 
     private GameObject crosshair;
+    private Vector3 crosshairSize;
     private float groundedTimer;
     private float keyPressedTimer;
     private Rigidbody2D rb;
@@ -62,6 +63,7 @@ public class Movement : MonoBehaviour
         canMove = true;
         canFlip = true;
         canJump = true;
+        crosshairSize = crosshair.transform.localScale;
         //StartCoroutine(AudioFadeOut.FadeOut(FindObjectOfType<AudioManager>().GetSource("MainMenu"), 1.0f));
     }
 
@@ -83,6 +85,15 @@ public class Movement : MonoBehaviour
                 stickPosition.x,
                 stickPosition.y,
                 transform.position.z);
+
+            if(stickPosition == transform.position)
+            {
+                crosshair.transform.localScale = Vector3.zero;
+            }
+            else
+            {
+                crosshair.transform.localScale = crosshairSize;
+            }
 
 
             if (CanMove)

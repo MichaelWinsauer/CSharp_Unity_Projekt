@@ -24,15 +24,24 @@ public class CheckGround : MonoBehaviour
     //Das heißt sie wird pro Sekunde 60*3 also 180 mal aufgerufen, da es 3 Raycasts am Spieler gibt.
     public bool checkRaycastDistance()
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, height, ground).distance == 0 || Physics2D.Raycast(transform.position, Vector2.down, height, pullObject).distance == 0)
+        Debug.Log(Physics2D.Raycast(transform.position, Vector2.down, height, ground).distance);
+        //if (Physics2D.Raycast(transform.position, Vector2.down, height, ground).distance == 0 || Physics2D.Raycast(transform.position, Vector2.down, height, pullObject).distance == 0)
+
+        if (Physics2D.Raycast(transform.position, Vector2.down, height).collider != null)
         {
-            //(Physics2D.Raycast(transform.position, Vector2.down, height, LayerMask.NameToLayer("Ground")).distance == 0 
-            //&& Physics2D.Raycast(transform.position, Vector2.down, height, LayerMask.NameToLayer("Ground")).collider.CompareTag("Ground"))
-            //|| (Physics2D.Raycast(transform.position, Vector2.down, height, LayerMask.NameToLayer("PullObject")).distance == 0
-            //&& Physics2D.Raycast(transform.position, Vector2.down, height, LayerMask.NameToLayer("PullObject")).collider.CompareTag("PullObject")))
-            return true;
+            if (Physics2D.Raycast(transform.position, Vector2.down, height).distance == 0
+                && (Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("Ground") || Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("PullObject")))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
+        {
             return false;
+        }
     }
 }
