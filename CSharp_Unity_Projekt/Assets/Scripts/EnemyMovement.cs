@@ -86,8 +86,7 @@ public class EnemyMovement : MonoBehaviour
                     if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
                     {
                         rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                        if (player.transform.position.y + 5 > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
-                            jump();
+                        jump();
                     }
                 }
                 else
@@ -147,11 +146,19 @@ public class EnemyMovement : MonoBehaviour
     //Der Sprung des Gegners hat eine kurze Abklingzeit. Wenn diese abgelaufen ist kann er wieder Springen.
     private void jump()
     {
-        jumpFrequency -= Time.deltaTime;
         if (jumpFrequency <= 0)
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        {
+            if (player.transform.position.y + 2 > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 
+                && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpFrequency = jumpFrequencyInput;
+            }
+        }
         else
-            jumpFrequency = jumpFrequencyInput;
+        {
+            jumpFrequency -= Time.deltaTime;        
+        }
     }
 
     //Der Gegner läuft für eine zufällige Zeit in eine Richtung. Wenn die Zeit abgelaufen ist, dreht er um und wiederholt den Schritt.

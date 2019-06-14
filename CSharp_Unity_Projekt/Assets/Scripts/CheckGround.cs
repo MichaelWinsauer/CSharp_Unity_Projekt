@@ -30,7 +30,8 @@ public class CheckGround : MonoBehaviour
         if (Physics2D.Raycast(transform.position, Vector2.down, height).collider != null)
         {
             if (Physics2D.Raycast(transform.position, Vector2.down, height).distance == 0
-                && (Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("Ground") || Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("PullObject")))
+                && (Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("Ground") 
+                || Physics2D.Raycast(transform.position, Vector2.down, height).collider.CompareTag("PullObject")))
             {
                 return true;
             }

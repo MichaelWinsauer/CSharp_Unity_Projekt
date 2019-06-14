@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        //Animation & Sound spielen. Movement und Fähigkeiten disablen
+        //Animation & Sound spielen
 
     }
 }
