@@ -136,16 +136,17 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (FindObjectOfType<AudioManager>().GetSource("MainMenu").volume > 0 && isDonePlaying == false)
-        {
-            FindObjectOfType<AudioManager>().GetSource("MainMenu").volume -= 0.003f;
-        }
-        else
-        {
-            FindObjectOfType<AudioManager>().GetSource("MainMenu").Stop();
-            FindObjectOfType<AudioManager>().GetSource("MainMenu").volume = 0.5f;
-            isDonePlaying = true;
-        }
+        //Marcel
+        //if (FindObjectOfType<AudioManager>().GetSource("MainMenu").volume > 0 && isDonePlaying == false)
+        //{
+        //    FindObjectOfType<AudioManager>().GetSource("MainMenu").volume -= 0.003f;
+        //}
+        //else
+        //{
+        //    FindObjectOfType<AudioManager>().GetSource("MainMenu").Stop();
+        //    FindObjectOfType<AudioManager>().GetSource("MainMenu").volume = 0.5f;
+        //    isDonePlaying = true;
+        //}
     }
 
     //Abhängig von der Richtung, in die der Spieler drückt, bewegt sich der Charakter auch.
@@ -153,18 +154,20 @@ public class Movement : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").isPlaying != true && moveX != 0)
-            {
-                FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Play();
-            }
-            else if (moveX == 0)
-            {
-                FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
-            }
+            //Marcel
+            //if (FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").isPlaying != true && moveX != 0)
+            //{
+            //    FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Play();
+            //}
+            //else if (moveX == 0)
+            //{
+            //    FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
+            //}
         }
         else
         {
-            FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
+            //Marcel
+            //FindObjectOfType<AudioManager>().GetSource("TwoFootsteps").Stop();
         }
         Vector3 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, moveSmooth);
