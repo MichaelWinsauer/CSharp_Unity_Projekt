@@ -100,9 +100,10 @@ public class Movement : MonoBehaviour
             {
                 moveX = Input.GetAxis("Horizontal");
 
-                if (Mathf.Abs(moveX) >= .3)
+                if (Mathf.Abs(moveX) != 0)
                 {
                     GetComponent<Animator>().SetBool("isMoving", true);
+                    GetComponent<Animator>().SetFloat("moveSpeed", Mathf.Abs(moveX));
                 }
                 else
                 {

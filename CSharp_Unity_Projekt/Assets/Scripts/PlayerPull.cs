@@ -30,6 +30,9 @@ public class PlayerPull : MonoBehaviour
                 GetComponent<Movement>().CanFlip = false;
                 GetComponent<Movement>().CanJump = false;
                 box.GetComponent<Rigidbody2D>().mass = 10;
+
+                GetComponent<Animator>().SetBool("isGrabbing", true);
+                GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
             }
             else
             {
@@ -41,6 +44,9 @@ public class PlayerPull : MonoBehaviour
                     GetComponent<Movement>().CanFlip = true;
                     GetComponent<Movement>().CanJump = true;
                     b.GetComponent<Rigidbody2D>().mass = 30;
+
+                    GetComponent<Animator>().SetBool("isGrabbing", false);
+                    GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
                 }
             }
         }
