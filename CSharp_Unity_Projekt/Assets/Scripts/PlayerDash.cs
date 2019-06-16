@@ -11,6 +11,10 @@ public class PlayerDash : MonoBehaviour
     private float durationInput;
     [SerializeField]
     private float dashSpeed;
+    [SerializeField]
+    private GameObject dashStartParticles;
+    [SerializeField]
+    private GameObject dashDurationParticles;
 
     private float cooldown;
     private float duration;
@@ -19,6 +23,7 @@ public class PlayerDash : MonoBehaviour
     private Rigidbody2D playerRb;
     private Movement playerMovement;
     private float defaultGravity;
+    private GameObject dashStart;
 
     private States dashState;
 
@@ -39,6 +44,7 @@ public class PlayerDash : MonoBehaviour
             case States.Ready:
                 if (Input.GetButtonDown("Dash"))
                 {
+                    dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
                     fixedDirection = playerMovement.Direction;
                     duration = durationInput;
                     dashState = States.Dashing;
@@ -48,6 +54,8 @@ public class PlayerDash : MonoBehaviour
             case States.Dashing:
                 if (duration >= 0 && !GetComponent<PlayerHealth>().IsDead)
                 {
+                    //dashStart.transform.position = transform.position;
+                    Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
                     playerRb.gravityScale = 0;
                     duration -= Time.deltaTime;
                     playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
