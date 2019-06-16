@@ -25,8 +25,8 @@ public class PlayerPull : MonoBehaviour
             if (hit.collider != null && Input.GetButton("PullPush"))
             {
                 box = hit.collider.gameObject;
-                box.GetComponent<FixedJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
-                box.GetComponent<FixedJoint2D>().enabled = true;
+                box.GetComponent<HingeJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
+                box.GetComponent<HingeJoint2D>().enabled = true;
                 GetComponent<Movement>().CanFlip = false;
                 GetComponent<Movement>().CanJump = false;
                 box.GetComponent<Rigidbody2D>().mass = 10;
@@ -40,7 +40,7 @@ public class PlayerPull : MonoBehaviour
 
                 foreach (GameObject b in boxes)
                 {
-                    b.GetComponent<FixedJoint2D>().enabled = false;
+                    b.GetComponent<HingeJoint2D>().enabled = false;
                     GetComponent<Movement>().CanFlip = true;
                     GetComponent<Movement>().CanJump = true;
                     b.GetComponent<Rigidbody2D>().mass = 30;

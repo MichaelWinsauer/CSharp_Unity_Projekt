@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6207860376123823055}
   - component: {fileID: 6207860376123823048}
   - component: {fileID: 6207860376123823049}
-  - component: {fileID: 6207860376123823050}
+  - component: {fileID: 621807836416490714}
   m_Layer: 9
   m_Name: PullObject
   m_TagString: PullObject
@@ -129,8 +129,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!255 &6207860376123823050
-FixedJoint2D:
+--- !u!233 &621807836416490714
+HingeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,5 +145,11 @@ FixedJoint2D:
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 23.248, y: -2.857}
-  m_DampingRatio: 0
-  m_Frequency: 0
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359

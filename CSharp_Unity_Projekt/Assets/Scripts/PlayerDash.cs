@@ -49,14 +49,12 @@ public class PlayerDash : MonoBehaviour
                 if (duration >= 0 && !GetComponent<PlayerHealth>().IsDead)
                 {
                     playerRb.gravityScale = 0;
-                    GetComponent<Animator>().SetBool("isDashing", true);
                     duration -= Time.deltaTime;
                     playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
                 }
                 else
                 {
                     playerRb.gravityScale = defaultGravity;
-                    GetComponent<Animator>().SetBool("isDashing", false);
                     cooldown = cooldownInput;
                     dashState = States.Cooldown;
                 }

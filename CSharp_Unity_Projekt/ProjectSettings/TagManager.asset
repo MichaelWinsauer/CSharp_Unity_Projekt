@@ -16,6 +16,7 @@ TagManager:
   - PullObject
   - EnemyProjectileSpawnpoint
   - EnemyProjectile
+  - DashParticle
   layers:
   - Default
   - TransparentFX
