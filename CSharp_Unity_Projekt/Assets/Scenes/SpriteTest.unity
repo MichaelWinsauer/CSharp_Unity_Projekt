@@ -286,6 +286,21 @@ PrefabInstance:
       propertyPath: maxY
       value: 5.47
       objectReference: {fileID: 0}
+    - target: {fileID: 3578443613766132067, guid: c5b195da2f1c4544fa6a8913d9d23e0b,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578443613766132067, guid: c5b195da2f1c4544fa6a8913d9d23e0b,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578443613766132067, guid: c5b195da2f1c4544fa6a8913d9d23e0b,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.6603774
+      objectReference: {fileID: 0}
     - target: {fileID: 3578443612738977935, guid: c5b195da2f1c4544fa6a8913d9d23e0b,
         type: 3}
       propertyPath: m_Color.r
