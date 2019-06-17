@@ -25,7 +25,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     // Die Kameraposition wird auf die des Spielers gesetzt. .Lerp ist eine Funktion, die langsahm von einer Position auf die nächste beschleunigt.
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, position + new Vector3(Mathf.Clamp(player.position.x, minX, maxX), Mathf.Clamp(player.position.y, minY, maxY) / 2, player.position.z), speed);
     }
