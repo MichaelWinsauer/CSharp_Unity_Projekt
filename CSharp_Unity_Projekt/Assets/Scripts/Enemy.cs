@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         if ((health -= damage) <= 0)
             die();
-        Debug.Log(health);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.1f, .2f);
     }
 
     private void die()

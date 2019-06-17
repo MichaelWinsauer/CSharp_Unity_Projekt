@@ -34,7 +34,7 @@ public class BasicProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(5);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(35);
 
             if (collision.gameObject.transform.position.x > transform.position.x)
                 direction = 1;

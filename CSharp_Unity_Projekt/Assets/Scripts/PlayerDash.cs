@@ -45,6 +45,7 @@ public class PlayerDash : MonoBehaviour
                 if (Input.GetButtonDown("Dash"))
                 {
                     dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
                     fixedDirection = playerMovement.Direction;
                     duration = durationInput;
                     dashState = States.Dashing;
@@ -55,7 +56,9 @@ public class PlayerDash : MonoBehaviour
                 if (duration >= 0 && !GetComponent<PlayerHealth>().IsDead)
                 {
                     //dashStart.transform.position = transform.position;
-                    Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                    GameObject dashParticles = Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                    ParticleSystem.ShapeModule shape = dashParticles.GetComponentInChildren<ParticleSystem>().shape;
+                    shape.rotation = new Vector3(0, 90 * -fixedDirection, 0);
                     playerRb.gravityScale = 0;
                     duration -= Time.deltaTime;
                     playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);

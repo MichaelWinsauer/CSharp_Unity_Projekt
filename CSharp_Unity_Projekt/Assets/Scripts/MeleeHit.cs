@@ -10,7 +10,7 @@ public class MeleeHit : MonoBehaviour
     {
         if(collider.CompareTag("Enemy"))
         {
-            collider.gameObject.GetComponent<Enemy>().TakeDamage(5);
+            collider.gameObject.GetComponent<Enemy>().TakeDamage(20);
 
             if (collider.gameObject.transform.position.x > GameObject.FindGameObjectWithTag("Player").transform.position.x)
                 direction = 1;
