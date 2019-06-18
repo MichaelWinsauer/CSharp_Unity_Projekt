@@ -41,14 +41,12 @@ public class Movement : MonoBehaviour
     private bool isDonePlaying;
     private int direction;
     private bool canMove;
-    private bool touchingWall;
     private bool canFlip;
     private bool canJump;
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
-    public bool TouchingWall { get => touchingWall; set => touchingWall = value; }
     public bool CanFlip { get => canFlip; set => canFlip = value; }
     public bool CanJump { get => canJump; set => canJump = value; }
 
@@ -59,7 +57,6 @@ public class Movement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         Cursor.visible = false;
         isDonePlaying = false;
-        touchingWall = false;
         canMove = true;
         canFlip = true;
         canJump = true;
@@ -121,17 +118,7 @@ public class Movement : MonoBehaviour
                 move();
                 jump();
                 flip();
-                wallJump();
             }
-        }
-    }
-
-    private void wallJump()
-    {
-        if(touchingWall)
-        {
-            //Walljumplogik
-            Debug.Log("Walljump");
         }
     }
 
@@ -176,7 +163,8 @@ public class Movement : MonoBehaviour
 
     //Hier wird erst getestet, ob der Spieler den Boden berührt oder nicht. Einfach gesagt kann dieser nur Springen, wenn er den Boden berührt.
     private void jump()
-    {       
+    {
+        
         if(canJump)
         {
             if (isGrounded)

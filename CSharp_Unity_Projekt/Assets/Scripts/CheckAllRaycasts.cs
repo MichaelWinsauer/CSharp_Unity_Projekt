@@ -11,12 +11,6 @@ public class CheckAllRaycasts : MonoBehaviour
     public GameObject rayRight;
     [SerializeField]
     public GameObject rayCenter;
-    [SerializeField]
-    private GameObject rayLower;
-    [SerializeField]
-    private GameObject rayMiddle;
-    [SerializeField]
-    private GameObject rayUpper;
 
     private Movement player;
 
@@ -34,34 +28,12 @@ public class CheckAllRaycasts : MonoBehaviour
             player.IsGrounded = true;
         else
             player.IsGrounded = false;
-
-        if (wallCheck())
-            player.TouchingWall = true;
-        else
-            player.TouchingWall = false;
-
-
     }
 
     private bool groundCheck()
     {
         if (rayLeft.GetComponent<CheckGround>().checkRaycastDistance() || rayCenter.GetComponent<CheckGround>().checkRaycastDistance() || rayRight.GetComponent<CheckGround>().checkRaycastDistance())
             return true;
-        else
-            return false;
-    }
-
-    private bool wallCheck()
-    {
-        if (rayLower.GetComponent<CheckWall>().checkWallRaycast() || rayMiddle.GetComponent<CheckWall>().checkWallRaycast() || rayUpper.GetComponent<CheckWall>().checkWallRaycast())
-        {
-            Debug.Log("wallCheck()");
-
-            if (!groundCheck())
-                return true;
-            else
-                return false;
-        }
         else
             return false;
     }
