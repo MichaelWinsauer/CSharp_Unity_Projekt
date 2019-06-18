@@ -224,6 +224,9 @@ MonoBehaviour:
   crosshairPrefab: {fileID: 6768411497221706970, guid: ce387385c0415e149a2c30745b4de370,
     type: 3}
   crosshairDistanceToPlayer: 3
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1563484318269074399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +240,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  deathParticles: {fileID: 2244578779827191123, guid: 8481e49c3703fec4c8d121b542f4f002,
+    type: 3}
+  timerInput: 2
+  rangedEnemy: {fileID: 3633370441598737987, guid: b054d9a7ddb0b144ab16437c3728c67c,
+    type: 3}
+  meleeEnemy: {fileID: 3633370441598737987, guid: 555c416f88675964db35047a3daabfad,
+    type: 3}
 --- !u!114 &455529647869678771
 MonoBehaviour:
   m_ObjectHideFlags: 0

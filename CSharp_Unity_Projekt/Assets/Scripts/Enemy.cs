@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private float knockbackDurationInput;
     [SerializeField]
     private int knockbackForce;
+    [SerializeField]
+    private GameObject deathParticles;
 
     private int health;
     private float damageTimer = 1;
@@ -55,12 +57,13 @@ public class Enemy : MonoBehaviour
         if ((health -= damage) <= 0)
             die();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.1f, .2f);
+        
     }
 
     private void die()
     {
         //TODO: Instanciate Geld/Health/Punkte
-
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 

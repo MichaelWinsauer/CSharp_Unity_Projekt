@@ -96,6 +96,8 @@ MonoBehaviour:
   healthInput: 100
   knockbackDurationInput: 0.1
   knockbackForce: 2
+  deathParticles: {fileID: 2244578779827191123, guid: 8481e49c3703fec4c8d121b542f4f002,
+    type: 3}
 --- !u!212 &52200640410195725
 SpriteRenderer:
   m_ObjectHideFlags: 0
