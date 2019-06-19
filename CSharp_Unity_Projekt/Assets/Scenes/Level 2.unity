@@ -1638,6 +1638,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2075870420}
     m_Modifications:
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 1599687631415637993, guid: e7495de732526c9439fcdd93c17dccdd,
         type: 3}
       propertyPath: m_Name
