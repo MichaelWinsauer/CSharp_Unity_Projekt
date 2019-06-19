@@ -7,25 +7,47 @@ public class BasicProjectile : MonoBehaviour
     [SerializeField]
     private float timeToLive;
     [SerializeField]
-    public float moveSpeed;
+    private float moveSpeed;
     [SerializeField]
-    private ParticleSystem emit;
+    private GameObject travelParticles;
 
     private GameObject player;
     private int direction;
+    private float rotation;
+    private float particleTimer;
+    private GameObject particle;
+
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+    public float Rotation { get => rotation; set => rotation = value; }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        particleTimer = .01f;
     }
 
     //Lebenszeit des Projektils wird definiert
     private void Update()
     {
         if (timeToLive <= 0)
+        {
             Destroy(this.gameObject);
+        }
         else
+        {
+            if(particleTimer <= 0)
+            {
+                particle = Instantiate(travelParticles, transform.position, Quaternion.identity);
+                ParticleSystem.ShapeModule shape = particle.GetComponent<ParticleSystem>().shape;
+                shape.rotation = new Vector3(rotation, -90, 0);
+                particleTimer = .01f;
+            }
+            else
+            {
+                particleTimer -= Time.deltaTime;
+            }
             timeToLive -= Time.deltaTime;
+        }
     }
 
 

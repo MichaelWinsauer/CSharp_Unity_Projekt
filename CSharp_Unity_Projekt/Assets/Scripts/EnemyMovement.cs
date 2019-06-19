@@ -122,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
     private void shoot()
     {
         Vector3 spawnPoint = GameObject.FindGameObjectWithTag("EnemyProjectileSpawnpoint").transform.position;
-        Vector2 difference = player.transform.position - spawnPoint;
+        Vector2 difference = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         if(shootTimer <= 0)
@@ -131,8 +131,9 @@ public class EnemyMovement : MonoBehaviour
             Vector2 direction = difference / distance;
             direction.Normalize();
 
-            GameObject projectile = Instantiate(enemyProjectile, spawnPoint, Quaternion.Euler(0f, 0f, rotationZ));
+            GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.Euler(0f, 0f, rotationZ));
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed;
+            projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;
             shootTimer = shootTimerInput;
 
         }

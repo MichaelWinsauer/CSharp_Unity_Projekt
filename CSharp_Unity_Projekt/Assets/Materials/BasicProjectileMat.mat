@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BasicProjectileMat
+  m_Shader: {fileID: -6465566751694194690, guid: 6a25a232fbb39764bbbca59408c8a6cf,
+    type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_92E31CF2:
+        m_Texture: {fileID: 2800000, guid: 8679d37d1eee4cc44bb843b226ddeb8f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_245F033B: 0.04
+    - Vector1_82B280FC: 2.6
+    - Vector1_88A09178: -1
+    - Vector1_F36BF443: 7.5
+    m_Colors:
+    - Color_6934ED98: {r: 55.715244, g: 14.735336, b: 0, a: 0}
+    - Vector2_5AEF3577: {r: 2, g: 0, b: 0, a: 0}
+    - Vector2_E5EEC8A8: {r: 1, g: -0.1, b: 0, a: 0}

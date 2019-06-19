@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4999579183048078411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.254, y: -3.1437287, z: -0.114746094}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1.7000002, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78949effaadd17e4993e168a84e624f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,11 +72,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e646ef971ae570d478e40cb02c570fbc, type: 3}
-  m_Color: {r: 1, g: 0.7181754, b: 0.35294116, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -133,4 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   timeToLive: 2
-  damage: 10
+  damage: 25
+  travelParticles: {fileID: 4913027457387076740, guid: 6835f61982b24484da3b621e19dfdc9b,
+    type: 3}

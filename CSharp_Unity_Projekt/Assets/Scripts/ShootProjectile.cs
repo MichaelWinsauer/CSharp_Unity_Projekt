@@ -87,6 +87,7 @@ public class ShootProjectile : MonoBehaviour
         GameObject projectile = Instantiate(basicProjectile);
         projectile.transform.position = projectileSpawnPoint.transform.position;
         projectile.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<BasicProjectile>().moveSpeed;
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<BasicProjectile>().MoveSpeed;
+        projectile.GetComponent<BasicProjectile>().Rotation = rotationZ;
     }
 }

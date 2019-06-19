@@ -218,7 +218,7 @@ MonoBehaviour:
   keyPressedTimerInput: 0.2
   crosshairPrefab: {fileID: 6768411497221706970, guid: ce387385c0415e149a2c30745b4de370,
     type: 3}
-  crosshairDistanceToPlayer: 3
+  crosshairDistanceToPlayer: 5
 --- !u!114 &1563484318269074399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +239,8 @@ MonoBehaviour:
     type: 3}
   meleeEnemy: {fileID: 3633370441598737987, guid: 555c416f88675964db35047a3daabfad,
     type: 3}
+  knockbackDurationInput: 0.1
+  knockbackForce: 5
 --- !u!114 &455529647869678771
 MonoBehaviour:
   m_ObjectHideFlags: 0

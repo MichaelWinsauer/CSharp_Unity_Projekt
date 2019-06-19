@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private int knockbackDirection;
     private float knockbackDuration;
+    private int direction;
 
 
     public int Health { get => health; set => health = value; }
@@ -39,15 +40,27 @@ public class Enemy : MonoBehaviour
     }
 
     //Wenn der Gegner den Spieler berührt soll dieser jede Sekunde dem Spieler schaden Machen.
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        damageTimer -= Time.deltaTime;
-        if (damageTimer <= 0)
+        
+        if (damageTimer >= 0)
         {
-            damageTimer = 1;
             if (collision.gameObject.tag.Equals("Player"))
-                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(30);
+
+                if (collision.gameObject.transform.position.x > transform.position.x)
+                    direction = 1;
+                else
+                    direction = -1;
+
+                collision.gameObject.GetComponent<PlayerHealth>().KnockbackDirection = direction;
+                collision.gameObject.GetComponent<PlayerHealth>().KnockbackDuration = collision.gameObject.GetComponent<PlayerHealth>().KnockbackDurationInput;
+                damageTimer = 1f;
+            }
         }
+        else
+            damageTimer -= Time.deltaTime;
     }
 
 
@@ -73,7 +86,7 @@ public class Enemy : MonoBehaviour
         if(knockbackDuration >= 0)
         {
             GetComponent<EnemyMovement>().CanMove = false;
-            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 5, knockbackForce);
+            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 2, knockbackForce);
         }
         else
         {
