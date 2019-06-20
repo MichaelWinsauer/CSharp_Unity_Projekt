@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 3633370441598737991, guid: 555c416f88675964db35047a3daabfad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.02
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 3633370441598737991, guid: 555c416f88675964db35047a3daabfad,
         type: 3}
@@ -408,7 +408,7 @@ Transform:
   - {fileID: 70355805}
   - {fileID: 646341711}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823573756
 GameObject:
@@ -517,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 5379537037220285699, guid: 8c2984c3277f51b4cab7aa587aa8b08c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5379537037220285699, guid: 8c2984c3277f51b4cab7aa587aa8b08c,
         type: 3}
@@ -918,7 +918,7 @@ PrefabInstance:
     - target: {fileID: 3633370441598737991, guid: 555c416f88675964db35047a3daabfad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.4
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 3633370441598737991, guid: 555c416f88675964db35047a3daabfad,
         type: 3}
@@ -1638,26 +1638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2075870420}
     m_Modifications:
-    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
-        type: 3}
-      propertyPath: NoiseModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
-        type: 3}
-      propertyPath: NoiseModule.strength.scalar
-      value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
-        type: 3}
-      propertyPath: NoiseModule.frequency
-      value: 0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
-        type: 3}
-      propertyPath: NoiseModule.scrollSpeed.scalar
-      value: 0.24
-      objectReference: {fileID: 0}
     - target: {fileID: 1599687631415637993, guid: e7495de732526c9439fcdd93c17dccdd,
         type: 3}
       propertyPath: m_Name
@@ -1717,6 +1697,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454665063383678414, guid: e7495de732526c9439fcdd93c17dccdd,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 0.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7495de732526c9439fcdd93c17dccdd, type: 3}

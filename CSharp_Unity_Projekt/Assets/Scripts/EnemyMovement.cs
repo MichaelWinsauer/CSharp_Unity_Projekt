@@ -12,10 +12,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float viewArea = 5;
     [SerializeField]
-    private int patrolDurationMinInput = 2;
-    [SerializeField]
-    private int patrolDurationMaxInput = 4;
-    [SerializeField]
     private float jumpForce = 20;
     [SerializeField]
     private float jumpFrequencyInput;
@@ -44,9 +40,11 @@ public class EnemyMovement : MonoBehaviour
     private bool canMove = true;
     private float shootTimer;
     private float projectileSpeed;
+    private int direction;
 
     public bool IsRanged { get => isRanged; set => isRanged = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
+    public int Direction { get => direction; set => direction = value; }
 
 
     //Referenz auf den Spieler und auf den Rigidbody2D des Gegners
@@ -162,33 +160,22 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    //Der Gegner läuft für eine zufällige Zeit in eine Richtung. Wenn die Zeit abgelaufen ist, dreht er um und wiederholt den Schritt.
     private void patrol()
     {
-        patrolDuration -= Time.deltaTime;
-        if(patrolDuration <= 0)
-        {   
-            patrolDirection = -patrolDirection;
-            if (patrolDirection == -1)
-                transform.rotation = Quaternion.Euler(0f, 180, 0f);
-            else
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            patrolDuration = new System.Random().Next(patrolDurationMinInput, patrolDurationMaxInput);
-        }
-        rb.velocity = new Vector2(patrolDirection * moveSpeedPassive, rb.velocity.y);
+        rb.velocity = new Vector2(patrolDirection * moveSpeedPassive * direction, rb.velocity.y);
     }
 
-
-    //Wenn der Gegner beim patroullieren eine Wand berührt dreht dieser sofort wieder um.
-    //Außerdem wird hier getestet, ob der Gegner den Boden berührt.
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Flip()
     {
-        if (!isInView)
-            patrolDuration = 0;
+        if (transform.rotation.y == 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, -180, 0f);
+            direction = -1;
+        }
         else
-            if (collision.collider.gameObject.tag.Equals("Ground"))
-                isGrounded = true;
-            else
-                isGrounded = false;
+        {
+            transform.rotation = Quaternion.Euler(0f, 0, 0f);
+            direction = 1;
+        }
     }
 }

@@ -24,6 +24,7 @@ public class PlayerDash : MonoBehaviour
     private Movement playerMovement;
     private float defaultGravity;
     private GameObject dashStart;
+    private bool canDash;
 
     private States dashState;
 
@@ -34,6 +35,7 @@ public class PlayerDash : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
         playerMovement = player.GetComponent<Movement>();
         defaultGravity = playerRb.gravityScale;
+        canDash = false;
         dashState = States.Ready;
     }
 
@@ -42,7 +44,7 @@ public class PlayerDash : MonoBehaviour
         switch(dashState)
         {
             case States.Ready:
-                if (Input.GetButtonDown("Dash"))
+                if (Input.GetButtonDown("Dash") && canDash)
                 {
                     dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);

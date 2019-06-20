@@ -1,22 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyEdgeCheck : MonoBehaviour
 {
-    private void OnTriggerStay2D(Collider2D collision)
+
+    private Transform edgeCheck;
+    private RaycastHit2D hitBottom;
+    private RaycastHit2D hitRight;
+    private void Start()
     {
-        if (collision.gameObject == null || !collision.gameObject.CompareTag("Ground"))
+        edgeCheck = gameObject.transform.GetChild(0);
+    }
+
+    private void Update()
+    {
+        bottomCheck();
+        rightCheck();
+    }
+
+    private void rightCheck()
+    {
+        hitRight = Physics2D.Raycast(transform.position, Vector2.right * GetComponentInParent<EnemyMovement>().Direction, .5f);
+        Debug.DrawRay(transform.position, Vector2.right * GetComponentInParent<EnemyMovement>().Direction, Color.blue, .5f);
+        if (hitRight.collider != null && hitRight.collider.CompareTag("Ground"))
         {
-            Debug.Log("Turn");
-            if (transform.rotation.y == 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, -180, 0f);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
+            gameObject.GetComponentInParent<EnemyMovement>().Flip();
+        }
+    }
+
+    private void bottomCheck()
+    {
+        hitBottom = Physics2D.Raycast(edgeCheck.position, Vector2.down, .5f);
+        Debug.DrawRay(edgeCheck.position, Vector2.down, Color.blue, .5f);
+        if (hitBottom.collider == null || !hitBottom.collider.CompareTag("Ground"))
+        {
+            gameObject.GetComponentInParent<EnemyMovement>().Flip();
         }
     }
 }

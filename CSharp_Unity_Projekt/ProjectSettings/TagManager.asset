@@ -17,6 +17,7 @@ TagManager:
   - EnemyProjectileSpawnpoint
   - EnemyProjectile
   - DashParticle
+  - EdgeCheck
   layers:
   - Default
   - TransparentFX
