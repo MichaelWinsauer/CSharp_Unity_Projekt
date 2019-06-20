@@ -119,6 +119,8 @@ MonoBehaviour:
   moveSpeed: 17
   travelParticles: {fileID: 4913027457387076740, guid: bc86ce0193b757945b1799797b3cbc15,
     type: 3}
+  explosionParticles: {fileID: 4916360259710513020, guid: a2e7a68230a8bdc478196cabd85a3cd1,
+    type: 3}
 --- !u!70 &623836909237168097
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,5 +135,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.12, y: -0.03}
-  m_Size: {x: 1, y: 0.2}
+  m_Size: {x: 0.55, y: 0.1}
   m_Direction: 1

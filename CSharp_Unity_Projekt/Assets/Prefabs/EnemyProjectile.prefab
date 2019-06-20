@@ -95,8 +95,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.19, y: -0.04}
-  m_Size: {x: 0.45, y: 0.18}
+  m_Offset: {x: 0.15, y: -0.025}
+  m_Size: {x: 0.45, y: 0.1}
   m_Direction: 1
 --- !u!50 &3013685558797767116
 Rigidbody2D:
@@ -135,4 +135,6 @@ MonoBehaviour:
   timeToLive: 2
   damage: 25
   travelParticles: {fileID: 4913027457387076740, guid: 6835f61982b24484da3b621e19dfdc9b,
+    type: 3}
+  explosionParticles: {fileID: 4916360259710513020, guid: 3c4caba2431054545b39c745278cc36c,
     type: 3}

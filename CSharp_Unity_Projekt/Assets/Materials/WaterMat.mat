@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterMat
+  m_Shader: {fileID: -6465566751694194690, guid: df6f52a1954c6524c8960700e6538db1,
+    type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_18BABC1: 0.62
+    - Vector1_5168D905: 5.8
+    - Vector1_90622A3: 1.05
+    - Vector1_DC338582: 6.94
+    m_Colors:
+    - Color_69C01A40: {r: 0.2431372, g: 0.6039216, b: 0.4250636, a: 0}
+    - Color_906D4B54: {r: 1.1921569, g: 6.4941177, b: 4.737255, a: 0}
+    - Vector2_CFE5BF72: {r: 3.74, g: -6.41, b: 0, a: 0}

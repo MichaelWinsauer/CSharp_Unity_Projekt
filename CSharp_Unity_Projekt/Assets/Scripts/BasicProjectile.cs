@@ -10,6 +10,8 @@ public class BasicProjectile : MonoBehaviour
     private float moveSpeed;
     [SerializeField]
     private GameObject travelParticles;
+    [SerializeField]
+    private GameObject explosionParticles;
 
     private GameObject player;
     private int direction;
@@ -54,6 +56,8 @@ public class BasicProjectile : MonoBehaviour
     //Wird ausgeführt, sobald das Projektil etwas berührt. Abhängig vom berührten Objekt soll sich das Projektil dementsprechend verhalten.
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(35);
@@ -69,8 +73,7 @@ public class BasicProjectile : MonoBehaviour
 
         if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile"))
         {
-            //emit.transform.parent = null;
-
+            Instantiate(explosionParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
             

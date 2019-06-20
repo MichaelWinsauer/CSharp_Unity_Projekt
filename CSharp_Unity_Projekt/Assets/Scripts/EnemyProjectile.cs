@@ -12,6 +12,8 @@ public class EnemyProjectile : MonoBehaviour
     private int damage;
     [SerializeField]
     private GameObject travelParticles;
+    [SerializeField]
+    private GameObject explosionParticles;
 
     private int direction;
     private GameObject particle;
@@ -67,6 +69,7 @@ public class EnemyProjectile : MonoBehaviour
 
         if (!collision.gameObject.CompareTag("Enemy") && !collision.gameObject.CompareTag("BasicProjectile") && !collision.gameObject.CompareTag("MeleeTrigger"))
         {
+            Instantiate(explosionParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

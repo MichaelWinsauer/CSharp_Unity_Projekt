@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -589,16 +589,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 621807836416490714, guid: ce194981e08f7484caf0458086b20f7a,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 96.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 621807836416490714, guid: ce194981e08f7484caf0458086b20f7a,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -1.32
-      objectReference: {fileID: 0}
     - target: {fileID: 6207860376123823049, guid: ce194981e08f7484caf0458086b20f7a,
         type: 3}
       propertyPath: m_Color.r
@@ -613,6 +603,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 621807836416490714, guid: ce194981e08f7484caf0458086b20f7a,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 98.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 621807836416490714, guid: ce194981e08f7484caf0458086b20f7a,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -2.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce194981e08f7484caf0458086b20f7a, type: 3}
@@ -1374,11 +1374,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4661886173917145354, guid: 555c416f88675964db35047a3daabfad,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.714
-      objectReference: {fileID: 0}
     - target: {fileID: 3633370441598737987, guid: 555c416f88675964db35047a3daabfad,
         type: 3}
       propertyPath: m_Name
@@ -1443,6 +1438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: knockbackForce
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661886173917145354, guid: 555c416f88675964db35047a3daabfad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 555c416f88675964db35047a3daabfad, type: 3}
@@ -2280,7 +2280,7 @@ PrefabInstance:
     - target: {fileID: 5379537037220285699, guid: 8c2984c3277f51b4cab7aa587aa8b08c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 121.007805
+      value: 121.5
       objectReference: {fileID: 0}
     - target: {fileID: 5379537037220285699, guid: 8c2984c3277f51b4cab7aa587aa8b08c,
         type: 3}
