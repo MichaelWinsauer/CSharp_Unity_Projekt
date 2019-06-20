@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     public int KnockbackDirection { get => knockbackDirection; set => knockbackDirection = value; }
     public float KnockbackDurationInput { get => knockbackDurationInput; set => knockbackDurationInput = value; }
     public float KnockbackDuration { get => knockbackDuration; set => knockbackDuration = value; }
+    public int KnockbackForce { get => knockbackForce; set => knockbackForce = value; }
 
     //Komponentenreferenzen erstellt.
     void Start()
@@ -86,7 +87,7 @@ public class Enemy : MonoBehaviour
         if(knockbackDuration >= 0)
         {
             GetComponent<EnemyMovement>().CanMove = false;
-            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 2, knockbackForce);
+            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 3, knockbackForce);
         }
         else
         {

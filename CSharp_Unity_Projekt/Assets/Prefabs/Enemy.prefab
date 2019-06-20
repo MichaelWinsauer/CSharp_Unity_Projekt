@@ -103,8 +103,6 @@ MonoBehaviour:
   moveSpeedActive: 6
   moveSpeedPassive: 2
   viewArea: 15
-  patrolDurationMinInput: 3
-  patrolDurationMaxInput: 7
   jumpForce: 25
   jumpFrequencyInput: 1
   isRanged: 0
@@ -127,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthInput: 100
   knockbackDurationInput: 0.1
-  knockbackForce: 2
+  knockbackForce: 10
   deathParticles: {fileID: 2244578779827191123, guid: 8481e49c3703fec4c8d121b542f4f002,
     type: 3}
 --- !u!114 &2128317646823204628

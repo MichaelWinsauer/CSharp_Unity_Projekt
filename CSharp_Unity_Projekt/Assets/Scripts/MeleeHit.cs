@@ -10,13 +10,12 @@ public class MeleeHit : MonoBehaviour
     {
         if(collider.CompareTag("Enemy"))
         {
-            collider.gameObject.GetComponent<Enemy>().TakeDamage(20);
+            collider.gameObject.GetComponent<Enemy>().TakeDamage(35);
 
             if (collider.gameObject.transform.position.x > GameObject.FindGameObjectWithTag("Player").transform.position.x)
                 direction = 1;
             else
                 direction = -1;
-
 
             collider.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
             collider.gameObject.GetComponent<Enemy>().KnockbackDuration = collider.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
