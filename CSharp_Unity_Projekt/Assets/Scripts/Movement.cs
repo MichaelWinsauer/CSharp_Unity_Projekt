@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour
     [Range(1.5f, 5f)]
     private float crosshairDistanceToPlayer;
 
+
     private GameObject crosshair;
     private Vector3 crosshairSize;
     private float groundedTimer;
@@ -43,6 +44,8 @@ public class Movement : MonoBehaviour
     private bool canMove;
     private bool canFlip;
     private bool canJump;
+    private float jumpPressed;
+    
 
     public int Direction { get => direction; set => direction = value; }
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
@@ -109,7 +112,7 @@ public class Movement : MonoBehaviour
 
                 if (isGrounded)
                     GetComponent<Animator>().SetBool("isJumping", false);
-                else
+                else if(!isGrounded && jumpPressed < 1)
                     GetComponent<Animator>().SetBool("isJumping", true);
 
                 groundedTimer -= Time.deltaTime;
@@ -118,8 +121,17 @@ public class Movement : MonoBehaviour
                 move();
                 jump();
                 flip();
+                falling();
             }
         }
+    }
+
+    private void falling()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), Vector2.down, .5f);
+
+        if(hit.collider == null)
+            GetComponent<Animator>().SetBool("isJumping", true);
     }
 
     private void FixedUpdate()
@@ -164,14 +176,20 @@ public class Movement : MonoBehaviour
     //Hier wird erst getestet, ob der Spieler den Boden berührt oder nicht. Einfach gesagt kann dieser nur Springen, wenn er den Boden berührt.
     private void jump()
     {
-        
         if(canJump)
         {
             if (isGrounded)
                 groundedTimer = groundedTimerInput;
 
             if (Input.GetButtonDown("Jump"))
+            {
                 keyPressedTimer = keyPressedTimerInput;
+                jumpPressed = 0;
+            }
+            else
+            {
+                jumpPressed += Time.deltaTime;
+            }
 
             if (Input.GetButtonUp("Jump"))
             {

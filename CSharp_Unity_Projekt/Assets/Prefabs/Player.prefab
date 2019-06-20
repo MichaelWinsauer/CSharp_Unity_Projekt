@@ -219,6 +219,9 @@ MonoBehaviour:
   crosshairPrefab: {fileID: 6768411497221706970, guid: ce387385c0415e149a2c30745b4de370,
     type: 3}
   crosshairDistanceToPlayer: 5
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1563484318269074399
 MonoBehaviour:
   m_ObjectHideFlags: 0
