@@ -16,10 +16,13 @@ public class PlayerSlash : StateMachineBehaviour
 
         if (Input.GetButtonDown("Melee"))
         {
-            animator.SetTrigger("hit_2");
-            Debug.Log("Hit_2");
+            animator.SetBool("hitAgain", true);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMeleeAttack>().Hitbox.enabled = true;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMeleeAttack>().Timer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMeleeAttack>().TimerInput;
+        }
+        else
+        {
+            animator.SetBool("hitAgain", false);
         }
     }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MeleeHit : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject meleeHitParticle;
+
     private int direction;
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -19,6 +22,7 @@ public class MeleeHit : MonoBehaviour
 
             collider.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
             collider.gameObject.GetComponent<Enemy>().KnockbackDuration = collider.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
+            Instantiate(meleeHitParticle, collider.gameObject.transform.position, Quaternion.identity);
         }
     }
 }
