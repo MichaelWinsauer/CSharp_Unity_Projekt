@@ -21,6 +21,7 @@ TagManager:
   - GameManager
   - DashItem
   - CameraObject
+  - HealthBar
   layers:
   - Default
   - TransparentFX
