@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -130,9 +131,9 @@ public class EnemyMovement : MonoBehaviour
             direction.Normalize();
 
             GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.Euler(0f, 0f, rotationZ));
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed;
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed * Random.Range(.5f, 1.5f);
             projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;
-            shootTimer = shootTimerInput;
+            shootTimer = shootTimerInput * Random.Range(.5f, 1.5f);
 
         }
         else

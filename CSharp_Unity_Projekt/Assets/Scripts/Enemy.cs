@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private int knockbackForce;
     [SerializeField]
     private GameObject deathParticles;
+    [SerializeField]
+    private GameObject healthObject;
 
     private int health;
     private float damageTimer = 1;
@@ -76,8 +78,11 @@ public class Enemy : MonoBehaviour
 
     private void die()
     {
-        //TODO: Instanciate Geld/Health/Punkte
         Instantiate(deathParticles, transform.position, Quaternion.identity);
+        if(UnityEngine.Random.Range(0, 4) == 1)
+        {
+            Instantiate(healthObject, transform.position, Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 

@@ -24,5 +24,15 @@ public class MeleeHit : MonoBehaviour
             collider.gameObject.GetComponent<Enemy>().KnockbackDuration = collider.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
             Instantiate(meleeHitParticle, collider.gameObject.transform.position, Quaternion.identity);
         }
+
+        if(collider.CompareTag("EnemyProjectile"))
+        {
+            Instantiate(meleeHitParticle, collider.gameObject.transform.position, Quaternion.identity);
+            GameObject enemyProjectile = collider.gameObject;
+            enemyProjectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-enemyProjectile.GetComponent<Rigidbody2D>().velocity.x, -enemyProjectile.GetComponent<Rigidbody2D>().velocity.y);
+            enemyProjectile.transform.rotation = Quaternion.Euler(enemyProjectile.transform.rotation.x * -1, enemyProjectile.transform.rotation.y * -1, enemyProjectile.transform.rotation.z * -1);
+            enemyProjectile.GetComponent<EnemyProjectile>().IsReflected = true;
+            enemyProjectile.GetComponent<EnemyProjectile>().TimeToLive = enemyProjectile.GetComponent<EnemyProjectile>().TimeToLiveInput;
+        }
     }
 }

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  timeToLive: 2
+  timeToLiveInput: 3
   damage: 25
   travelParticles: {fileID: 4913027457387076740, guid: 6835f61982b24484da3b621e19dfdc9b,
     type: 3}

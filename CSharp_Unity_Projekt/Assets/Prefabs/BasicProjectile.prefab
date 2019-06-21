@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5b9fe8ff124374990c709eaff8142e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToLive: 2
+  timeToLive: 3
   moveSpeed: 17
   travelParticles: {fileID: 4913027457387076740, guid: bc86ce0193b757945b1799797b3cbc15,
     type: 3}

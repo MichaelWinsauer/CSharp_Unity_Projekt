@@ -6,9 +6,12 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
     [SerializeField]
     private float timerInput;
+    [SerializeField]
+    private float activeInput;
 
     private CapsuleCollider2D hitbox;
     private float timer;
+    private float active;
     private Animator anim;
 
     public float TimerInput { get => timerInput; set => timerInput = value; }
@@ -28,17 +31,29 @@ public class PlayerMeleeAttack : MonoBehaviour
         if(timer > 0)
         {
             timer -= Time.deltaTime;
-            hitbox.enabled = false;
         }
         else
         {
             if(Input.GetButtonDown("Melee"))
             {
                 anim.SetTrigger("hit");
-                hitbox.enabled = true;
+                active = activeInput;
                 timer = timerInput;
-
             }
+        }
+
+        if(active > 0)
+        {
+            hitbox.enabled = true;
+            if(Input.GetButtonDown("Melee"))
+            {
+                anim.SetTrigger("hitAgain");
+            }
+            active -= Time.deltaTime;
+        }
+        else
+        {
+            hitbox.enabled = false;
         }
     }
 }
