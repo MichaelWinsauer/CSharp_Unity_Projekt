@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    private int maxHealth = 100;
+    private int maxHealth;
     [SerializeField]
     private GameObject deathParticles;
     [SerializeField]
@@ -38,12 +39,12 @@ public class PlayerHealth : MonoBehaviour
     public int KnockbackDirection { get => knockbackDirection; set => knockbackDirection = value; }
     public float KnockbackDuration { get => knockbackDuration; set => knockbackDuration = value; }
     public float KnockbackDurationInput { get => knockbackDurationInput; set => knockbackDurationInput = value; }
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
 
     //Wird noch befor den ganzen Start Methoden aufgerufen. Hier legt man fixe Werte fest.
     void Awake()
     {
         movement = GetComponent<Movement>();
-        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -86,19 +87,19 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         isDead = false;
-        currentHealth = maxHealth;
-        respawnAllEnemies();
+        GameData.player.Health = maxHealth;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void respawnAllEnemies()
     {
-        foreach(GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
+        foreach (GameObject e in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             if (e != null)
                 Destroy(e);
         }
 
-        foreach(EnemySpawnPoint e in enemySpawnPoints)
+        foreach (EnemySpawnPoint e in enemySpawnPoints)
         {
             GameObject enemy = Instantiate(e.Enemy);
             enemy.transform.position = e.Position;

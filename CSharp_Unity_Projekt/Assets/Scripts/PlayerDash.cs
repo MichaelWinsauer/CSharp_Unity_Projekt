@@ -28,6 +28,8 @@ public class PlayerDash : MonoBehaviour
 
     private States dashState;
 
+    public bool CanDash { get => canDash; set => canDash = value; }
+
     //Referenzen der SpielerObjekten
     void Start()
     {
@@ -35,7 +37,6 @@ public class PlayerDash : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
         playerMovement = player.GetComponent<Movement>();
         defaultGravity = playerRb.gravityScale;
-        canDash = false;
         dashState = States.Ready;
     }
 

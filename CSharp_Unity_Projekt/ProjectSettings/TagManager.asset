@@ -18,6 +18,9 @@ TagManager:
   - EnemyProjectile
   - DashParticle
   - EdgeCheck
+  - GameManager
+  - DashItem
+  - CameraObject
   layers:
   - Default
   - TransparentFX
