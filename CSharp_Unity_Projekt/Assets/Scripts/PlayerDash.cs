@@ -45,7 +45,7 @@ public class PlayerDash : MonoBehaviour
         switch(dashState)
         {
             case States.Ready:
-                if (Input.GetButtonDown("Dash") && canDash)
+                if (Input.GetButtonDown("Dash") && canDash && !player.GetComponent<PlayerHealth>().IsDead)
                 {
                     dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
