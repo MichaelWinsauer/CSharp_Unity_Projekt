@@ -9,4 +9,5 @@ public class GameData
     public static List<EnemyData> levelThree;
     public static List<EnemyData> levelFour;
     public static List<EnemyData> levelFive;
+    public static OptionsData options;
 }

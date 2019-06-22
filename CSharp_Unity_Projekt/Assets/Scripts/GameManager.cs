@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
             GameData.player = new PlayerData();
             GameData.player.Health = player.GetComponent<PlayerHealth>().MaxHealth;
             GameData.player.CanDash = player.GetComponent<PlayerDash>().CanDash;
-
         }
 
         player.GetComponent<PlayerHealth>().CurrentHealth = GameData.player.Health;

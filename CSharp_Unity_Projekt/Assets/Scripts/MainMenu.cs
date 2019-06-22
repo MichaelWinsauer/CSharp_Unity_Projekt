@@ -7,12 +7,19 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject optionsMenu;
+    [SerializeField]
+    private GameObject mainMenu;
+    [SerializeField]
+    private GameObject optionsMenu;
 
     private void Start()
     {
         FindObjectOfType<AudioManager>().Play("MainMenu");
+
+        if (GameData.options == null)
+        {
+            GameData.options = new OptionsData(true, .5f);
+        }
     }
 
     public void PlayGame()
@@ -22,14 +29,13 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Quit!");
     }
 
     public void GoBack()

@@ -23,6 +23,8 @@ TagManager:
   - CameraObject
   - HealthBar
   - Health
+  - MainMenu
+  - Options
   layers:
   - Default
   - TransparentFX
