@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case PlayerPosition.ThreeRight:
-                player.transform.position = new Vector3(-80.15f, -2.81f);
+                player.transform.position = new Vector3(-79.78f, 5.87f);
                 break;
 
             case PlayerPosition.ThreeTop:
@@ -78,6 +78,14 @@ public class GameManager : MonoBehaviour
 
             case PlayerPosition.FourBottom:
                 player.transform.position = new Vector3(26f, 11.5f);
+                break;
+
+            case PlayerPosition.FiveLeft:
+                player.transform.position = new Vector3(79.64f, 4.91f);
+                break;
+
+            case PlayerPosition.FiveRight:
+                player.transform.position = new Vector3(-79.78f, 5.87f);
                 break;
         }
     }
@@ -123,7 +131,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Level 5":
-                if (GameData.levelFive == null)
+                if (GameData.levelFive != null)
                 {
                     spawnEnemies(GameData.levelFive);
                 }

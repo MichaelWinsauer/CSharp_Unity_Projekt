@@ -12,5 +12,7 @@ public enum PlayerPosition
     ThreeRight,
     ThreeTop,
     FourRight,
-    FourBottom
+    FourBottom,
+    FiveLeft,
+    FiveRight
 }
