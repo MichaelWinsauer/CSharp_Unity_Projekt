@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
             case PlayerPosition.TwoLeft:
                 player.transform.position = new Vector3(120.28f, 2.73f);
+                cam.transform.position = new Vector3(100.85f, 5.47f / 2);
                 break;
 
             case PlayerPosition.TwoRight:
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
 
             case PlayerPosition.ThreeLeft:
                 player.transform.position = new Vector3(80.53f, -2.67f);
+                cam.transform.position = new Vector3(60.5f, -3.4f / 2);
                 break;
 
             case PlayerPosition.ThreeRight:
@@ -74,14 +76,17 @@ public class GameManager : MonoBehaviour
 
             case PlayerPosition.FourRight:
                 player.transform.position = new Vector3(-80.15f, 15.49f);
+                cam.transform.position = new Vector3(-80.15f, 15.49f / 2);
                 break;
 
             case PlayerPosition.FourBottom:
                 player.transform.position = new Vector3(26f, 11.5f);
+                cam.transform.position = new Vector3(26f, 11.5f / 2);
                 break;
 
             case PlayerPosition.FiveLeft:
                 player.transform.position = new Vector3(79.64f, 4.91f);
+                cam.transform.position = new Vector3(60.8f, 16.07f / 2);
                 break;
 
             case PlayerPosition.FiveRight:

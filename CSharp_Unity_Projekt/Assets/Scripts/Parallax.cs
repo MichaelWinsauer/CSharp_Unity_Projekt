@@ -9,19 +9,19 @@ public class Parallax : MonoBehaviour
 
     private float length;
     private float start;
-    private GameObject camera;
+    private GameObject cam;
     
     void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
         start = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     void Update()
     {
-        float temp = (camera.transform.position.x * (1 - amount));
-        float distance = (camera.transform.position.x * amount);
+        float temp = (cam.transform.position.x * (1 - amount));
+        float distance = (cam.transform.position.x * amount);
 
         transform.position = new Vector3(start + distance, transform.position.y, transform.position.z);
 

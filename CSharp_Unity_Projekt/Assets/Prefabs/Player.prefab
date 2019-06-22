@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerInput: 0.1
-  activeInput: 0.2
+  activeInput: 0.1
 --- !u!95 &8068660464732497984
 Animator:
   serializedVersion: 3
