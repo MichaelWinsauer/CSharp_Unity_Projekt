@@ -67,6 +67,19 @@ public class EnemyMovement : MonoBehaviour
             else
                 isInView = false;
 
+            if(isRanged)
+            {
+                if(rb.velocity.x > 0)
+                {
+                    GetComponentInChildren<Animator>().SetBool("isRunning", true);
+                }
+                else
+                {
+                    GetComponentInChildren<Animator>().SetBool("isRunning", false);
+                }
+
+            }
+
             if (isInView)
             {
                 if (player.transform.position.x < transform.position.x)
@@ -130,6 +143,7 @@ public class EnemyMovement : MonoBehaviour
             Vector2 direction = difference / distance;
             direction.Normalize();
 
+            GetComponentInChildren<Animator>().SetTrigger("shoot");
             GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.Euler(0f, 0f, rotationZ));
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed * Random.Range(.5f, 1.5f);
             projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;

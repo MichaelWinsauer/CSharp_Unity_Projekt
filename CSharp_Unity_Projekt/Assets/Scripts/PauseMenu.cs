@@ -18,7 +18,6 @@ public class PauseMenu : MonoBehaviour
         {
             PauseGame();
         }
-        Debug.Log(GetComponent<Movement>().CanMove);
     }
 
     public void PauseGame()

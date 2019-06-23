@@ -32,6 +32,7 @@ public class EnemyShootProjectile : MonoBehaviour
         frequency -= Time.deltaTime;
         if(frequency <= 0)
         {
+
             projectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.identity);
             projectileProperties = projectile.GetComponent<EnemyProjectile>();
             frequency = frequencyInput;
