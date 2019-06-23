@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
         GameObject bodySplat = Instantiate(bodyDeathSound, transform.position, Quaternion.identity);
         bodySplat.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("BodySplat").clip;
-        bodySplat.GetComponent<AudioSource>().volume = 0.5f;
+        bodySplat.GetComponent<AudioSource>().volume = 0.3f;
         bodySplat.GetComponent<AudioSource>().Play();
     }
 
