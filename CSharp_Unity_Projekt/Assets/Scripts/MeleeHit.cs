@@ -23,9 +23,15 @@ public class MeleeHit : MonoBehaviour
             collider.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
             collider.gameObject.GetComponent<Enemy>().KnockbackDuration = collider.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
             Instantiate(meleeHitParticle, collider.gameObject.transform.position, Quaternion.identity);
+
+            FindObjectOfType<AudioManager>().Play("MeleeHit");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("MeleeMiss");
         }
 
-        if(collider.CompareTag("EnemyProjectile"))
+        if (collider.CompareTag("EnemyProjectile"))
         {
             Instantiate(meleeHitParticle, collider.gameObject.transform.position, Quaternion.identity);
             GameObject enemyProjectile = collider.gameObject;

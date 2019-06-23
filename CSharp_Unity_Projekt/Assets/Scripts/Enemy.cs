@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
             Instantiate(healthObject, transform.position, Quaternion.identity);
         }
         Destroy(this.gameObject);
+        FindObjectOfType<AudioManager>().Play("BodySplat");
     }
 
     private void KnockBack()
