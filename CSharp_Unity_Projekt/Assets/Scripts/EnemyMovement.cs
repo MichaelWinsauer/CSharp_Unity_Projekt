@@ -144,7 +144,7 @@ public class EnemyMovement : MonoBehaviour
             direction.Normalize();
 
             GetComponentInChildren<Animator>().SetTrigger("shoot");
-            GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.Euler(0f, 0f, rotationZ));
+            GameObject projectile = Instantiate(enemyProjectile, GameObject.FindGameObjectWithTag("EnemyProjectileSpawnpoint").transform.position, Quaternion.Euler(0f, 0f, rotationZ));
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed * Random.Range(.5f, 1.5f);
             projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;
             shootTimer = shootTimerInput * Random.Range(.5f, 1.5f);
