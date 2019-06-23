@@ -12,6 +12,21 @@ public class ChangeScene : MonoBehaviour
     [SerializeField]
     private bool isSavepoint;
 
+    private float timer;
+    private bool entered = false;
+
+    private void Update()
+    {
+        if(timer > 0 && entered)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if(entered)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
@@ -21,7 +36,9 @@ public class ChangeScene : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().SavePlayer();
             GameManager.LeftAt = leftAt;
-            SceneManager.LoadScene(nextScene);
+            GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<Animator>().SetTrigger("leave");
+            timer = .75f;
+            entered = true;
         }
     }
 }

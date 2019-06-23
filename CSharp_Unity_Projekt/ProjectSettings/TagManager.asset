@@ -25,6 +25,7 @@ TagManager:
   - Health
   - MainMenu
   - Options
+  - SceneTransition
   layers:
   - Default
   - TransparentFX
