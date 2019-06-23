@@ -56,11 +56,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SpellCast
     clip: {fileID: 8300000, guid: e0168398805732f40b353bfde384479e, type: 3}
-    volume: 0.5
+    volume: 0.4
     loop: 0
     source: {fileID: 0}
   - name: SpellImpact
-    clip: {fileID: 8300000, guid: 2e896be15b29ecf419e10fe28fb7d651, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 40411cdac21cc3943a66a8dfd39ec9e6, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
+  - name: MeleeHit
+    clip: {fileID: 8300000, guid: 8364e1a149810374cb19371a9ce31ce5, type: 3}
+    volume: 0.4
+    loop: 0
+    source: {fileID: 0}
+  - name: MeleeMiss
+    clip: {fileID: 8300000, guid: d635d6aef9b7aba469d5abfa0342c69a, type: 3}
+    volume: 0.4
+    loop: 0
+    source: {fileID: 0}
+  - name: BodyHit
+    clip: {fileID: 8300000, guid: 5b987f30405c053469307d30d654aeaf, type: 3}
+    volume: 0.4
+    loop: 0
+    source: {fileID: 0}
+  - name: BodySplat
+    clip: {fileID: 8300000, guid: 98266b2a8161d5043b6723024b8d9304, type: 3}
+    volume: 0.4
     loop: 0
     source: {fileID: 0}

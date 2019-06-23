@@ -78,7 +78,13 @@ public class BasicProjectile : MonoBehaviour
         {
             Instantiate(explosionParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            FindObjectOfType<AudioManager>().Play("BodyHit");
         }
-            
+
+        if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile") && !collision.gameObject.CompareTag("Enemy"))
+        {
+            FindObjectOfType<AudioManager>().Play("SpellImpact");
+        }
+
     }
 }
