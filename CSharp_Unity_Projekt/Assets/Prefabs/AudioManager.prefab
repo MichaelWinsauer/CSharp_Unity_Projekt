@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: TwoFootsteps
     clip: {fileID: 8300000, guid: 49b6d86b05116ed41b535d441773b07c, type: 3}
-    volume: 0.5
+    volume: 0.2
     loop: 1
     source: {fileID: 0}
   - name: MainMenu
@@ -56,11 +56,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: SpellCast
     clip: {fileID: 8300000, guid: e0168398805732f40b353bfde384479e, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: SpellImpact
     clip: {fileID: 8300000, guid: 2e896be15b29ecf419e10fe28fb7d651, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}

@@ -26,6 +26,9 @@ public class BasicProjectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         particleTimer = .01f;
+        gameObject.AddComponent<AudioSource>();
+        gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellCast").clip;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     //Lebenszeit des Projektils wird definiert
