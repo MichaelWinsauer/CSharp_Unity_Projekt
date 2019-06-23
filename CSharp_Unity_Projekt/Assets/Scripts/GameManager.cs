@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
             GameData.player.CanDash = player.GetComponent<PlayerDash>().CanDash;
         }
 
+        if (GameData.options == null)
+        {
+            GameData.options = new OptionsData(true, .5f);
+        }
+
         player.GetComponent<PlayerHealth>().CurrentHealth = GameData.player.Health;
         player.GetComponent<PlayerDash>().CanDash = GameData.player.CanDash;
 

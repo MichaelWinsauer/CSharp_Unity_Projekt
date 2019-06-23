@@ -41,13 +41,17 @@ public class PlayerPull : MonoBehaviour
                 foreach (GameObject b in boxes)
                 {
                     b.GetComponent<HingeJoint2D>().enabled = false;
-                    GetComponent<Movement>().CanFlip = true;
-                    GetComponent<Movement>().CanJump = true;
                     b.GetComponent<Rigidbody2D>().mass = 30;
 
                     GetComponent<Animator>().SetBool("isGrabbing", false);
                     GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
                 }
+            }
+
+            if(hit.collider != null && Input.GetButtonUp("PullPush"))
+            {
+                GetComponent<Movement>().CanFlip = true;
+                GetComponent<Movement>().CanJump = true;
             }
         }
     }

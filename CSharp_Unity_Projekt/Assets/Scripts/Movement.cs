@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        if(!GetComponent<PlayerHealth>().IsDead)
+        if(!GetComponent<PlayerHealth>().IsDead && !GetComponent<PauseMenu>().GamePaused)
         {
             if(!GameData.options.UseController)
             {
@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (CanMove)
+            if (canMove)
             {
                 moveX = Input.GetAxis("Horizontal");
 
@@ -125,6 +125,13 @@ public class Movement : MonoBehaviour
                 falling();
             }
         }
+
+        if (GetComponent<PauseMenu>().GamePaused)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void falling()
@@ -227,19 +234,19 @@ public class Movement : MonoBehaviour
             }
             else if (moveX == 0)
             {
-
-                //if mouse and keyboard
-
-                //if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
-                //{
-                //    this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-                //    direction = -1;
-                //}
-                //else
-                //{
-                //    this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                //    direction = 1;
-                //}
+                if(!GameData.options.UseController)
+                {
+                    if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+                    {
+                        this.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                        direction = -1;
+                    }
+                    else
+                    {
+                        this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                        direction = 1;
+                    }
+                }
             }
         }
     }

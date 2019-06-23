@@ -25,6 +25,7 @@ public class PlayerDash : MonoBehaviour
     private float defaultGravity;
     private GameObject dashStart;
     private bool canDash;
+    private bool vertical;
 
     private States dashState;
 
@@ -51,6 +52,15 @@ public class PlayerDash : MonoBehaviour
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
                     fixedDirection = playerMovement.Direction;
                     duration = durationInput;
+                    if (Mathf.Abs(Input.GetAxis("Horizontal")) > .5)
+                    {
+                        vertical = false;
+                    }
+                    else
+                    {
+                        vertical = true;
+                        duration /= 2;
+                    }
                     dashState = States.Dashing;
                 }
                 break;
@@ -58,13 +68,23 @@ public class PlayerDash : MonoBehaviour
             case States.Dashing:
                 if (duration >= 0 && !GetComponent<PlayerHealth>().IsDead)
                 {
-                    //dashStart.transform.position = transform.position;
-                    GameObject dashParticles = Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
-                    ParticleSystem.ShapeModule shape = dashParticles.GetComponentInChildren<ParticleSystem>().shape;
-                    shape.rotation = new Vector3(0, 90 * -fixedDirection, 0);
+                    if(!vertical)
+                    {
+                        GameObject dashParticles = Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                        ParticleSystem.ShapeModule shape = dashParticles.GetComponentInChildren<ParticleSystem>().shape;
+                        shape.rotation = new Vector3(0, 90 * -fixedDirection, 0);
+                        playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
+                    }
+                    else
+                    {
+                        GameObject dashParticles = Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                        ParticleSystem.ShapeModule shape = dashParticles.GetComponentInChildren<ParticleSystem>().shape;
+                        shape.rotation = new Vector3(90, 90, 0);
+                        playerRb.velocity = new Vector2(0, dashSpeed / 10);
+                    }
                     playerRb.gravityScale = 0;
                     duration -= Time.deltaTime;
-                    playerRb.velocity = new Vector2(fixedDirection * dashSpeed, 0);
+
                 }
                 else
                 {

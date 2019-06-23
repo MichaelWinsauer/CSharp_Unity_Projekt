@@ -5,33 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    private bool gamePaused;
+
+    public bool GamePaused { get => gamePaused; set => gamePaused = value; }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Start"))
         {
             PauseGame();
         }
+        Debug.Log(GetComponent<Movement>().CanMove);
     }
 
     public void PauseGame()
     {
         if (pauseMenu.activeSelf == true)
         {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1;
+            Resume();
         }
         else
         {
             pauseMenu.SetActive(true);
-            Time.timeScale = 0;
+            gamePaused = true;
         }
     }
 
     public void BackToMain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        gamePaused = false;
     }
 }

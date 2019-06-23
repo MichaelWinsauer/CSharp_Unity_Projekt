@@ -80,6 +80,7 @@ public class ShootProjectile : MonoBehaviour
     {
         //Marcel
         //FindObjectOfType<AudioManager>().Play("SpellCast");
+
         Vector2 direction;
 
         if (!GameData.options.UseController)
