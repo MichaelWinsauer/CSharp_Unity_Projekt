@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonController : MonoBehaviour
+public class OptionsButtonController : MonoBehaviour
 {
     [SerializeField]
     private MainMenu mainMenu;
@@ -12,6 +11,8 @@ public class ButtonController : MonoBehaviour
 
     private int index;
     private bool keyDown;
+    private float timer;
+    private bool pressed = false;
 
     public int Index { get => index; set => index = value; }
 
@@ -19,7 +20,6 @@ public class ButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetAxis("Vertical") != 0)
         {
             if (!keyDown)
@@ -47,9 +47,23 @@ public class ButtonController : MonoBehaviour
             }
             keyDown = true;
         }
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            GetComponent<Animator>().SetTrigger("close");
+            timer = 1.1f;
+            pressed = true;
+        }
         else
         {
             keyDown = false;
+        }
+
+        if (timer > 0 && pressed)
+            timer -= Time.deltaTime;
+        else if (pressed)
+        {
+            mainMenu.GoBack();
+            pressed = false;
         }
     }
 }

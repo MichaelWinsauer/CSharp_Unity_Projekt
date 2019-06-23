@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuButton : MonoBehaviour
+public class OptionButton : MonoBehaviour
 {
     [SerializeField]
     private MainMenu mainMenu;
     [SerializeField]
-    private ButtonController buttonController;
+    private OptionsButtonController optionsButtonController;
     [SerializeField]
     private Animator anim;
     [SerializeField]
@@ -21,12 +20,12 @@ public class MenuButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(buttonController.Index == index)
+        if (optionsButtonController.Index == index)
         {
-            if(!isSlider)
+            if (!isSlider)
             {
                 anim.SetBool("isSelected", true);
-                if (Input.GetButton("Submit"))
+                if (Input.GetButton("Submit") && !pressed)
                 {
                     anim.SetTrigger("pressed");
                     timer = .1f;
@@ -37,6 +36,21 @@ public class MenuButton : MonoBehaviour
         else
         {
             anim.SetBool("isSelected", false);
+        }
+
+        if(GameData.options.UseController)
+        {
+            if (index == 0)
+                anim.SetBool("isChoosen", true);
+            else
+                anim.SetBool("isChoosen", false);
+        }
+        else
+        {
+            if (index == 1)
+                anim.SetBool("isChoosen", true);
+            else
+                anim.SetBool("isChoosen", false);
         }
 
         doSomething();
@@ -54,18 +68,15 @@ public class MenuButton : MonoBehaviour
             {
                 if (index == 0)
                 {
-                    mainMenu.PlayGame();
+                    GameData.options.UseController = true;
                 }
                 else if (index == 1)
                 {
-                    mainMenu.OptionsMenu();
-                }
-                else if (index == 2)
-                {
-                    mainMenu.QuitGame();
+                    GameData.options.UseController = false;
                 }
                 pressed = false;
             }
         }
+        Debug.Log(GameData.options.UseController);
     }
 }
