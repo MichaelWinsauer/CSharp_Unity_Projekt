@@ -139,6 +139,8 @@ MonoBehaviour:
     type: 3}
   explosionParticles: {fileID: 4916360259710513020, guid: 3c4caba2431054545b39c745278cc36c,
     type: 3}
+  impactSound: {fileID: 1926309398614222106, guid: 4518c18d87700be45a16d4cbfd3efa78,
+    type: 3}
 --- !u!96 &336999503151458835
 TrailRenderer:
   serializedVersion: 2

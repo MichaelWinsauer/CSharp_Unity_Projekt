@@ -12,6 +12,8 @@ public class BasicProjectile : MonoBehaviour
     private GameObject travelParticles;
     [SerializeField]
     private GameObject explosionParticles;
+    [SerializeField]
+    private GameObject impactSound;
 
     private GameObject player;
     private int direction;
@@ -28,6 +30,11 @@ public class BasicProjectile : MonoBehaviour
         particleTimer = .01f;
         gameObject.AddComponent<AudioSource>();
         gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellCast").clip;
+        gameObject.GetComponent<AudioSource>().volume = 0.5f;
+        gameObject.GetComponent<AudioSource>().spatialBlend = 1f;
+        gameObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
+        gameObject.GetComponent<AudioSource>().maxDistance = 30;
+        gameObject.GetComponent<AudioSource>().minDistance = 1;
         gameObject.GetComponent<AudioSource>().Play();
     }
 
@@ -77,13 +84,17 @@ public class BasicProjectile : MonoBehaviour
         if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile"))
         {
             Instantiate(explosionParticles, transform.position, Quaternion.identity);
+            GameObject impact = Instantiate(impactSound, transform.position, Quaternion.identity);
+            impact.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellImpact").clip;
+            impact.GetComponent<AudioSource>().volume = 0.5f;
+            impact.GetComponent<AudioSource>().Play();
             Destroy(this.gameObject);
-            FindObjectOfType<AudioManager>().Play("BodyHit");
+            //FindObjectOfType<AudioManager>().Play("BodyHit");
         }
 
         if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile") && !collision.gameObject.CompareTag("Enemy"))
         {
-            FindObjectOfType<AudioManager>().Play("SpellImpact");
+            //FindObjectOfType<AudioManager>().Play("SpellImpact");
         }
 
     }

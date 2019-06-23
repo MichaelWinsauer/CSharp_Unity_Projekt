@@ -14,6 +14,8 @@ public class EnemyProjectile : MonoBehaviour
     private GameObject travelParticles;
     [SerializeField]
     private GameObject explosionParticles;
+    [SerializeField]
+    private GameObject impactSound;
 
     private float timeToLive;
     private int direction;
@@ -33,6 +35,14 @@ public class EnemyProjectile : MonoBehaviour
         particleTimer = .01f;
         isReflected = false;
         timeToLive = timeToLiveInput;
+        gameObject.AddComponent<AudioSource>();
+        gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellCast").clip;
+        gameObject.GetComponent<AudioSource>().volume = 0.5f;
+        gameObject.GetComponent<AudioSource>().spatialBlend = 1f;
+        gameObject.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
+        gameObject.GetComponent<AudioSource>().maxDistance = 30;
+        gameObject.GetComponent<AudioSource>().minDistance = 1;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
@@ -80,6 +90,10 @@ public class EnemyProjectile : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(damage / 2);
                 Instantiate(explosionParticles, transform.position, Quaternion.identity);
+                GameObject impact = Instantiate(impactSound, transform.position, Quaternion.identity);
+                impact.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellImpact").clip;
+                impact.GetComponent<AudioSource>().volume = 0.5f;
+                impact.GetComponent<AudioSource>().Play();
                 Destroy(this.gameObject);
             }
         }
@@ -88,6 +102,10 @@ public class EnemyProjectile : MonoBehaviour
             if (!collision.gameObject.CompareTag("Enemy") && !collision.gameObject.CompareTag("BasicProjectile") && !collision.gameObject.CompareTag("EnemyProjectile") && !collision.gameObject.CompareTag("MeleeTrigger"))
             {
                 Instantiate(explosionParticles, transform.position, Quaternion.identity);
+                GameObject impact = Instantiate(impactSound, transform.position, Quaternion.identity);
+                impact.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("SpellImpact").clip;
+                impact.GetComponent<AudioSource>().volume = 0.5f;
+                impact.GetComponent<AudioSource>().Play();
                 Destroy(this.gameObject);
             }
         }

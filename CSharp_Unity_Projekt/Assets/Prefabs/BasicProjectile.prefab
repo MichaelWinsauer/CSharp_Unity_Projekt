@@ -122,6 +122,8 @@ MonoBehaviour:
     type: 3}
   explosionParticles: {fileID: 4916360259710513020, guid: a2e7a68230a8bdc478196cabd85a3cd1,
     type: 3}
+  impactSound: {fileID: 1926309398614222106, guid: 4518c18d87700be45a16d4cbfd3efa78,
+    type: 3}
 --- !u!70 &623836909237168097
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

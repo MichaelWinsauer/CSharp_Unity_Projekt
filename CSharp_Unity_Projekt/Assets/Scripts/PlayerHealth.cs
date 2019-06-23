@@ -142,6 +142,6 @@ public class PlayerHealth : MonoBehaviour
         transform.localScale = new Vector3(0,0);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         Instantiate(deathParticles, transform.position, Quaternion.identity);
-
+        FindObjectOfType<AudioManager>().Play("BodySplat");
     }
 }

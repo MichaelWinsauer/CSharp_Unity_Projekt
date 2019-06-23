@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     private GameObject deathParticles;
     [SerializeField]
     private GameObject healthObject;
+    [SerializeField]
+    private GameObject bodyDeathSound;
 
     private int health;
     private float damageTimer = 1;
@@ -84,7 +86,10 @@ public class Enemy : MonoBehaviour
             Instantiate(healthObject, transform.position, Quaternion.identity);
         }
         Destroy(this.gameObject);
-        FindObjectOfType<AudioManager>().Play("BodySplat");
+        GameObject bodySplat = Instantiate(bodyDeathSound, transform.position, Quaternion.identity);
+        bodySplat.GetComponent<AudioSource>().clip = FindObjectOfType<AudioManager>().GetSource("BodySplat").clip;
+        bodySplat.GetComponent<AudioSource>().volume = 0.5f;
+        bodySplat.GetComponent<AudioSource>().Play();
     }
 
     private void KnockBack()

@@ -130,6 +130,8 @@ MonoBehaviour:
     type: 3}
   healthObject: {fileID: 6120654251861899557, guid: 98ee8ac672b486843a495c4da67072ae,
     type: 3}
+  bodyDeathSound: {fileID: 1926309398614222106, guid: 4518c18d87700be45a16d4cbfd3efa78,
+    type: 3}
 --- !u!114 &5947042658613398876
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,8 +55,8 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: SpellCast
-    clip: {fileID: 8300000, guid: e0168398805732f40b353bfde384479e, type: 3}
-    volume: 0.4
+    clip: {fileID: 8300000, guid: 0033818a579b5574bade8735c5c47370, type: 3}
+    volume: 0.2
     loop: 0
     source: {fileID: 0}
   - name: SpellImpact
