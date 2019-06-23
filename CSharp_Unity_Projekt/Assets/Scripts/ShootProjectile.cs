@@ -32,39 +32,44 @@ public class ShootProjectile : MonoBehaviour
     {
         if(!GetComponent<PlayerHealth>().IsDead)
         {
-            //mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //difference = mousePosition - projectileSpawnPoint.transform.position;
-            //differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
-            //rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            //projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+            if(!GameData.options.UseController)
+            {
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                difference = mousePosition - projectileSpawnPoint.transform.position;
+                differenceVariant = mousePosition + new Vector3(Random.Range(-randomizer, randomizer), Random.Range(-randomizer, randomizer)) - projectileSpawnPoint.transform.position;
+                rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
-            //shootTimer -= Time.deltaTime;
-            //if (Input.GetButton("Fire1"))
-            //{
-            //    if (shootTimer <= 0)
-            //    {
-            //        shootTimer = shootTimerInput;
-            //        basicShot();
-            //    }
-            //}
-
-            Vector3 controllerPoint = new Vector3(
+                shootTimer -= Time.deltaTime;
+                if (Input.GetButton("Fire1"))
+                {
+                    if (shootTimer <= 0)
+                    {
+                        shootTimer = shootTimerInput;
+                        basicShot();
+                    }
+                }
+            }
+            else
+            {
+                Vector3 controllerPoint = new Vector3(
                 projectileSpawnPoint.transform.position.x + Input.GetAxis("HorizontalAim"),
                 projectileSpawnPoint.transform.position.y + Input.GetAxis("VerticalAim"));
 
-            difference = controllerPoint - projectileSpawnPoint.transform.position;
-            rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+                difference = controllerPoint - projectileSpawnPoint.transform.position;
+                rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
-            shootTimer -= Time.deltaTime;
-            if ((Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0) && Input.GetButton("Fire1"))
-            {
-                if (shootTimer <= 0)
+                shootTimer -= Time.deltaTime;
+                if ((Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0) && Input.GetButton("Fire1"))
                 {
-                    shootTimer = shootTimerInput;
-                    basicShot();
+                    if (shootTimer <= 0)
+                    {
+                        shootTimer = shootTimerInput;
+                        basicShot();
+                    }
                 }
-            }
+            }            
         }
     }
 
@@ -75,14 +80,19 @@ public class ShootProjectile : MonoBehaviour
     {
         //Marcel
         //FindObjectOfType<AudioManager>().Play("SpellCast");
+        Vector2 direction;
 
-        //float distance = differenceVariant.magnitude;
-        //Vector2 direction = differenceVariant / distance;
-        //direction.Normalize();
-
-
-        Vector2 direction = new Vector2(Input.GetAxis("HorizontalAim"), Input.GetAxis("VerticalAim"));
-        direction.Normalize();
+        if (!GameData.options.UseController)
+        {
+            float distance = differenceVariant.magnitude;
+            direction = differenceVariant / distance;
+            direction.Normalize();
+        }
+        else
+        {
+            direction = new Vector2(Input.GetAxis("HorizontalAim"), Input.GetAxis("VerticalAim"));
+            direction.Normalize();
+        }
 
         GameObject projectile = Instantiate(basicProjectile);
         projectile.transform.position = projectileSpawnPoint.transform.position;

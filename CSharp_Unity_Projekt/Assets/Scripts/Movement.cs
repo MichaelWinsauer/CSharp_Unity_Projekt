@@ -72,29 +72,30 @@ public class Movement : MonoBehaviour
     {
         if(!GetComponent<PlayerHealth>().IsDead)
         {
-            //check for input device
-            //if mouse + keyboard
-            //crosshair.transform.position = new Vector3(
-            //    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-            //    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-            //    transform.position.z);
-
-            //if controller
-            Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
-            crosshair.transform.position = new Vector3(
-                stickPosition.x,
-                stickPosition.y,
-                transform.position.z);
-
-            if(stickPosition == transform.position)
+            if(!GameData.options.UseController)
             {
-                crosshair.transform.localScale = Vector3.zero;
+                crosshair.transform.position = new Vector3(
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
+                    transform.position.z);
             }
             else
             {
-                crosshair.transform.localScale = crosshairSize;
-            }
+                Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
+                crosshair.transform.position = new Vector3(
+                    stickPosition.x,
+                    stickPosition.y,
+                    transform.position.z);
 
+                if (stickPosition == transform.position)
+                {
+                    crosshair.transform.localScale = Vector3.zero;
+                }
+                else
+                {
+                    crosshair.transform.localScale = crosshairSize;
+                }
+            }
 
             if (CanMove)
             {
