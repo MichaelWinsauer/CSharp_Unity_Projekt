@@ -1082,60 +1082,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    m_RemovedComponents: []
 =======
-    - target: {fileID: 1498830945172456225, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315241538730103, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315240538727812, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315240538727812, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315240538727811, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_Name
-      value: Keyboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 4170713137477016214, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 135
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315241538730096, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_Name
-      value: PS4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4170713136426649445, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 135
-      objectReference: {fileID: 0}
-    - target: {fileID: 1498830945145007245, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: index
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816315241364594279, guid: 8483b71a2a8e5194c9cd7c6d89927719,
-        type: 3}
-      propertyPath: m_Text
-      value: 'PS4
-
-'
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4672580949302590461, guid: 8483b71a2a8e5194c9cd7c6d89927719, type: 3}
->>>>>>> parent of f2a09a7... Xbox Steuerung
+>>>>>>> parent of c6d24da... fuck this UI
   m_SourcePrefab: {fileID: 100100000, guid: 8483b71a2a8e5194c9cd7c6d89927719, type: 3}
