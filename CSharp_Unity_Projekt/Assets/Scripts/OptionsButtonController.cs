@@ -13,14 +13,16 @@ public class OptionsButtonController : MonoBehaviour
     private bool keyDown;
     private float timer;
     private bool pressed = false;
+    private bool isActive;
 
     public int Index { get => index; set => index = value; }
+    public bool IsActive { get => isActive; set => isActive = value; }
+
 
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(index);
         if (Input.GetAxis("Vertical") != 0)
         {
             if (!keyDown)
@@ -50,7 +52,9 @@ public class OptionsButtonController : MonoBehaviour
         }
         else if (Input.GetButtonDown("Cancel"))
         {
+            
             GetComponent<Animator>().SetTrigger("close");
+            isActive = false;
             timer = 1.1f;
             pressed = true;
         }

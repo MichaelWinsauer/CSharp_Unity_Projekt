@@ -39,7 +39,6 @@ public class PauseButton : MonoBehaviour
         {
             anim.SetBool("isSelected", false);
         }
-
         doSomething();
     }
 
@@ -60,6 +59,7 @@ public class PauseButton : MonoBehaviour
                 else if (index == 1)
                 {
                     mainMenu.OptionsMenu();
+                    transform.parent.parent.GetChild(1).GetComponent<OptionsButtonController>().IsActive = true;
                 }
                 else if (index == 2)
                 {
