@@ -42,6 +42,8 @@ public class EnemyMovement : MonoBehaviour
     private float shootTimer;
     private float projectileSpeed;
     private int direction;
+    private RaycastHit2D groundCheck;
+    private RaycastHit2D playerHit;
 
     public bool IsRanged { get => isRanged; set => isRanged = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -60,12 +62,17 @@ public class EnemyMovement : MonoBehaviour
     //Andernfalls patroulliert der Gegner.
     void Update()
     {
-        if(canMove)
+
+        //Debug.DrawRay(new Vector2(transform.position.x + 1, transform.position.y), new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y), Color.blue, viewArea);
+
+        if (canMove)
         {
             if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
                 isInView = true;
             else
                 isInView = false;
+
+            //isInView = checkPlayerPosition();
 
             if(isRanged)
             {
@@ -129,6 +136,20 @@ public class EnemyMovement : MonoBehaviour
                 patrol();
             }
         }
+    }
+
+    private bool checkPlayerPosition()
+    {
+        playerHit = Physics2D.Raycast(transform.position, player.transform.position, viewArea);
+        if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     private void shoot()
