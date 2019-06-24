@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
     //Funktionsaufruf der anderen Funktionen, Crosshairplacement auf die Mausposition, Animationen werden abgespielt und Timer werden gesetzt/abgezogen.
     void Update()
     {
-        if (!GetComponent<PlayerHealth>().IsDead && !GetComponent<PauseMenu>().GamePaused)
+        if(!GetComponent<PlayerHealth>().IsDead && !GetComponent<PauseMenu>().GamePaused)
         {
             if(!GameData.options.UseController)
             {
@@ -79,26 +79,9 @@ public class Movement : MonoBehaviour
                     Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
                     transform.position.z);
             }
-            else if(!GameData.options.UseXbox)
-            {
-                Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
-                crosshair.transform.position = new Vector3(
-                    stickPosition.x,
-                    stickPosition.y,
-                    transform.position.z);
-
-                if (stickPosition == transform.position)
-                {
-                    crosshair.transform.localScale = Vector3.zero;
-                }
-                else
-                {
-                    crosshair.transform.localScale = crosshairSize;
-                }
-            }
             else
             {
-                Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalXbox") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalXbox") * crosshairDistanceToPlayer);
+                Vector3 stickPosition = new Vector3(transform.position.x + Input.GetAxis("HorizontalAim") * crosshairDistanceToPlayer, transform.position.y + Input.GetAxis("VerticalAim") * crosshairDistanceToPlayer);
                 crosshair.transform.position = new Vector3(
                     stickPosition.x,
                     stickPosition.y,
@@ -206,44 +189,21 @@ public class Movement : MonoBehaviour
             if (isGrounded)
                 groundedTimer = groundedTimerInput;
 
-            if(!GameData.options.UseXbox)
+            if (Input.GetButtonDown("Jump"))
             {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    keyPressedTimer = keyPressedTimerInput;
-                    jumpPressed = 0;
-                }
-                else
-                {
-                    jumpPressed += Time.deltaTime;
-                }
-
-                if (Input.GetButtonUp("Jump"))
-                {
-                    if (rb.velocity.y > 0)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpForceReduced);
-                    }
-                }
+                keyPressedTimer = keyPressedTimerInput;
+                jumpPressed = 0;
             }
             else
             {
-                if (Input.GetButtonDown("JumpXbox"))
-                {
-                    keyPressedTimer = keyPressedTimerInput;
-                    jumpPressed = 0;
-                }
-                else
-                {
-                    jumpPressed += Time.deltaTime;
-                }
+                jumpPressed += Time.deltaTime;
+            }
 
-                if (Input.GetButtonUp("JumpXbox"))
+            if (Input.GetButtonUp("Jump"))
+            {
+                if (rb.velocity.y > 0)
                 {
-                    if (rb.velocity.y > 0)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpForceReduced);
-                    }
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpForceReduced);
                 }
             }
 
