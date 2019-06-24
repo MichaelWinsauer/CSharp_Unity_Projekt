@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            localEnemies.Add(new EnemyData(enemy.GetComponent<EnemyMovement>().IsRanged, enemy.GetComponent<Enemy>().Health, enemy.transform.position.x, enemy.transform.position.y));
+            localEnemies.Add(new EnemyData(enemy.GetComponent<Enemy>().IsRanged, enemy.GetComponent<Enemy>().Health, enemy.transform.position.x, enemy.transform.position.y));
         }
 
         return localEnemies;

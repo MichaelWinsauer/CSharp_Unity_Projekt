@@ -43,7 +43,10 @@ public class ChangeScene : MonoBehaviour
 
         if(collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyMovement>().Flip();
+            if(collision.GetComponent<Enemy>().IsRanged)
+                collision.gameObject.GetComponent<EnemyMovementRanged>().Flip();
+            else
+                collision.gameObject.GetComponent<EnemyMovement>().Flip();
         }
     }
 }

@@ -28,6 +28,8 @@ public class EnemyMovementRanged : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        shootProjectile = GetComponent<EnemyShootProjectile>();
     }
 
     
@@ -39,14 +41,18 @@ public class EnemyMovementRanged : MonoBehaviour
         {
             if (playerInView)
             {
+                if (playerToEnemy() == 1)
+                    Quaternion.Euler(0f, 0f, 0f);
+                else
+                    Quaternion.Euler(0f, -180f, 0f);
+
                 if (Vector2.Distance(player.transform.position, transform.position) > backDistance)
                 {
                     shootProjectile.CanShoot = true;
                 }
                 else
                 {
-                    shootProjectile.CanShoot = false;
-                    if (checkForGround(-playerToEnemy()))
+                    if (checkForGround(-playerToEnemy()) && !checkForWall(-playerToEnemy()))
                         rb.velocity = new Vector2(moveSpeed * -playerToEnemy(), rb.velocity.y);
                     else
                         rb.velocity = new Vector2(0, rb.velocity.y);
@@ -55,32 +61,39 @@ public class EnemyMovementRanged : MonoBehaviour
             }
             else
             {
-                if (checkForWall())
+                if (checkForWall(direction))
                     Flip();
 
-                if(checkForGround(playerToEnemy()))
+                if(!checkForGround(direction))
                     Flip();
-                rb.velocity = new Vector2(moveSpeed / 2, rb.velocity.y);
+
+                rb.velocity = new Vector2(moveSpeed / 2 * direction, rb.velocity.y);
+                shootProjectile.CanShoot = false;
             }
+        }
+
+        if (Mathf.Abs(rb.velocity.x) > 0)
+        {
+            GetComponentInChildren<Animator>().SetBool("isRunning", true);
+        }
+        else
+        {
+            GetComponentInChildren<Animator>().SetBool("isRunning", false);
         }
     }
 
     private bool checkForGround(int rayPosition)
     {
-        if (Physics2D.Raycast(new Vector2(transform.position.x + 1 * rayPosition, transform.position.y - 1), Vector2.down, 2f).collider != null)
-        {
-            if (Physics2D.Raycast(new Vector2(transform.position.x + 1 * direction, transform.position.y - 1), Vector2.down, 2f).collider.CompareTag("Ground"))
-                return true;
-            else
-                return false;
-        }
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * rayPosition, transform.position.y - 1), Vector2.down, 2f);
+        if (hit.collider != null && hit.collider.CompareTag("Ground"))
+            return true;
         else
             return false;
     }
 
-    private bool checkForWall()
+    private bool checkForWall(int rayPosition)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * GetComponentInParent<EnemyMovementRanged>().Direction, .5f);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + .5f * rayPosition, transform.position.y), Vector2.right * rayPosition, .5f);
         if (hit.collider != null)
             return true;
         else
@@ -110,14 +123,14 @@ public class EnemyMovementRanged : MonoBehaviour
 
     public void Flip()
     {
-        if (transform.rotation.y != 0)
+        if (transform.rotation.y == 0)
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            transform.rotation = Quaternion.Euler(0f, -180, 0f);
             direction = -1;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0, 0f);
             direction = 1;
         }
     }

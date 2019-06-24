@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     private GameObject healthObject;
     [SerializeField]
     private GameObject bodyDeathSound;
+    [SerializeField]
+    private bool isRanged;
 
     private int health;
     private float damageTimer = 1;
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour
     public float KnockbackDurationInput { get => knockbackDurationInput; set => knockbackDurationInput = value; }
     public float KnockbackDuration { get => knockbackDuration; set => knockbackDuration = value; }
     public int KnockbackForce { get => knockbackForce; set => knockbackForce = value; }
+    public bool IsRanged { get => isRanged; set => isRanged = value; }
 
     //Komponentenreferenzen erstellt.
     void Start()
@@ -45,7 +48,12 @@ public class Enemy : MonoBehaviour
         if (knockbackTimer > 0)
             knockbackTimer -= Time.deltaTime;
         else
-            GetComponent<EnemyMovement>().CanMove = true;
+        {
+            if(isRanged)
+                GetComponent<EnemyMovementRanged>().CanMove = true;
+            else
+                GetComponent<EnemyMovement>().CanMove = true;
+        }
     }
 
     //Wenn der Gegner den Spieler berührt soll dieser jede Sekunde dem Spieler schaden Machen.
@@ -96,7 +104,10 @@ public class Enemy : MonoBehaviour
 
     public void Knockback(float amountX, float amountY, float duration)
     {
-        GetComponent<EnemyMovement>().CanMove = false;
+        if(isRanged)
+            GetComponent<EnemyMovementRanged>().CanMove = false;
+        else
+            GetComponent<EnemyMovement>().CanMove = false;
         knockbackTimer = duration;
         if(GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
             rb.AddForce(new Vector2(-amountX * 100, amountY * 50));

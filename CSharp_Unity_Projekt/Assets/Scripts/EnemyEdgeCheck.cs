@@ -22,10 +22,10 @@ public class EnemyEdgeCheck : MonoBehaviour
 
     private void rightCheck()
     {
-        hitRight = Physics2D.Raycast(transform.position, Vector2.right * GetComponentInParent<EnemyMovementRanged>().Direction, .5f);
+        hitRight = Physics2D.Raycast(transform.position, Vector2.right * GetComponentInParent<EnemyMovement>().Direction, .5f);
         if (hitRight.collider != null && hitRight.collider.CompareTag("Ground"))
         {
-            gameObject.GetComponentInParent<EnemyMovementRanged>().Flip();
+            gameObject.GetComponentInParent<EnemyMovement>().Flip();
         }
     }
 
@@ -34,7 +34,7 @@ public class EnemyEdgeCheck : MonoBehaviour
         hitBottom = Physics2D.Raycast(edgeCheck.position, Vector2.down, .5f);
         if (hitBottom.collider == null || !hitBottom.collider.CompareTag("Ground"))
         {
-            gameObject.GetComponentInParent<EnemyMovementRanged>().Flip();
+            gameObject.GetComponentInParent<EnemyMovement>().Flip();
         }
     }
 }

@@ -109,6 +109,7 @@ MonoBehaviour:
     type: 3}
   bodyDeathSound: {fileID: 1926309398614222106, guid: 4518c18d87700be45a16d4cbfd3efa78,
     type: 3}
+  isRanged: 1
 --- !u!70 &3783144590827542871
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16286138, y: -0.13871741}
-  m_Size: {x: 0.71560055, y: 1.6798849}
+  m_Offset: {x: -0.25199783, y: -0.06969291}
+  m_Size: {x: 0.89387345, y: 1.6935574}
   m_Direction: 0
 --- !u!114 &7752124172897916508
 MonoBehaviour:
@@ -138,9 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRange: 20
-  moveSpeed: 10
-  jumpForce: 0
-  backDistance: 10
+  moveSpeed: 5
+  backDistance: 7
 --- !u!114 &5805924856963235594
 MonoBehaviour:
   m_ObjectHideFlags: 0

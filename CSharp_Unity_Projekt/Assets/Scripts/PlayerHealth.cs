@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
 
         foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if(enemy.GetComponent<EnemyMovement>().IsRanged)
+            if(enemy.GetComponent<Enemy>().IsRanged)
                 enemySpawnPoints.Add(new EnemySpawnPoint(rangedEnemy, enemy.transform.position));
             else
                 enemySpawnPoints.Add(new EnemySpawnPoint(meleeEnemy, enemy.transform.position));
