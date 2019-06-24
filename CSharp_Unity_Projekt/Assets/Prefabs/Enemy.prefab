@@ -103,8 +103,8 @@ MonoBehaviour:
   moveSpeedActive: 6
   moveSpeedPassive: 2
   viewArea: 15
-  jumpForce: 25
-  jumpFrequencyInput: 1
+  jumpForce: 20
+  jumpFrequencyInput: 1.5
   isRanged: 0
   stopDistance: 9
   backDistance: 7

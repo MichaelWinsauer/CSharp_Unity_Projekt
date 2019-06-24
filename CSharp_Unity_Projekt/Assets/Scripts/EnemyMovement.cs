@@ -42,8 +42,10 @@ public class EnemyMovement : MonoBehaviour
     private float shootTimer;
     private float projectileSpeed;
     private int direction;
+    private int playerToEnemy;
     private RaycastHit2D groundCheck;
     private RaycastHit2D playerHit;
+    private bool groundExits;
 
     public bool IsRanged { get => isRanged; set => isRanged = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -55,6 +57,7 @@ public class EnemyMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        jumpFrequency = jumpFrequencyInput;
     }
 
     //Hier wird lediglich getestet, ob sich der Spieler in der Reichweite des Gegners befindet oder nicht. Wenn das der Fall ist greift der Gegner den Spieler an.
@@ -62,19 +65,29 @@ public class EnemyMovement : MonoBehaviour
     //Andernfalls patroulliert der Gegner.
     void Update()
     {
+        if (player.transform.position.x < transform.position.x)
+        {
+            playerToEnemy = -1;
 
-        //Debug.DrawRay(new Vector2(transform.position.x + 1, transform.position.y), new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y), Color.blue, viewArea);
+            if (!isInView)
+                Quaternion.Euler(0f, -180f, 0f);
+        }
+        else
+            playerToEnemy = 1;
 
         if (canMove)
         {
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < viewArea)
-                isInView = true;
+            isInView = checkPlayerPosition();
+
+            if (Physics2D.Raycast(new Vector2(transform.position.x + 1 * playerToEnemy, transform.position.y - 1), Vector2.down, 2f).collider != null)
+            {
+                if(Physics2D.Raycast(new Vector2(transform.position.x + 1 * direction, transform.position.y - 1), Vector2.down, 2f).collider.CompareTag("Ground"))
+                    groundExits = true;
+            }
             else
-                isInView = false;
+                groundExits = false;
 
-            //isInView = checkPlayerPosition();
-
-            if(isRanged)
+            if (isRanged)
             {
                 if(rb.velocity.x > 0)
                 {
@@ -102,22 +115,36 @@ public class EnemyMovement : MonoBehaviour
 
                 if (!isRanged)
                 {
-                    if (Mathf.Abs(player.transform.position.x - transform.position.x) >= 1)
+                    if (Mathf.Abs(player.transform.position.x - transform.position.x) >= .5f)
                     {
-                        rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                        jump();
+                        if(groundExits)
+                        {
+                            rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                            
+                        }
+                        else
+                        {
+                            rb.velocity = new Vector2(0, rb.velocity.y);
+                        }
                     }
                 }
                 else
                 {
-                    if (Math.Abs(player.transform.position.x - transform.position.x) > stopDistance)
+                    if(groundExits)
                     {
-                        rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
-                    }
+                        if (Math.Abs(player.transform.position.x - transform.position.x) > stopDistance)
+                        {
+                            rb.velocity = new Vector2(position * moveSpeedActive, rb.velocity.y);
+                        }
 
-                    if (Mathf.Abs(player.transform.position.x - transform.position.x) < backDistance)
+                        if (Mathf.Abs(player.transform.position.x - transform.position.x) < backDistance)
+                        {
+                            rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
+                        }
+                    }
+                    else
                     {
-                        rb.velocity = new Vector2(-position * moveSpeedActive, rb.velocity.y);
+                        rb.velocity = new Vector2(0, rb.velocity.y);
                     }
 
                     if(Math.Abs(player.transform.position.x - transform.position.x) == stopDistance)
@@ -136,11 +163,13 @@ public class EnemyMovement : MonoBehaviour
                 patrol();
             }
         }
+        if(!isRanged)
+            jump();
     }
 
     private bool checkPlayerPosition()
     {
-        playerHit = Physics2D.Raycast(transform.position, player.transform.position, viewArea);
+        playerHit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * playerToEnemy, transform.position.y), new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y), viewArea);
         if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
         {
             return true;
@@ -154,7 +183,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void shoot()
     {
-        Vector3 spawnPoint = GameObject.FindGameObjectWithTag("EnemyProjectileSpawnpoint").transform.position;
+        Vector3 spawnPoint = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).transform.position;
         Vector2 difference = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
@@ -165,7 +194,7 @@ public class EnemyMovement : MonoBehaviour
             direction.Normalize();
 
             GetComponentInChildren<Animator>().SetTrigger("shoot");
-            GameObject projectile = Instantiate(enemyProjectile, GameObject.FindGameObjectWithTag("EnemyProjectileSpawnpoint").transform.position, Quaternion.Euler(0f, 0f, rotationZ));
+            GameObject projectile = Instantiate(enemyProjectile, spawnPoint, Quaternion.Euler(0f, 0f, rotationZ));
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed * Random.Range(.5f, 1.5f);
             projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;
             shootTimer = shootTimerInput * Random.Range(.5f, 1.5f);
@@ -181,18 +210,18 @@ public class EnemyMovement : MonoBehaviour
     //Der Sprung des Gegners hat eine kurze Abklingzeit. Wenn diese abgelaufen ist kann er wieder Springen.
     private void jump()
     {
-        if (jumpFrequency <= 0)
+        if(jumpFrequency > 0)
         {
-            if (player.transform.position.y + 2 > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1 
-                && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3 && isGrounded)
+            jumpFrequency -= Time.deltaTime;
+        }
+        else
+        {
+            if (player.transform.position.y + 2 > transform.position.y && Mathf.Abs(player.transform.position.x - transform.position.x) >= 1
+                && Mathf.Abs(player.transform.position.x - transform.position.x) <= 3)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpFrequency = jumpFrequencyInput;
             }
-        }
-        else
-        {
-            jumpFrequency -= Time.deltaTime;        
         }
     }
 
