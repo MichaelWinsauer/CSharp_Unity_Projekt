@@ -46,22 +46,45 @@ public class PlayerDash : MonoBehaviour
         switch(dashState)
         {
             case States.Ready:
-                if (Input.GetButtonDown("Dash") && canDash && !player.GetComponent<PlayerHealth>().IsDead)
+                if(!GameData.options.UseXbox)
                 {
-                    dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
-                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
-                    fixedDirection = playerMovement.Direction;
-                    duration = durationInput;
-                    if (Mathf.Abs(Input.GetAxis("Horizontal")) > .5)
+                    if (Input.GetButtonDown("Dash") && canDash && !player.GetComponent<PlayerHealth>().IsDead)
                     {
-                        vertical = false;
+                        dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
+                        fixedDirection = playerMovement.Direction;
+                        duration = durationInput;
+                        if (Mathf.Abs(Input.GetAxis("Horizontal")) > .5)
+                        {
+                            vertical = false;
+                        }
+                        else
+                        {
+                            vertical = true;
+                            duration /= 2;
+                        }
+                        dashState = States.Dashing;
                     }
-                    else
+                }
+                else
+                {
+                    if (Input.GetButtonDown("DashXbox") && canDash && !player.GetComponent<PlayerHealth>().IsDead)
                     {
-                        vertical = true;
-                        duration /= 2;
+                        dashStart = Instantiate(dashStartParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
+                        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
+                        fixedDirection = playerMovement.Direction;
+                        duration = durationInput;
+                        if (Mathf.Abs(Input.GetAxis("HorizontalXbox")) > .5)
+                        {
+                            vertical = false;
+                        }
+                        else
+                        {
+                            vertical = true;
+                            duration /= 2;
+                        }
+                        dashState = States.Dashing;
                     }
-                    dashState = States.Dashing;
                 }
                 break;
 

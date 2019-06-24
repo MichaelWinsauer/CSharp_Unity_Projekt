@@ -41,12 +41,26 @@ public class ShootProjectile : MonoBehaviour
                 projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
                 shootTimer -= Time.deltaTime;
-                if (Input.GetButton("Fire1"))
+                if(!GameData.options.UseXbox)
                 {
-                    if (shootTimer <= 0)
+                    if (Input.GetButton("Fire1"))
                     {
-                        shootTimer = shootTimerInput;
-                        basicShot();
+                        if (shootTimer <= 0)
+                        {
+                            shootTimer = shootTimerInput;
+                            basicShot();
+                        }
+                    }
+                }
+                else
+                {
+                    if(Input.GetButton("FireXbox"))
+                    {
+                        if (shootTimer <= 0)
+                        {
+                            shootTimer = shootTimerInput;
+                            basicShot();
+                        }
                     }
                 }
             }
@@ -61,12 +75,26 @@ public class ShootProjectile : MonoBehaviour
                 projectileSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
                 shootTimer -= Time.deltaTime;
-                if ((Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0) && Input.GetButton("Fire1"))
+                if(!GameData.options.UseXbox)
                 {
-                    if (shootTimer <= 0)
+                    if ((Input.GetAxis("HorizontalAim") != 0 || Input.GetAxis("VerticalAim") != 0) && Input.GetButton("Fire1"))
                     {
-                        shootTimer = shootTimerInput;
-                        basicShot();
+                        if (shootTimer <= 0)
+                        {
+                            shootTimer = shootTimerInput;
+                            basicShot();
+                        }
+                    }
+                }
+                else
+                {
+                    if ((Input.GetAxis("HorizontalXbox") != 0 || Input.GetAxis("VerticalXbox") != 0) && Input.GetButton("FireXbox"))
+                    {
+                        if (shootTimer <= 0)
+                        {
+                            shootTimer = shootTimerInput;
+                            basicShot();
+                        }
                     }
                 }
             }            

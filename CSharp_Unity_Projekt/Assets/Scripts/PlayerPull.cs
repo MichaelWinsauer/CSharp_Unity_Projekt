@@ -22,36 +22,75 @@ public class PlayerPull : MonoBehaviour
             direction = GetComponent<Movement>().Direction;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(direction, 0), distance, boxMask);
 
-            if (hit.collider != null && Input.GetButton("PullPush"))
+            if(!GameData.options.UseXbox)
             {
-                box = hit.collider.gameObject;
-                box.GetComponent<HingeJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
-                box.GetComponent<HingeJoint2D>().enabled = true;
-                GetComponent<Movement>().CanFlip = false;
-                GetComponent<Movement>().CanJump = false;
-                box.GetComponent<Rigidbody2D>().mass = 10;
+                if (hit.collider != null && Input.GetButton("PullPush"))
+                {
+                    box = hit.collider.gameObject;
+                    box.GetComponent<HingeJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
+                    box.GetComponent<HingeJoint2D>().enabled = true;
+                    GetComponent<Movement>().CanFlip = false;
+                    GetComponent<Movement>().CanJump = false;
+                    box.GetComponent<Rigidbody2D>().mass = 10;
 
-                GetComponent<Animator>().SetBool("isGrabbing", true);
-                GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
+                    GetComponent<Animator>().SetBool("isGrabbing", true);
+                    GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
+                }
+                else
+                {
+                    boxes = GameObject.FindGameObjectsWithTag("PullObject");
+
+                    foreach (GameObject b in boxes)
+                    {
+                        b.GetComponent<HingeJoint2D>().enabled = false;
+                        b.GetComponent<Rigidbody2D>().mass = 30;
+
+                        GetComponent<Animator>().SetBool("isGrabbing", false);
+                        GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
+                    }
+                }
+
+                if (hit.collider != null && Input.GetButtonUp("PullPush"))
+                {
+                    GetComponent<Movement>().CanFlip = true;
+                    GetComponent<Movement>().CanJump = true;
+                }
+
             }
             else
             {
-                boxes = GameObject.FindGameObjectsWithTag("PullObject");
-
-                foreach (GameObject b in boxes)
+                if (hit.collider != null && Input.GetButton("PullPushXbox"))
                 {
-                    b.GetComponent<HingeJoint2D>().enabled = false;
-                    b.GetComponent<Rigidbody2D>().mass = 30;
+                    box = hit.collider.gameObject;
+                    box.GetComponent<HingeJoint2D>().connectedBody = GetComponent<Rigidbody2D>();
+                    box.GetComponent<HingeJoint2D>().enabled = true;
+                    GetComponent<Movement>().CanFlip = false;
+                    GetComponent<Movement>().CanJump = false;
+                    box.GetComponent<Rigidbody2D>().mass = 10;
 
-                    GetComponent<Animator>().SetBool("isGrabbing", false);
+                    GetComponent<Animator>().SetBool("isGrabbing", true);
                     GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
                 }
-            }
+                else
+                {
+                    boxes = GameObject.FindGameObjectsWithTag("PullObject");
 
-            if(hit.collider != null && Input.GetButtonUp("PullPush"))
-            {
-                GetComponent<Movement>().CanFlip = true;
-                GetComponent<Movement>().CanJump = true;
+                    foreach (GameObject b in boxes)
+                    {
+                        b.GetComponent<HingeJoint2D>().enabled = false;
+                        b.GetComponent<Rigidbody2D>().mass = 30;
+
+                        GetComponent<Animator>().SetBool("isGrabbing", false);
+                        GetComponent<Animator>().SetFloat("moveDirection", Input.GetAxis("Horizontal") * GetComponent<Movement>().Direction);
+                    }
+                }
+
+                if (hit.collider != null && Input.GetButtonUp("PullPushXbox"))
+                {
+                    GetComponent<Movement>().CanFlip = true;
+                    GetComponent<Movement>().CanJump = true;
+                }
+
             }
         }
     }
