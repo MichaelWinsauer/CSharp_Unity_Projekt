@@ -112,9 +112,14 @@ public class Movement : MonoBehaviour
                 }
 
                 if (isGrounded)
+                {
                     GetComponent<Animator>().SetBool("isJumping", false);
-                else if(!isGrounded && jumpPressed < 1)
+                }
+                else if (!isGrounded && jumpPressed < 1)
+                {
                     GetComponent<Animator>().SetBool("isJumping", true);
+                    FindObjectOfType<AudioManager>().Play("BodyLand");
+                }
 
                 groundedTimer -= Time.deltaTime;
                 keyPressedTimer -= Time.deltaTime;
@@ -193,6 +198,11 @@ public class Movement : MonoBehaviour
             {
                 keyPressedTimer = keyPressedTimerInput;
                 jumpPressed = 0;
+
+                if (isGrounded)
+                {
+                    FindObjectOfType<AudioManager>().Play("BodyJump");
+                }
             }
             else
             {
