@@ -1084,6 +1084,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
 =======
-    m_RemovedComponents: []
->>>>>>> parent of 610a3c6... Merge branch 'master' of https://github.com/MichaelWinsauer/CSharp_Unity_Projekt
+>>>>>>> parent of c6d24da... fuck this UI
   m_SourcePrefab: {fileID: 100100000, guid: 8483b71a2a8e5194c9cd7c6d89927719, type: 3}
