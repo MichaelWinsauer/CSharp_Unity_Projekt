@@ -13,9 +13,19 @@ public class PauseMenu : MonoBehaviour
     public bool GamePaused { get => gamePaused; set => gamePaused = value; }
     public void Update()
     {
-        if (Input.GetButtonDown("Start") || Input.GetButtonDown("Cancel"))
+        if(pauseMenu.activeSelf)
         {
-            PauseGame();
+            if (Input.GetButtonDown("Start") || Input.GetButtonDown("Cancel"))
+            {
+                PauseGame();
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Start"))
+            {
+                PauseGame();
+            }
         }
     }
 
