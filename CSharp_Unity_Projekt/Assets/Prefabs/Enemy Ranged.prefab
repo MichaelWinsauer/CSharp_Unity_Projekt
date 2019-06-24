@@ -40,10 +40,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3633370441598737991}
   - component: {fileID: 3633370441598737985}
-  - component: {fileID: 5071116702811598325}
   - component: {fileID: -3684988087929995821}
-  - component: {fileID: 5947042658613398876}
   - component: {fileID: 3783144590827542871}
+  - component: {fileID: 7752124172897916508}
+  - component: {fileID: 5805924856963235594}
   m_Layer: 0
   m_Name: Enemy Ranged
   m_TagString: Enemy
@@ -88,29 +88,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5071116702811598325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3633370441598737987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae96d3d05a2656f4eb5d28b65c277fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeedActive: 6
-  moveSpeedPassive: 2
-  viewArea: 20
-  jumpForce: 20
-  jumpFrequencyInput: 1
-  isRanged: 1
-  stopDistance: 20
-  backDistance: 7
-  enemyProjectile: {fileID: 4999579183048078411, guid: f73174eaca687b6449998a9fbbc5a2b0,
-    type: 3}
-  shootTimerInput: 1
 --- !u!114 &-3684988087929995821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,18 +109,6 @@ MonoBehaviour:
     type: 3}
   bodyDeathSound: {fileID: 1926309398614222106, guid: 4518c18d87700be45a16d4cbfd3efa78,
     type: 3}
---- !u!114 &5947042658613398876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3633370441598737987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9637cec53e124134e8e8a81e90522dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &3783144590827542871
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,6 +125,37 @@ CapsuleCollider2D:
   m_Offset: {x: -0.16286138, y: -0.13871741}
   m_Size: {x: 0.71560055, y: 1.6798849}
   m_Direction: 0
+--- !u!114 &7752124172897916508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633370441598737987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d15f03c7fe17b40a9a31cb6e347813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRange: 20
+  moveSpeed: 10
+  jumpForce: 0
+  backDistance: 10
+--- !u!114 &5805924856963235594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633370441598737987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ed664d0273a064caa20e62fd567862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyProjectile: {fileID: 4999579183048078411, guid: f73174eaca687b6449998a9fbbc5a2b0,
+    type: 3}
+  shootTimerInput: 1
 --- !u!1 &7940888061674342410
 GameObject:
   m_ObjectHideFlags: 0

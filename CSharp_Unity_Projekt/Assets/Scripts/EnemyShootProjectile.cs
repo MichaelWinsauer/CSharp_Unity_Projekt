@@ -5,20 +5,17 @@ using UnityEngine;
 public class EnemyShootProjectile : MonoBehaviour
 {
     [SerializeField]
-    private GameObject projectilePrefab;
+    private GameObject enemyProjectile;
     [SerializeField]
-    private float speed;
-    [SerializeField]
-    private int damage;
-    [SerializeField]
-    private float frequencyInput;
+    private float shootTimerInput;
 
     private GameObject player;
     private GameObject projectileSpawnPoint;
-    private GameObject projectile;
-    private EnemyProjectile projectileProperties;
-    private float frequency;
-    
+    private float shootTimer;
+    private bool canShoot;
+
+    public bool CanShoot { get => canShoot; set => canShoot = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +26,29 @@ public class EnemyShootProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frequency -= Time.deltaTime;
-        if(frequency <= 0)
-        {
+        Vector3 spawnPoint = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).transform.position;
+        Vector2 difference = player.transform.position - transform.position;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-            projectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.identity);
-            projectileProperties = projectile.GetComponent<EnemyProjectile>();
-            frequency = frequencyInput;
-            
+        if (shootTimer <= 0)
+        {
+            float distance = difference.magnitude;
+            Vector2 direction = difference / distance;
+            direction.Normalize();
+
+            if(canShoot)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("shoot");
+                GameObject projectile = Instantiate(enemyProjectile, spawnPoint, Quaternion.Euler(0f, 0f, rotationZ));
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<EnemyProjectile>().MoveSpeed * Random.Range(.5f, 1.5f);
+                projectile.GetComponent<EnemyProjectile>().Rotation = rotationZ;
+                shootTimer = shootTimerInput * Random.Range(.5f, 1.5f);
+            }
+
+        }
+        else
+        {
+            shootTimer -= Time.deltaTime;
         }
     }
 }
