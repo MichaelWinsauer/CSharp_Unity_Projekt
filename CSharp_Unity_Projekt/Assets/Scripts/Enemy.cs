@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     private int knockbackDirection;
     private float knockbackDuration;
     private int direction;
+    private float knockbackTimer;
 
 
     public int Health { get => health; set => health = value; }
@@ -41,7 +42,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        KnockBack();
+        if (knockbackTimer > 0)
+            knockbackTimer -= Time.deltaTime;
+        else
+            GetComponent<EnemyMovement>().CanMove = true;
     }
 
     //Wenn der Gegner den Spieler berührt soll dieser jede Sekunde dem Spieler schaden Machen.
@@ -59,8 +63,7 @@ public class Enemy : MonoBehaviour
                 else
                     direction = -1;
 
-                collision.gameObject.GetComponent<PlayerHealth>().KnockbackDirection = direction;
-                collision.gameObject.GetComponent<PlayerHealth>().KnockbackDuration = collision.gameObject.GetComponent<PlayerHealth>().KnockbackDurationInput;
+                collision.gameObject.GetComponent<PlayerHealth>().Knockback(9, 9, .4f, direction);
                 damageTimer = 1f;
             }
         }
@@ -75,7 +78,6 @@ public class Enemy : MonoBehaviour
         if ((health -= damage) <= 0)
             die();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.1f, .2f);
-        
     }
 
     private void die()
@@ -92,17 +94,13 @@ public class Enemy : MonoBehaviour
         bodySplat.GetComponent<AudioSource>().Play();
     }
 
-    private void KnockBack()
+    public void Knockback(float amountX, float amountY, float duration)
     {
-        knockbackDuration -= Time.deltaTime;
-        if(knockbackDuration >= 0)
-        {
-            GetComponent<EnemyMovement>().CanMove = false;
-            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 3, knockbackForce);
-        }
+        GetComponent<EnemyMovement>().CanMove = false;
+        knockbackTimer = duration;
+        if(GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
+            rb.AddForce(new Vector2(-amountX * 100, amountY * 50));
         else
-        {
-            GetComponent<EnemyMovement>().CanMove = true;
-        }
+            rb.AddForce(new Vector2(amountX * 100, amountY * 50));
     }
 }

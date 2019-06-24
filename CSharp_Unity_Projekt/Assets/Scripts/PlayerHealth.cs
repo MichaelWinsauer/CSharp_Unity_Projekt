@@ -34,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     private int knockbackDirection;
     private float knockbackDuration;
     private Rigidbody2D rb;
+    private float knockbackTimer;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
@@ -78,7 +79,11 @@ public class PlayerHealth : MonoBehaviour
             }
         }
         GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>().fillAmount = (float)currentHealth / maxHealth;
-        KnockBack();
+
+        if (knockbackTimer > 0)
+            knockbackTimer -= Time.deltaTime;
+        else
+            GetComponent<Movement>().CanMove = true;
     }
 
     private void spawn()
@@ -119,18 +124,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void KnockBack()
+    public void Knockback(float amountX, float amountY, float duration, int direction)
     {
-        knockbackDuration -= Time.deltaTime;
-        if (knockbackDuration >= 0)
-        {
-            GetComponent<Movement>().CanMove = false;
-            rb.velocity = new Vector2(knockbackDirection * knockbackForce * 7, knockbackForce);
-        }
-        else
-        {
-            GetComponent<Movement>().CanMove = true;
-        }
+        GetComponent<Movement>().CanMove = false;
+        knockbackTimer = duration;
+
+            rb.AddForce(new Vector2(amountX * direction * 100, amountY * 50));
     }
 
     //Zerstörung des Objekts

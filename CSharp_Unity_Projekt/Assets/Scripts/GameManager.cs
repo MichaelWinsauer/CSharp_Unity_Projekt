@@ -53,33 +53,33 @@ public class GameManager : MonoBehaviour
                 break;
 
             case PlayerPosition.OneRight:
-                player.transform.position = new Vector3(-79.77f, 2.228f);
+                player.transform.position = new Vector3(-78.74f, 2.228f);
                 break;
 
             case PlayerPosition.TwoLeft:
-                player.transform.position = new Vector3(120.28f, 2.73f);
+                player.transform.position = new Vector3(118.68f, 2.68f);
                 cam.transform.position = new Vector3(100.85f, 5.47f / 2);
                 break;
 
             case PlayerPosition.TwoRight:
-                player.transform.position = new Vector3(-80.15f, -2.81f);
+                player.transform.position = new Vector3(-77.86f, -2.81f);
                 break;
 
             case PlayerPosition.ThreeLeft:
-                player.transform.position = new Vector3(80.53f, -2.67f);
+                player.transform.position = new Vector3(77.3f, -2.8f);
                 cam.transform.position = new Vector3(60.5f, -3.4f / 2);
                 break;
 
             case PlayerPosition.ThreeRight:
-                player.transform.position = new Vector3(-79.78f, 5.87f);
+                player.transform.position = new Vector3(-76.43f, 5.87f);
                 break;
 
             case PlayerPosition.ThreeTop:
-                player.transform.position = new Vector3(38.64f, -6.83f);
+                player.transform.position = new Vector3(36.99f, -6.83f);
                 break;
 
             case PlayerPosition.FourRight:
-                player.transform.position = new Vector3(-80.15f, 15.49f);
+                player.transform.position = new Vector3(-74.88f, 14.94f);
                 cam.transform.position = new Vector3(-80.15f, 15.49f / 2);
                 break;
 
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case PlayerPosition.FiveLeft:
-                player.transform.position = new Vector3(79.64f, 4.91f);
+                player.transform.position = new Vector3(75.73f, 3.43f);
                 cam.transform.position = new Vector3(60.8f, 16.07f / 2);
                 break;
 

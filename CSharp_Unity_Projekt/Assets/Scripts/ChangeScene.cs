@@ -40,5 +40,10 @@ public class ChangeScene : MonoBehaviour
             timer = .75f;
             entered = true;
         }
+
+        if(collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyMovement>().Flip();
+        }
     }
 }

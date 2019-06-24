@@ -80,8 +80,7 @@ public class EnemyProjectile : MonoBehaviour
             else
                 direction = -1;
 
-            collision.gameObject.GetComponent<PlayerHealth>().KnockbackDirection = direction;
-            collision.gameObject.GetComponent<PlayerHealth>().KnockbackDuration = collision.gameObject.GetComponent<PlayerHealth>().KnockbackDurationInput;
+            collision.gameObject.GetComponent<PlayerHealth>().Knockback(9, 9, .4f, direction);
         }
 
         if(isReflected)

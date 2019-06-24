@@ -77,8 +77,7 @@ public class BasicProjectile : MonoBehaviour
             else
                 direction = -1;
 
-            collision.gameObject.GetComponent<Enemy>().KnockbackDirection = direction;
-            collision.gameObject.GetComponent<Enemy>().KnockbackDuration = collision.gameObject.GetComponent<Enemy>().KnockbackDurationInput;
+            collision.gameObject.GetComponent<Enemy>().Knockback(9, 9, .3f);
         }
 
         if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MeleeTrigger") && !collision.gameObject.CompareTag("EnemyProjectile"))
