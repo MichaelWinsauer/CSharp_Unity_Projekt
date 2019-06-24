@@ -21,9 +21,6 @@ public class OptionButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSlider)
-            index = 3;
-
         if (!isSlider)
         {
             if (optionsButtonController.Index == index)
@@ -60,29 +57,20 @@ public class OptionButton : MonoBehaviour
             }
         }
 
-        if (GameData.options.UseXbox)
-        {
-            if (index == 1)
-            {
-                anim.SetBool("isChoosen", true);
-            }
-            else if (!isSlider)
-                anim.SetBool("isChoosen", false);
-        }
-        else
+        if(GameData.options.UseController)
         {
             if (index == 0)
                 anim.SetBool("isChoosen", true);
             else if (!isSlider)
                 anim.SetBool("isChoosen", false);
         }
-        //else if(!GameData.options.UseController)
-        //{
-        //    if (index == 2)
-        //        anim.SetBool("isChoosen", true);
-        //    else if (!isSlider)
-        //        anim.SetBool("isChoosen", false);
-        //}
+        else
+        {
+            if (index == 1)
+                anim.SetBool("isChoosen", true);
+            else if (!isSlider)
+                anim.SetBool("isChoosen", false);
+        }
 
         GetComponent<Image>().fillAmount = GameData.options.Volume;
 
@@ -102,17 +90,10 @@ public class OptionButton : MonoBehaviour
                 if (index == 0)
                 {
                     GameData.options.UseController = true;
-                    GameData.options.UseXbox = false;
                 }
                 else if(index == 1)
                 {
-                    GameData.options.UseController = true;
-                    GameData.options.UseXbox = true;
-                }
-                else if (index == 2)
-                {
                     GameData.options.UseController = false;
-                    GameData.options.UseXbox = false;
                 }
                 pressed = false;
             }

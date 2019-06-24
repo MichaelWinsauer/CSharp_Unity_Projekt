@@ -1090,12 +1090,12 @@ PrefabInstance:
     - target: {fileID: 5816315241538730103, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 130
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 5816315240538727812, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 130
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 5816315240538727812, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
@@ -1110,7 +1110,7 @@ PrefabInstance:
     - target: {fileID: 4170713137477016214, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 135
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 5816315241538730096, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
@@ -1120,12 +1120,12 @@ PrefabInstance:
     - target: {fileID: 4170713136426649445, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 135
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 5816315241364594279, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_Text
-      value: 'PS4
+      value: 'Controller
 
 '
       objectReference: {fileID: 0}

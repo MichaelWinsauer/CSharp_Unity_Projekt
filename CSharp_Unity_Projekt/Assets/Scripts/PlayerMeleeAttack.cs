@@ -34,24 +34,11 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
         else
         {
-            if(!GameData.options.UseXbox)
+            if (Input.GetButtonDown("Melee"))
             {
-                if (Input.GetButtonDown("Melee"))
-                {
-                    anim.SetTrigger("hit");
-                    active = activeInput;
-                    timer = timerInput;
-                }
-            }
-            else
-            {
-                if (Input.GetButtonDown("MeleeXbox"))
-                {
-                    anim.SetTrigger("hit");
-                    active = activeInput;
-                    timer = timerInput;
-                }
-
+                anim.SetTrigger("hit");
+                active = activeInput;
+                timer = timerInput;
             }
         }
 
