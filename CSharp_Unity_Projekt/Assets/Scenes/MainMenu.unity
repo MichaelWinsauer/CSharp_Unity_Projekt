@@ -1082,7 +1082,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 1498830945172456225, guid: 8483b71a2a8e5194c9cd7c6d89927719,
         type: 3}
       propertyPath: m_IsActive
@@ -1132,7 +1131,4 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4672580949302590461, guid: 8483b71a2a8e5194c9cd7c6d89927719, type: 3}
-=======
-    m_RemovedComponents: []
->>>>>>> parent of c6d24da... fuck this UI
   m_SourcePrefab: {fileID: 100100000, guid: 8483b71a2a8e5194c9cd7c6d89927719, type: 3}
