@@ -20,7 +20,6 @@ public class OptionsButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(index);
         if (Input.GetAxis("Vertical") != 0)
         {
             if (!keyDown)

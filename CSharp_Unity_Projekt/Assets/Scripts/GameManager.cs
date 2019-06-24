@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
         if (GameData.options == null)
         {
-            GameData.options = new OptionsData(true, .5f, false);
+            GameData.options = new OptionsData(true, .5f);
         }
 
         player.GetComponent<PlayerHealth>().CurrentHealth = GameData.player.Health;
