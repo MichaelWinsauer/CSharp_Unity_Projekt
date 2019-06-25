@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,16 +17,23 @@ public class EnemyMovementMelee : MonoBehaviour
     private bool playerInRange;
     private int direction;
     private bool canMove;
-    private float timer;
+    private float stopTimer;
+    private float moveTimer;
     private bool moveToPlayer;
+    private bool canFlip;
+    private float jumpDelay;
+    private bool jumpPressed;
 
     public bool CanMove { get => canMove; set => canMove = value; }
+    public bool CanFlip { get => canFlip; set => canFlip = value; }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         canMove = true;
+        canFlip = true;
+        jumpPressed = false;
     }
 
 
@@ -37,38 +45,51 @@ public class EnemyMovementMelee : MonoBehaviour
         {
             if(playerInRange)
             {
-                if (playerToEnemy() == 1)
-                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                else
-                    transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+                if(canFlip)
+                {
+                    if (playerToEnemy() == 1)
+                        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    else
+                        transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+                }
 
                 move();
-                if (timer > 0)
-                {
-                    timer -= Time.deltaTime;
 
-                    if (moveToPlayer)
-                    {
-                        move();
-                    }
-                    else
-                        jump();
-                }
-                else
+                if(Input.GetButtonDown("Jump") && !jumpPressed)
                 {
-                    if (Random.Range(0, 4) == 0)
-                    {
-                        if (Vector2.Distance(player.transform.position, transform.position) < 4)
-                            moveToPlayer = false;
-                        else
-                            moveToPlayer = true;
-                    }
-                    else
-                        moveToPlayer = true;
-                    timer = 1f;
+                    jumpDelay = UnityEngine.Random.Range(.1f, .3f);
+                    jumpPressed = true;
+                    
+                }
+
+                if (jumpPressed && jumpDelay > 0)
+                    jumpDelay -= Time.deltaTime;
+                else if (jumpPressed)
+                {
+                    jump();
+                    jumpPressed = false;
                 }
             }
+            else
+            {
+                if (checkForWall(direction))
+                    Flip();
+
+                if (!checkForGround(direction))
+                    Flip();
+
+                rb.velocity = new Vector2(moveSpeed / 3 * direction, rb.velocity.y);
+            }
         }
+    }
+
+    private bool checkGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), Vector2.down, .2f);
+        if (hit.collider != null && hit.collider.CompareTag("Ground"))
+            return true;
+        else
+            return false;
     }
 
     private bool checkForGround(int rayPosition)
@@ -91,7 +112,7 @@ public class EnemyMovementMelee : MonoBehaviour
 
     private bool inSight()
     {
-        RaycastHit2D playerHit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y), new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y), viewRange);
+        RaycastHit2D playerHit = Physics2D.Raycast(new Vector2(transform.position.x + .6f * playerToEnemy(), transform.position.y), new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y), viewRange);
         if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
         {
             return true;
@@ -136,7 +157,7 @@ public class EnemyMovementMelee : MonoBehaviour
 
     private void move()
     {
-        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
+        if (checkForGround(playerToEnemy()))
             rb.velocity = new Vector2(moveSpeed * playerToEnemy(), rb.velocity.y);
         else
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -144,8 +165,10 @@ public class EnemyMovementMelee : MonoBehaviour
 
     private void jump()
     {
-        Debug.DrawRay(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y - 1), Vector2.down, Color.blue, 2f);
-        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
-            rb.velocity = new Vector2(moveSpeed * playerToEnemy(), jumpForce);
+        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()) && checkGrounded())
+            rb.AddForce(new Vector2(moveSpeed * 1.5f * playerToEnemy(), jumpForce));
+
+        if (checkGrounded())
+            moveTimer = 0;
     }
 }

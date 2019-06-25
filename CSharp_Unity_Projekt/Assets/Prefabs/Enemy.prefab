@@ -155,5 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRange: 15
-  moveSpeed: 6
-  jumpForce: 17
+  moveSpeed: 10
+  jumpForce: 1000
