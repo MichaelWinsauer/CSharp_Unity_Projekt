@@ -12,8 +12,6 @@ public class PlayerEnemyDistance : MonoBehaviour
     {
         getClosestEnemy();
 
-        Debug.Log(enemyInSight());
-
         if (enemyInSight())
         {
             //Dein Code hier und so :D
@@ -26,17 +24,24 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     private void getClosestEnemy()
     {
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length != 0)
         {
-            if(closestEnemy != null)
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                if (Vector2.Distance(g.transform.position, transform.position) < Vector2.Distance(closestEnemy.transform.position, transform.position))
+                if (closestEnemy != null)
+                {
+                    if (Vector2.Distance(g.transform.position, transform.position) < Vector2.Distance(closestEnemy.transform.position, transform.position))
+                        closestEnemy = g;
+                }
+                else
+                {
                     closestEnemy = g;
+                }
             }
-            else
-            {
-                closestEnemy = g;
-            }
+        }
+        else
+        {
+            closestEnemy = this.gameObject;
         }
     }
 
