@@ -13,7 +13,7 @@ public class SpikeHit : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
 {
         if (isWater)
-            Instantiate(waterParticle, new Vector3(collision.transform.position.x, collision.transform.position.y - 1, collision.transform.position.z), Quaternion.identity);
+            Instantiate(waterParticle, new Vector3(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z), Quaternion.identity);
 
         if (collision.gameObject.CompareTag("Player"))
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(collision.gameObject.GetComponent<PlayerHealth>().CurrentHealth);

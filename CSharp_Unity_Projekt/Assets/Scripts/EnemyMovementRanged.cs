@@ -46,13 +46,9 @@ public class EnemyMovementRanged : MonoBehaviour
                 else
                     transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
+                shootProjectile.CanShoot = true;
 
-
-                if (Vector2.Distance(player.transform.position, transform.position) > backDistance)
-                {
-                    shootProjectile.CanShoot = true;
-                }
-                else
+                if (Vector2.Distance(player.transform.position, transform.position) < backDistance)
                 {
                     if (checkForGround(-playerToEnemy()) && !checkForWall(-playerToEnemy()))
                         rb.velocity = new Vector2(moveSpeed * -playerToEnemy(), rb.velocity.y);
