@@ -10,7 +10,7 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     void Update()
     {
-        closestEnemy = getClosestEnemy();
+        getClosestEnemy();
 
         if(enemyInSight())
         {
@@ -18,25 +18,24 @@ public class PlayerEnemyDistance : MonoBehaviour
         }
         else
         {
-
+            //oder halt hier und so :D
         }
     }
 
-    private GameObject getClosestEnemy()
+    private void getClosestEnemy()
     {
-        GameObject close = new GameObject();
-        close.transform.position = new Vector3(999f, 999f, 999f);
-
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if(close != null)
+            if(closestEnemy != null)
             {
-                if (Vector2.Distance(g.transform.position, transform.position) < Vector2.Distance(close.transform.position, transform.position))
-                    close = g;
+                if (Vector2.Distance(g.transform.position, transform.position) < Vector2.Distance(closestEnemy.transform.position, transform.position))
+                    closestEnemy = g;
+            }
+            else
+            {
+                closestEnemy = g;
             }
         }
-
-        return close;
     }
 
     private int playerToEnemy()
