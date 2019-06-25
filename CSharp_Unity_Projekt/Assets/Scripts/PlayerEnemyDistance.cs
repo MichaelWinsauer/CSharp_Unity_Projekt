@@ -8,18 +8,36 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     private GameObject closestEnemy;
 
-    void Update()
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("BattleTheme");
+    }
+
+    void FixedUpdate()
     {
         getClosestEnemy();
 
         if (enemyInSight())
         {
             //Dein Code hier und so :D
+            if (FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume < 0.1f)
+            {
+                FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume += 0.001f;
+            }
         }
         else
         {
             //oder halt hier und so :D
+            if (FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume > 0f)
+            {
+                Invoke("stopBattleTheme", 3);
+            }
         }
+    }
+
+    private void stopBattleTheme()
+    {
+        FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume -= 0.001f;
     }
 
     private void getClosestEnemy()
