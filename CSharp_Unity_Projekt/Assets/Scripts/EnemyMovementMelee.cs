@@ -164,7 +164,7 @@ public class EnemyMovementMelee : MonoBehaviour
 
     private void jump()
     {
-        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()) && checkGrounded())
+        if (checkForGround(playerToEnemy()) && checkGrounded())
             rb.AddForce(new Vector2(moveSpeed * 1.5f * playerToEnemy(), jumpForce));
 
         if (checkGrounded())
