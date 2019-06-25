@@ -17,9 +17,6 @@ public class EnemyMovementMelee : MonoBehaviour
     private bool playerInRange;
     private int direction;
     private bool canMove;
-    private float stopTimer;
-    private float moveTimer;
-    private bool moveToPlayer;
     private bool canFlip;
     private float jumpDelay;
     private bool jumpPressed;
@@ -166,8 +163,5 @@ public class EnemyMovementMelee : MonoBehaviour
     {
         if (checkForGround(playerToEnemy()) && checkGrounded())
             rb.AddForce(new Vector2(moveSpeed * 1.5f * playerToEnemy(), jumpForce));
-
-        if (checkGrounded())
-            moveTimer = 0;
     }
 }
