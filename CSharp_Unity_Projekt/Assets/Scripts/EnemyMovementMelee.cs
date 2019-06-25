@@ -28,7 +28,6 @@ public class EnemyMovementMelee : MonoBehaviour
         canMove = true;
     }
 
-
     void Update()
     {
         playerInRange = inSight();

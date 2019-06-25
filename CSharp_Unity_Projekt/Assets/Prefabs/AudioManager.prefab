@@ -50,8 +50,8 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: MainMenu
-    clip: {fileID: 8300000, guid: c528b07343c619a45a7b04704860d943, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 4f2f1727e231b864fb1418e37007f490, type: 3}
+    volume: 0.4
     loop: 1
     source: {fileID: 0}
   - name: SpellCast
