@@ -14,6 +14,7 @@ public class EnemyMovementMelee : MonoBehaviour
 
     private GameObject player;
     private Rigidbody2D rb;
+    private Animator anim;
     private bool playerInRange;
     private int direction;
     private bool canMove;
@@ -28,6 +29,7 @@ public class EnemyMovementMelee : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
         canMove = true;
         canFlip = true;
         jumpPressed = false;
@@ -55,7 +57,7 @@ public class EnemyMovementMelee : MonoBehaviour
                 {
                     jumpDelay = UnityEngine.Random.Range(.1f, .3f);
                     jumpPressed = true;
-                    
+                    anim.SetTrigger("jump");
                 }
 
                 if (jumpPressed && jumpDelay > 0)
@@ -77,6 +79,12 @@ public class EnemyMovementMelee : MonoBehaviour
                 rb.velocity = new Vector2(moveSpeed / 3 * direction, rb.velocity.y);
             }
         }
+
+        if(Mathf.Abs(rb.velocity.x) > 0)
+            anim.SetBool("isMoving", true);
+        else
+            anim.SetBool("isMoving", false);
+
     }
 
     private bool checkGrounded()
