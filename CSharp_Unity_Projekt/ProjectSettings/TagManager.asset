@@ -26,6 +26,7 @@ TagManager:
   - MainMenu
   - Options
   - SceneTransition
+  - PlayerHit
   layers:
   - Default
   - TransparentFX

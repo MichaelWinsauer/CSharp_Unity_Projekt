@@ -116,8 +116,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         isDamaged = true;
+        GameObject.FindGameObjectWithTag("PlayerHit").GetComponent<Animator>().SetTrigger("hit");
         currentHealth -= damageAmount;
-        Debug.Log(currentHealth);
         if(currentHealth <= 0 && !isDead)
         {
             die();
