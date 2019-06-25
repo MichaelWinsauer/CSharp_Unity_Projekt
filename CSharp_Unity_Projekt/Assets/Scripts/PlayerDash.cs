@@ -41,7 +41,7 @@ public class PlayerDash : MonoBehaviour
         dashState = States.Ready;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         switch(dashState)
         {
@@ -80,7 +80,7 @@ public class PlayerDash : MonoBehaviour
                         GameObject dashParticles = Instantiate(dashDurationParticles, transform.position, Quaternion.Euler(0, transform.rotation.y, 0));
                         ParticleSystem.ShapeModule shape = dashParticles.GetComponentInChildren<ParticleSystem>().shape;
                         shape.rotation = new Vector3(90, 90, 0);
-                        playerRb.velocity = new Vector2(0, dashSpeed / 10);
+                        playerRb.velocity = new Vector2(0, dashSpeed / 3);
                     }
                     playerRb.gravityScale = 0;
                     duration -= Time.deltaTime;

@@ -16,6 +16,8 @@ public class EnemyMovementMelee : MonoBehaviour
     private bool playerInRange;
     private int direction;
     private bool canMove;
+    private float timer;
+    private bool moveToPlayer;
 
     public bool CanMove { get => canMove; set => canMove = value; }
 
@@ -40,10 +42,31 @@ public class EnemyMovementMelee : MonoBehaviour
                 else
                     transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
-                if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
-                    rb.velocity = new Vector2(moveSpeed * playerToEnemy(), rb.velocity.y);
+                move();
+                if (timer > 0)
+                {
+                    timer -= Time.deltaTime;
+
+                    if (moveToPlayer)
+                    {
+                        move();
+                    }
+                    else
+                        jump();
+                }
                 else
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                {
+                    if (Random.Range(0, 4) == 0)
+                    {
+                        if (Vector2.Distance(player.transform.position, transform.position) < 4)
+                            moveToPlayer = false;
+                        else
+                            moveToPlayer = true;
+                    }
+                    else
+                        moveToPlayer = true;
+                    timer = 1f;
+                }
             }
         }
     }
@@ -109,5 +132,20 @@ public class EnemyMovementMelee : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0, 0f);
             direction = 1;
         }
+    }
+
+    private void move()
+    {
+        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
+            rb.velocity = new Vector2(moveSpeed * playerToEnemy(), rb.velocity.y);
+        else
+            rb.velocity = new Vector2(0, rb.velocity.y);
+    }
+
+    private void jump()
+    {
+        Debug.DrawRay(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y - 1), Vector2.down, Color.blue, 2f);
+        if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
+            rb.velocity = new Vector2(moveSpeed * playerToEnemy(), jumpForce);
     }
 }
