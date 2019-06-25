@@ -10,7 +10,11 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("BattleTheme");
+        if(FindObjectOfType<AudioManager>().GetSource("BattleTheme"). isPlaying == false && FindObjectOfType<AudioManager>().GetSource("IdleTheme").isPlaying == false)
+        {
+            FindObjectOfType<AudioManager>().Play("BattleTheme");
+            FindObjectOfType<AudioManager>().Play("IdleTheme");
+        }
     }
 
     void FixedUpdate()
@@ -23,6 +27,10 @@ public class PlayerEnemyDistance : MonoBehaviour
             if (FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume < 0.1f)
             {
                 FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume += 0.001f;
+                if(FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume > 0f)
+                {
+                    FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume -= 0.001f;
+                }
             }
         }
         else
@@ -30,7 +38,7 @@ public class PlayerEnemyDistance : MonoBehaviour
             //oder halt hier und so :D
             if (FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume > 0f)
             {
-                Invoke("stopBattleTheme", 3);
+                Invoke("stopBattleTheme", 1);
             }
         }
     }
@@ -38,6 +46,10 @@ public class PlayerEnemyDistance : MonoBehaviour
     private void stopBattleTheme()
     {
         FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume -= 0.001f;
+        if (FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume < 0.1f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume += 0.001f;
+        }
     }
 
     private void getClosestEnemy()
