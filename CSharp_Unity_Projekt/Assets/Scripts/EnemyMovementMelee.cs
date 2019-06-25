@@ -12,7 +12,9 @@ public class EnemyMovementMelee : MonoBehaviour
     private float jumpForce;
 
     private GameObject player;
+    private Rigidbody2D rb;
     private bool playerInRange;
+    private int direction;
     private bool canMove;
 
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -20,6 +22,8 @@ public class EnemyMovementMelee : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        canMove = true;
     }
 
 
@@ -27,10 +31,39 @@ public class EnemyMovementMelee : MonoBehaviour
     {
         playerInRange = inSight();
 
-        if (playerInRange)
+        if (canMove)
         {
+            if(playerInRange)
+            {
+                if (playerToEnemy() == 1)
+                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                else
+                    transform.rotation = Quaternion.Euler(0f, -180f, 0f);
 
+                if (checkForGround(playerToEnemy()) && !checkForWall(playerToEnemy()))
+                    rb.velocity = new Vector2(moveSpeed * playerToEnemy(), rb.velocity.y);
+                else
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
+    }
+
+    private bool checkForGround(int rayPosition)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * rayPosition, transform.position.y - 1), Vector2.down, 2f);
+        if (hit.collider != null && hit.collider.CompareTag("Ground"))
+            return true;
+        else
+            return false;
+    }
+
+    private bool checkForWall(int rayPosition)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + .5f * rayPosition, transform.position.y), Vector2.right * rayPosition, .5f);
+        if (hit.collider != null)
+            return true;
+        else
+            return false;
     }
 
     private bool inSight()
@@ -54,11 +87,27 @@ public class EnemyMovementMelee : MonoBehaviour
             return -1;
     }
 
+    public int GetDirection()
+    {
+        if (transform.position.y == 0)
+            direction = -1;
+        else
+            direction = 1;
+
+        return direction;
+    }
+
     public void Flip()
     {
-        if (transform.rotation.y != 0)
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        if (transform.rotation.y == 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, -180, 0f);
+            direction = -1;
+        }
         else
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        {
+            transform.rotation = Quaternion.Euler(0f, 0, 0f);
+            direction = 1;
+        }
     }
 }

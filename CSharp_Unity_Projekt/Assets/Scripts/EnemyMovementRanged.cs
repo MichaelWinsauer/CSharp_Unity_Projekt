@@ -42,9 +42,11 @@ public class EnemyMovementRanged : MonoBehaviour
             if (playerInView)
             {
                 if (playerToEnemy() == 1)
-                    Quaternion.Euler(0f, 0f, 0f);
+                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 else
-                    Quaternion.Euler(0f, -180f, 0f);
+                    transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+
+
 
                 if (Vector2.Distance(player.transform.position, transform.position) > backDistance)
                 {
@@ -119,6 +121,16 @@ public class EnemyMovementRanged : MonoBehaviour
             return 1;
         else
             return -1;
+    }
+
+    public int GetDirection()
+    {
+        if (transform.position.y == 0)
+            direction = -1;
+        else
+            direction = 1;
+
+        return direction;
     }
 
     public void Flip()

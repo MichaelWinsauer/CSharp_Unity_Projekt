@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             if(isRanged)
                 GetComponent<EnemyMovementRanged>().CanMove = true;
             else
-                GetComponent<EnemyMovement>().CanMove = true;
+                GetComponent<EnemyMovementMelee>().CanMove = true;
         }
     }
 
@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
         if(isRanged)
             GetComponent<EnemyMovementRanged>().CanMove = false;
         else
-            GetComponent<EnemyMovement>().CanMove = false;
+            GetComponent<EnemyMovementMelee>().CanMove = false;
         knockbackTimer = duration;
         if(GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
             rb.AddForce(new Vector2(-amountX * 100, amountY * 50));
