@@ -36,7 +36,6 @@ public class EnemyMovementMelee : MonoBehaviour
         jumpPressed = false;
     }
 
-
     void Update()
     {
         playerInRange = inSight();

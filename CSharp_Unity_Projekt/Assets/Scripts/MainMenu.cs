@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         //Marcel
-        //FindObjectOfType<AudioManager>().Play("MainMenu");
+        FindObjectOfType<AudioManager>().Play("MainMenu");
 
         if (GameData.options == null)
         {

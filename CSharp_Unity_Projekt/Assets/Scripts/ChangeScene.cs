@@ -27,6 +27,19 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(FindObjectOfType<AudioManager>().GetSource("MainMenu").isPlaying && FindObjectOfType<AudioManager>().GetSource("MainMenu").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("MainMenu").volume = FindObjectOfType<AudioManager>().GetSource("MainMenu").volume -0.001f;
+            if(FindObjectOfType<AudioManager>().GetSource("MainMenu").volume == 0f)
+            {
+                FindObjectOfType<AudioManager>().GetSource("MainMenu").Stop();
+                FindObjectOfType<AudioManager>().GetSource("MainMenu").volume = 0.3f;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
