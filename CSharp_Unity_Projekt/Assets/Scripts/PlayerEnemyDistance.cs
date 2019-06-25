@@ -12,7 +12,9 @@ public class PlayerEnemyDistance : MonoBehaviour
     {
         getClosestEnemy();
 
-        if(enemyInSight())
+        Debug.Log(enemyInSight());
+
+        if (enemyInSight())
         {
             //Dein Code hier und so :D
         }
@@ -40,7 +42,7 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     private int playerToEnemy()
     {
-        if (transform.position.x > closestEnemy.transform.position.x)
+        if (transform.position.x < closestEnemy.transform.position.x)
             return 1;
         else
             return -1;
@@ -48,8 +50,9 @@ public class PlayerEnemyDistance : MonoBehaviour
 
     private bool enemyInSight()
     {
+        Debug.DrawLine(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y), closestEnemy.transform.position);
         RaycastHit2D playerHit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y), new Vector2(closestEnemy.transform.position.x - transform.position.x, closestEnemy.transform.position.y - transform.position.y), 20f);
-        if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
+        if (playerHit.collider != null && playerHit.collider.CompareTag("Enemy"))
         {
             return true;
         }
