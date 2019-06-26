@@ -64,7 +64,7 @@ public class ChangeScene : MonoBehaviour
             if(collision.GetComponent<Enemy>().IsRanged)
                 collision.gameObject.GetComponent<EnemyMovementRanged>().Flip();
             else
-                collision.gameObject.GetComponent<EnemyMovement>().Flip();
+                collision.gameObject.GetComponent<EnemyMovementMelee>().Flip();
         }
     }
 }

@@ -101,7 +101,7 @@ public class EnemyMovementRanged : MonoBehaviour
     private bool inSight()
     {
         RaycastHit2D playerHit = Physics2D.Raycast(new Vector2(transform.position.x + 1 * playerToEnemy(), transform.position.y), new Vector2(player.transform.position.x - transform.position.x - 1 * playerToEnemy(), player.transform.position.y - transform.position.y), viewRange);
-        if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
+        if (playerHit.collider != null && (playerHit.collider.CompareTag("Player") || playerHit.collider.CompareTag("MeleeTrigger")))
         {
             return true;
         }
