@@ -23,6 +23,19 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume -= 0.001f;
+        }
+
+        if (FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume -= 0.001f;
+        }
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
