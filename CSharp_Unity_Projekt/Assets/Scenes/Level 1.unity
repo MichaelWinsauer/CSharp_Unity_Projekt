@@ -175,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 131.42
+      value: 109.42
       objectReference: {fileID: 0}
     - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
         type: 3}
@@ -2540,12 +2540,12 @@ PrefabInstance:
     - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.8
+      value: 131.77
       objectReference: {fileID: 0}
     - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.77
+      value: 5.69
       objectReference: {fileID: 0}
     - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
         type: 3}
@@ -4520,11 +4520,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3913888522585821152, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 2088256415}
     - target: {fileID: 1563484318269074394, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4580,6 +4575,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: moveDamping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: slopeFriction
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913888522585821152, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 2088256415}
     - target: {fileID: 4462600085984587781, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -4594,16 +4604,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.086
-      objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: moveDamping
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: slopeFriction
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1563484318094430977, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
