@@ -52,6 +52,9 @@ public class PlayerDash : MonoBehaviour
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>().ShakeCamera(.15f, .6f);
                     fixedDirection = playerMovement.Direction;
                     duration = durationInput;
+
+                    FindObjectOfType<AudioManager>().Play("PlayerDash");
+
                     if (Mathf.Abs(Input.GetAxis("Horizontal")) > .5)
                     {
                         vertical = false;
