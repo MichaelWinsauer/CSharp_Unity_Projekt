@@ -31,6 +31,7 @@ public class MenuButton : MonoBehaviour
                     anim.SetTrigger("pressed");
                     timer = .1f;
                     pressed = true;
+                    FindObjectOfType<AudioManager>().Play("MenuClick");
                 }
             }
         }
