@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>().fillAmount = (float)currentHealth / maxHealth;
 
-        if (Convert.ToInt32(GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text) + currentHealth > 100)
+        if (currentHealth >= 100)
             GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text = 100.ToString();
         else if (currentHealth >= 0)
             GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text = currentHealth.ToString();
