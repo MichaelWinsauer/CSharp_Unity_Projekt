@@ -118,6 +118,9 @@ public class PlayerHealth : MonoBehaviour
         isDamaged = true;
         GameObject.FindGameObjectWithTag("PlayerHit").GetComponent<Animator>().SetTrigger("hit");
         currentHealth -= damageAmount;
+
+        FindObjectOfType<AudioManager>().Play("PlayerTakeDamage");
+
         if(currentHealth <= 0 && !isDead)
         {
             die();
