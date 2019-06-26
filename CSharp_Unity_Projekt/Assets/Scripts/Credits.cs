@@ -11,6 +11,8 @@ public class Credits : MonoBehaviour
     void Start()
     {
         timer = 65f;
+        FindObjectOfType<AudioManager>().GetSource("CreditsTheme").volume = 0.2f;
+        FindObjectOfType<AudioManager>().Play("CreditsTheme");
     }
 
     // Update is called once per frame
@@ -23,6 +25,19 @@ public class Credits : MonoBehaviour
         else
         {
             SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("BattleTheme").volume -= 0.001f;
+        }
+
+        if (FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume -= 0.001f;
         }
     }
 }

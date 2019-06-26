@@ -644,7 +644,7 @@ PrefabInstance:
     - target: {fileID: 1763300051208776277, guid: 58ea5a93689497845b21135ef43b7efb,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1763300051208776277, guid: 58ea5a93689497845b21135ef43b7efb,
         type: 3}
@@ -770,6 +770,21 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[14].volume
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763300051208776277, guid: 58ea5a93689497845b21135ef43b7efb,
+        type: 3}
+      propertyPath: sounds.Array.data[15].name
+      value: CreditsTheme
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763300051208776277, guid: 58ea5a93689497845b21135ef43b7efb,
+        type: 3}
+      propertyPath: sounds.Array.data[15].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a70ff4f71c1238b4184898419558a795, type: 3}
+    - target: {fileID: 1763300051208776277, guid: 58ea5a93689497845b21135ef43b7efb,
+        type: 3}
+      propertyPath: sounds.Array.data[15].volume
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ea5a93689497845b21135ef43b7efb, type: 3}

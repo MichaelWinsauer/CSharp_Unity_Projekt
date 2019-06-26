@@ -34,6 +34,11 @@ public class MainMenu : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume -= 0.001f;
         }
+
+        if (FindObjectOfType<AudioManager>().GetSource("CreditsTheme").volume > 0f)
+        {
+            FindObjectOfType<AudioManager>().GetSource("CreditsTheme").volume -= 0.001f;
+        }
     }
 
     public void PlayGame()
