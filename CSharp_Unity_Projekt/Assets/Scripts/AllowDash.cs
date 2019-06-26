@@ -24,6 +24,8 @@ public class AllowDash : MonoBehaviour
             Instantiate(recieveParticles, transform.position, Quaternion.identity);
             Instantiate(dashParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+
+            FindObjectOfType<AudioManager>().Play("DashPickup");
         }
     }
 }
