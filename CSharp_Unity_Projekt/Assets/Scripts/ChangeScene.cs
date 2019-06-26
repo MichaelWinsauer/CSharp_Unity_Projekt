@@ -15,6 +15,11 @@ public class ChangeScene : MonoBehaviour
     private float timer;
     private bool entered = false;
 
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().GetSource("IdleTheme").volume = 0.1f;
+    }
+
     private void Update()
     {
         if(timer > 0 && entered)
