@@ -63,6 +63,12 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        AudioListener.volume = GameData.options.Volume;
+    }
+
+
     // Die Kameraposition wird auf die des Spielers gesetzt. .Lerp ist eine Funktion, die langsahm von einer Position auf die nächste beschleunigt.
     private void FixedUpdate()
     {
