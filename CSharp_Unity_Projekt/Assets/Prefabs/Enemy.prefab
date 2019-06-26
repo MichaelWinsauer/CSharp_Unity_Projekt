@@ -109,7 +109,7 @@ MonoBehaviour:
   viewRange: 15
   moveSpeed: 10
   jumpForce: 1000
---- !u!95 &4069450413450739746
+--- !u!95 &199665994451507447
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ Animator:
   m_GameObject: {fileID: 6125548510779980164}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff43c68e1e0d59140a8eac1b52b2a03f, type: 2}
+  m_Controller: {fileID: 9100000, guid: e193320f993d8cb4e8fed3747e9ca8d5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
