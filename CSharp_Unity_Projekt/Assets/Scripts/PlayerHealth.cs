@@ -80,6 +80,15 @@ public class PlayerHealth : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>().fillAmount = (float)currentHealth / maxHealth;
 
+        if (Convert.ToInt32(GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text) + currentHealth > 100)
+            GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text = 100.ToString();
+        else if (currentHealth >= 0)
+            GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text = currentHealth.ToString();
+        else
+            GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(2).GetComponentInChildren<Text>().text = 0.ToString();
+
+        GameObject.FindGameObjectWithTag("HealthBar").transform.parent.parent.parent.GetChild(3).GetComponentInChildren<Text>().text = GameData.deathCount.ToString();
+
         if (knockbackTimer > 0)
             knockbackTimer -= Time.deltaTime;
         else
@@ -119,7 +128,8 @@ public class PlayerHealth : MonoBehaviour
         GameObject.FindGameObjectWithTag("PlayerHit").GetComponent<Animator>().SetTrigger("hit");
         currentHealth -= damageAmount;
 
-        FindObjectOfType<AudioManager>().Play("PlayerTakeDamage");
+        if(currentHealth > 0)
+            FindObjectOfType<AudioManager>().Play("PlayerTakeDamage");
 
         if(currentHealth <= 0 && !isDead)
         {
@@ -139,6 +149,7 @@ public class PlayerHealth : MonoBehaviour
     private void die()
     {
         isDead = true;
+        GameData.deathCount++;
 
         //Animation & Sound spielen
         transform.localScale = new Vector3(0,0);
