@@ -6803,6 +6803,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a7f6cd4b28d544890e1307a4b1130e, type: 3}
+--- !u!1001 &1557871466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9074940258186232607, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_Name
+      value: ControlHelp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232605, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074940258186232603, guid: 4d2891896f55a94478a9a68546fa8225,
+        type: 3}
+      propertyPath: controlName
+      value: Dash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d2891896f55a94478a9a68546fa8225, type: 3}
 --- !u!1 &1582665700
 GameObject:
   m_ObjectHideFlags: 0
