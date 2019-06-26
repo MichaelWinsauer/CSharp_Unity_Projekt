@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseButton : MonoBehaviour
 {
@@ -64,6 +65,7 @@ public class PauseButton : MonoBehaviour
                 else if (index == 2)
                 {
                     pauseMenu.BackToMain();
+                    GameData.lastScene = SceneManager.GetActiveScene().buildIndex;
                 }
                 pressed = false;
             }

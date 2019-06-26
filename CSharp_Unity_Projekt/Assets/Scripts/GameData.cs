@@ -10,4 +10,6 @@ public class GameData
     public static List<EnemyData> levelFour;
     public static List<EnemyData> levelFive;
     public static OptionsData options;
+    public static int lastScene;
+    public static int deathCount;
 }
