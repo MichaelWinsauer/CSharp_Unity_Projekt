@@ -30,6 +30,7 @@ public class OptionButton : MonoBehaviour
                 {
                     timer = .1f;
                     pressed = true;
+                    FindObjectOfType<AudioManager>().Play("MenuClick");
                 }
             }
             else

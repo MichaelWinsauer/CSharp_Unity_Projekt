@@ -27,6 +27,8 @@ public class OptionsButtonController : MonoBehaviour
         {
             if (!keyDown)
             {
+                FindObjectOfType<AudioManager>().Play("MenuHover");
+
                 if (Input.GetAxis("Vertical") < 0)
                 {
                     if (index < maxIndex)
