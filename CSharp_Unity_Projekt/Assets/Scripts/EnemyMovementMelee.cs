@@ -108,7 +108,7 @@ public class EnemyMovementMelee : MonoBehaviour
     private bool checkForWall(int rayPosition)
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x + .5f * rayPosition, transform.position.y), Vector2.right * rayPosition, .5f);
-        if (hit.collider != null)
+        if (hit.collider != null && !hit.collider.CompareTag("Player"))
             return true;
         else
             return false;
@@ -163,7 +163,7 @@ public class EnemyMovementMelee : MonoBehaviour
     {
         if (checkForGround(playerToEnemy()))
             rb.velocity = new Vector2(moveSpeed * playerToEnemy(), rb.velocity.y);
-        else
+        else if(Vector2.Distance(transform.position, player.transform.position) > 1.5)
             rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
