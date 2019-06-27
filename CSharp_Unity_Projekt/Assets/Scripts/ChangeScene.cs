@@ -45,11 +45,11 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if(isSavepoint)
+            if (isSavepoint)
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().SaveEnemies();
 
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().SavePlayer();
@@ -59,12 +59,13 @@ public class ChangeScene : MonoBehaviour
             entered = true;
         }
 
-        if(collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            if(collision.GetComponent<Enemy>().IsRanged)
+            if (collision.gameObject.GetComponent<Enemy>().IsRanged)
                 collision.gameObject.GetComponent<EnemyMovementRanged>().Flip();
             else
                 collision.gameObject.GetComponent<EnemyMovementMelee>().Flip();
         }
+
     }
 }
