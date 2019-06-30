@@ -28,32 +28,35 @@ public class PlayerMeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer > 0)
+        if(!GetComponent<PlayerHealth>().IsDead)
         {
-            timer -= Time.deltaTime;
-        }
-        else
-        {
-            if (Input.GetButtonDown("Melee"))
+            if (timer > 0)
             {
-                anim.SetTrigger("hit");
-                active = activeInput;
-                timer = timerInput;
+                timer -= Time.deltaTime;
             }
-        }
+            else
+            {
+                if (Input.GetButtonDown("Melee"))
+                {
+                    anim.SetTrigger("hit");
+                    active = activeInput;
+                    timer = timerInput;
+                }
+            }
 
-        if(active > 0)
-        {
-            hitbox.enabled = true;
-            if(Input.GetButtonDown("Melee"))
+            if (active > 0)
             {
-                anim.SetTrigger("hitAgain");
+                hitbox.enabled = true;
+                if (Input.GetButtonDown("Melee"))
+                {
+                    anim.SetTrigger("hitAgain");
+                }
+                active -= Time.deltaTime;
             }
-            active -= Time.deltaTime;
-        }
-        else
-        {
-            hitbox.enabled = false;
+            else
+            {
+                hitbox.enabled = false;
+            }
         }
     }
 }

@@ -29,8 +29,9 @@ public class CameraMovement : MonoBehaviour
 
         currentScene = ((Scene)SceneManager.GetActiveScene()).name;
 
-        if (Screen.currentResolution.width / Screen.currentResolution.height == 3 / 2)
+        if (Screen.width == 2736 || Screen.width == 3000)
         {
+
             switch(currentScene)
             {
                 case "Level 1":

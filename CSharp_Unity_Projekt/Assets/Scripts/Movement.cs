@@ -131,7 +131,8 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (GetComponent<PauseMenu>().GamePaused || GetComponent<PlayerHealth>().IsDead)
+
+        if (GetComponent<PauseMenu>().GamePaused || (GetComponent<PlayerHealth>().IsDead && !GetComponent<PlayerHealth>().IsWater))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }

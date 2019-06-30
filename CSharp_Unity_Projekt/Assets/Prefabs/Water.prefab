@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1599687631415638006}
   - component: {fileID: 1599687631415638007}
   - component: {fileID: 1599687631415637992}
-  - component: {fileID: 1599687631415638005}
+  - component: {fileID: 6683657083221575896}
+  - component: {fileID: 6058966829453059994}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -93,8 +94,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -9.691523}
   m_SpriteTilingProperty:
@@ -109,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20.48, y: 1.0969553}
   m_EdgeRadius: 0
---- !u!114 &1599687631415638005
+--- !u!114 &6683657083221575896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,12 +119,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599687631415637993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec5efce71c1e34438db4ca80b2953ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e4f82bc7d8961940a3d034457cc5b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWater: 1
   waterParticle: {fileID: 2136448762287755490, guid: d4920b96c31e73649b8ee5d1bb4071fd,
     type: 3}
+--- !u!253 &6058966829453059994
+BuoyancyEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599687631415637993}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_SurfaceLevel: -9.2
+  m_Density: 1.5
+  m_LinearDrag: 5
+  m_AngularDrag: 5
+  m_FlowAngle: 0
+  m_FlowMagnitude: 0
+  m_FlowVariation: 0
 --- !u!1 &4285023231974786271
 GameObject:
   m_ObjectHideFlags: 0

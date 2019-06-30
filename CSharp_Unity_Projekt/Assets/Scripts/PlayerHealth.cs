@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
     private float knockbackDuration;
     private Rigidbody2D rb;
     private float knockbackTimer;
+    private bool isWater = false;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
@@ -42,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     public float KnockbackDuration { get => knockbackDuration; set => knockbackDuration = value; }
     public float KnockbackDurationInput { get => knockbackDurationInput; set => knockbackDurationInput = value; }
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public bool IsWater { get => isWater; set => isWater = value; }
 
     //Wird noch befor den ganzen Start Methoden aufgerufen. Hier legt man fixe Werte fest.
     void Awake()
@@ -133,7 +135,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth <= 0 && !isDead)
         {
-            die();
+            die(false);
         }
     }
 
@@ -145,16 +147,35 @@ public class PlayerHealth : MonoBehaviour
             rb.AddForce(new Vector2(amountX * direction * 100, amountY * 50));
     }
 
+    public void WaterDeath()
+    {
+        GameObject.FindGameObjectWithTag("PlayerHit").GetComponent<Animator>().SetTrigger("hit");
+        currentHealth = 0;
+
+        if (currentHealth > 0)
+            FindObjectOfType<AudioManager>().Play("PlayerTakeDamage");
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            die(true);
+        }
+    }
+
     //Zerstörung des Objekts
-    private void die()
+    private void die(bool isWater)
     {
         isDead = true;
+        this.isWater = isWater;
         GameData.deathCount++;
 
         //Animation & Sound spielen
-        transform.localScale = new Vector3(0,0);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        Instantiate(deathParticles, transform.position, Quaternion.identity);
-        FindObjectOfType<AudioManager>().Play("BodySplat");
+        
+        if(!isWater)
+        {
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            transform.localScale = new Vector3(0, 0);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+            FindObjectOfType<AudioManager>().Play("BodySplat");
+        }
     }
 }

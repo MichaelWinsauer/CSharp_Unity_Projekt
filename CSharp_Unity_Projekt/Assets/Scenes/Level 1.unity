@@ -651,7 +651,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &353173511
@@ -1322,7 +1322,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &502822170 stripped
@@ -1889,7 +1889,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &868641659
@@ -1903,26 +1903,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Transition
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634670234000837874, guid: c3a7f6cd4b28d544890e1307a4b1130e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1601
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634670234000837874, guid: c3a7f6cd4b28d544890e1307a4b1130e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1601
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858263938445714723, guid: c3a7f6cd4b28d544890e1307a4b1130e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1470
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858263938445714723, guid: c3a7f6cd4b28d544890e1307a4b1130e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1470
       objectReference: {fileID: 0}
     - target: {fileID: 3647091357903582905, guid: c3a7f6cd4b28d544890e1307a4b1130e,
         type: 3}
@@ -2059,6 +2039,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2858263938445714723, guid: c3a7f6cd4b28d544890e1307a4b1130e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1470
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858263938445714723, guid: c3a7f6cd4b28d544890e1307a4b1130e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1470
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634670234000837874, guid: c3a7f6cd4b28d544890e1307a4b1130e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634670234000837874, guid: c3a7f6cd4b28d544890e1307a4b1130e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1601
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a7f6cd4b28d544890e1307a4b1130e, type: 3}
 --- !u!1001 &899323109
@@ -2183,13 +2183,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 951412854185356185, guid: 94b42560c55e4884ca7942928413c96d,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Back to Menu
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 169403899723246384, guid: 94b42560c55e4884ca7942928413c96d,
         type: 3}
       propertyPath: pauseMenu
@@ -2205,6 +2198,13 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1612399333}
+    - target: {fileID: 951412854185356185, guid: 94b42560c55e4884ca7942928413c96d,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Back to Menu
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94b42560c55e4884ca7942928413c96d, type: 3}
 --- !u!4 &916413931 stripped
@@ -2307,7 +2307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015173609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.51, y: 0.26, z: 0}
+  m_LocalPosition: {x: 162.74, y: 5.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 239024633}
@@ -2893,7 +2893,7 @@ SpriteRenderer:
   m_Size: {x: 81.92, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1212325265
@@ -3561,7 +3561,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1801300784
@@ -4119,7 +4119,7 @@ SpriteRenderer:
   m_Size: {x: 81.92, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1915667615
@@ -4604,6 +4604,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: moveDamping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
+        type: 3}
+      propertyPath: slopeFriction
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4462600085984587781, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -4618,16 +4628,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.086
-      objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: moveDamping
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1563484318269074393, guid: 619c8251be5dadb4b9670effb9ce1dbd,
-        type: 3}
-      propertyPath: slopeFriction
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1563484318094430977, guid: 619c8251be5dadb4b9670effb9ce1dbd,
         type: 3}
@@ -4741,7 +4741,7 @@ PrefabInstance:
     - target: {fileID: 5250018282379522689, guid: 8c2984c3277f51b4cab7aa587aa8b08c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: 0.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c2984c3277f51b4cab7aa587aa8b08c, type: 3}
