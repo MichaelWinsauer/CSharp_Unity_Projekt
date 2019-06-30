@@ -177,5 +177,9 @@ public class PlayerHealth : MonoBehaviour
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             FindObjectOfType<AudioManager>().Play("BodySplat");
         }
+        else if (isWater)
+        {
+            FindObjectOfType<AudioManager>().Play("WaterSplash");
+        }
     }
 }
